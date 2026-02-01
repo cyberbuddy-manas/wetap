@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="Abla's Frühstück — POS Dashboard" />
+  <title>Abla's Frühstück — POS Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+*{box-sizing:border-box}html,body{margin:0;padding:0;font-family:Inter,-apple-system,Segoe UI,sans-serif;background:#f5f5f5;color:#1a1a1a}body{padding:16px}.pin-screen{position:fixed;inset:0;background:linear-gradient(135deg,#000 0%,#1a1a1a 100%);display:flex;align-items:center;justify-content:center;z-index:9999;flex-direction:column}.pin-screen.hidden{display:none}.pin-container{background:#fff;border-radius:20px;padding:40px 32px;text-align:center;max-width:340px;width:90%;box-shadow:0 20px 60px rgba(0,0,0,.3)}.pin-container h2{margin:0 0 12px;font-size:28px;font-weight:700}.pin-container p{margin:0 0 32px;color:#666;font-size:14px}.pin-input-group{margin-bottom:24px}.pin-input{width:100%;font-size:32px;letter-spacing:16px;text-align:center;padding:16px;border:2px solid #e8e8e8;border-radius:12px;font-weight:700;font-family:monospace;transition:border-color .2s}.pin-input:focus{outline:none;border-color:#000}.pin-error{color:#dc2626;font-size:12px;margin-top:8px;display:none}.pin-buttons{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px}.pin-btn{padding:16px;border:1.5px solid #e8e8e8;background:#f5f5f5;border-radius:12px;font-size:18px;font-weight:700;cursor:pointer;transition:all .2s;font-family:Inter}.pin-btn:hover{background:#e0e0e0;border-color:#000}.pin-btn:active{transform:scale(.95)}.pin-btn.delete{grid-column:3}.pin-btn.enter{grid-column:1/4;background:#000;color:#fff;border-color:#000;font-size:16px}.pin-btn.enter:hover{background:#1a1a1a}.dashboard{display:none}.dashboard.active{display:block}.header{background:#fff;padding:20px;border-radius:12px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 8px rgba(0,0,0,.08)}.header h1{margin:0;font-size:24px}.logout-btn{background:#000;color:#fff;border:none;padding:10px 16px;border-radius:8px;cursor:pointer;font-weight:600;font-family:Inter;font-size:13px;transition:all .2s}.logout-btn:hover{opacity:.8}.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:20px}.stat-card{background:#fff;padding:20px;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.08)}.stat-label{font-size:12px;color:#666;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;font-weight:600}.stat-value{font-size:32px;font-weight:700;color:#000}.stat-unit{font-size:14px;color:#999;margin-left:4px;font-weight:500}.orders-section{background:#fff;border-radius:12px;padding:20px;box-shadow:0 2px 8px rgba(0,0,0,.08)}.section-title{font-size:18px;font-weight:700;margin:0 0 16px}.orders-list{display:flex;flex-direction:column;gap:12px}.order-card{border:1.5px solid #e8e8e8;border-radius:12px;padding:16px;transition:all .2s;cursor:pointer}.order-card:hover{box-shadow:0 4px 12px rgba(0,0,0,.1);border-color:#000}.order-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.order-table{font-weight:700;font-size:16px}.order-time{font-size:12px;color:#666}.order-status{padding:4px 12px;border-radius:20px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.5px}.order-status.pending{background:#fef3c7;color:#92400e}.order-status.completed{background:#d1fae5;color:#065f46}.order-items{margin-bottom:12px}.item-line{font-size:13px;color:#666;margin-bottom:6px}.item-line strong{color:#000;font-weight:700}.order-total{border-top:1px solid #e8e8e8;padding-top:12px;font-weight:700;text-align:right}.order-actions{display:flex;gap:8px;margin-top:12px}.status-btn{flex:1;padding:8px 12px;border:1px solid #e8e8e8;background:#f5f5f5;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;font-family:Inter}.status-btn:hover{background:#e0e0e0;border-color:#000}.status-btn.complete{background:#000;color:#fff;border-color:#000}.status-btn.complete:hover{opacity:.8}.empty-state{text-align:center;padding:40px 20px;color:#999}.empty-icon{font-size:48px;margin-bottom:16px}.empty-text{font-size:14px}@media(max-width:768px){.stats{grid-template-columns:1fr}.order-header{flex-direction:column;align-items:flex-start;gap:8px}}
+  </style>
+</head>
+<body>
+  <div class="pin-screen" id="pinScreen">
+    <div class="pin-container">
+      <h2>🔐 PIN eingeben</h2>
+      <p>Geben Sie den PIN ein, um das Dashboard zu öffnen</p>
+      <div class="pin-input-group">
+        <input type="password" class="pin-input" id="pinInput" maxlength="6" placeholder="••••••">
+        <div class="pin-error" id="pinError">Falscher PIN!</div>
+      </div>
+      <div class="pin-buttons" id="pinButtons"></div>
+    </div>
+  </div>
+
+  <div class="dashboard" id="dashboard">
+    <div class="header">
+      <div>
+        <h1>📊 POS Dashboard</h1>
+        <p style="margin:4px 0 0;font-size:12px;color:#666">Abla's Frühstück</p>
+      </div>
+      <button class="logout-btn" onclick="logout()">Abmelden</button>
+    </div>
+
+    <div class="stats">
+      <div class="stat-card">
+        <div class="stat-label">Offene Bestellungen</div>
+        <div><span class="stat-value" id="pendingCount">0</span></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Abgeschlossene Bestellungen</div>
+        <div><span class="stat-value" id="completedCount">0</span></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Tages-Umsatz</div>
+        <div><span class="stat-value" id="totalRevenue">0,00 €</span></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Aktive Tische</div>
+        <div><span class="stat-value" id="activeTables">0</span></div>
+      </div>
+    </div>
+
+    <div class="orders-section">
+      <h2 class="section-title">📋 Bestellungen</h2>
+      <div class="orders-list" id="ordersList">
+        <div class="empty-state">
+          <div class="empty-icon">📭</div>
+          <div class="empty-text">Keine Bestellungen vorhanden</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+const CORRECT_PIN='560723';let isUnlocked=false;function initPinPad(){const container=document.getElementById('pinButtons');for(let i=1;i<=9;i++){const btn=document.createElement('button');btn.className='pin-btn';btn.textContent=i;btn.addEventListener('click',()=>addPinDigit(i));container.appendChild(btn);}const zeroBtn=document.createElement('button');zeroBtn.className='pin-btn';zeroBtn.textContent='0';zeroBtn.addEventListener('click',()=>addPinDigit(0));container.appendChild(zeroBtn);const deleteBtn=document.createElement('button');deleteBtn.className='pin-btn delete';deleteBtn.textContent='⌫';deleteBtn.addEventListener('click',deletePinDigit);container.appendChild(deleteBtn);const enterBtn=document.createElement('button');enterBtn.className='pin-btn enter';enterBtn.textContent='EINGEBEN';enterBtn.addEventListener('click',checkPin);container.appendChild(enterBtn);}function addPinDigit(digit){const input=document.getElementById('pinInput');if(input.value.length<6){input.value+=digit;document.getElementById('pinError').style.display='none';}}function deletePinDigit(){const input=document.getElementById('pinInput');input.value=input.value.slice(0,-1);}function checkPin(){const input=document.getElementById('pinInput');if(input.value===CORRECT_PIN){isUnlocked=true;document.getElementById('pinScreen').classList.add('hidden');document.getElementById('dashboard').classList.add('active');localStorage.setItem('dashboardAuth','true');loadDashboard();}else{document.getElementById('pinError').style.display='block';input.value='';}}function logout(){isUnlocked=false;localStorage.removeItem('dashboardAuth');document.getElementById('pinScreen').classList.remove('hidden');document.getElementById('dashboard').classList.remove('active');document.getElementById('pinInput').value='';}function loadDashboard(){const orders=JSON.parse(localStorage.getItem('posOrders')||'[]');updateStats(orders);renderOrders(orders);}function updateStats(orders){let pending=0,completed=0,revenue=0,tables=new Set();orders.forEach(order=>{if(order.status==='pending')pending++;else if(order.status==='completed')completed++;revenue+=order.total;tables.add(order.table);});document.getElementById('pendingCount').textContent=pending;document.getElementById('completedCount').textContent=completed;document.getElementById('totalRevenue').textContent=revenue.toFixed(2)+' €';document.getElementById('activeTables').textContent=tables.size;}function renderOrders(orders){const container=document.getElementById('ordersList');if(!orders.length){container.innerHTML='<div class="empty-state"><div class="empty-icon">📭</div><div class="empty-text">Keine Bestellungen vorhanden</div></div>';return;}container.innerHTML='';orders.reverse().forEach((order,index)=>{const card=document.createElement('div');card.className='order-card';const time=new Date(order.timestamp).toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'});const itemsHtml=order.items.map(item=>`<div class="item-line"><strong>${item.qty}× ${item.name}</strong> ${(item.qty*item.price).toFixed(2)} €</div>`).join('');card.innerHTML=`<div class="order-header"><div class="order-table">Tisch ${order.table}</div><div style="display:flex;gap:8px;align-items:center"><div class="order-time">${time}</div><span class="order-status ${order.status}">${order.status==='pending'?'AUSSTEHEND':'ABGESCHLOSSEN'}</span></div></div><div class="order-items">${itemsHtml}</div><div class="order-total">Gesamt: ${order.total.toFixed(2)} €</div><div class="order-actions">${order.status==='pending'?`<button class="status-btn complete" onclick="completeOrder(${index})">✓ Abgeschlossen</button>`:`<button class="status-btn" onclick="uncompleteOrder(${index})">↺ Rückgängig</button>`}</div>`;container.appendChild(card);});}function completeOrder(index){const orders=JSON.parse(localStorage.getItem('posOrders')||'[]');orders.reverse()[index].status='completed';localStorage.setItem('posOrders',JSON.stringify(orders));loadDashboard();}function uncompleteOrder(index){const orders=JSON.parse(localStorage.getItem('posOrders')||'[]');orders.reverse()[index].status='pending';localStorage.setItem('posOrders',JSON.stringify(orders));loadDashboard();}function init(){const isAuth=localStorage.getItem('dashboardAuth')==='true';if(isAuth){isUnlocked=true;document.getElementById('pinScreen').classList.add('hidden');document.getElementById('dashboard').classList.add('active');loadDashboard();}else{initPinPad();document.getElementById('pinInput').addEventListener('keypress',e=>{if(e.key==='Enter')checkPin();});}}document.addEventListener('DOMContentLoaded',init);setInterval(()=>{if(isUnlocked){loadDashboard();}},2000);
+  </script>
+</body>
+</html>

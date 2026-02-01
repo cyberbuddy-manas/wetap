@@ -37,8 +37,8 @@
     body{
       margin:0;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
-      color: var(--text);
-      background: var(--bg);
+      color: #1A1A1A;
+      background: #FAFAFA;
       overflow-x:hidden;
     }
 
@@ -48,27 +48,11 @@
       position:fixed;
       inset:-30%;
       z-index:-2;
-      background:
-        radial-gradient(900px 540px at 18% 10%, rgba(227,199,122,.22), transparent 65%),
-        radial-gradient(820px 540px at 85% 25%, rgba(110,127,58,.22), transparent 62%),
-        radial-gradient(720px 520px at 60% 92%, rgba(164,74,28,.35), transparent 62%),
-        linear-gradient(140deg, var(--bg), var(--bg2));
-      transform: rotate(-5deg);
-      filter: saturate(1.06) contrast(1.04);
+      background: #FFFFFF;
     }
     body::after{
       content:"";
-      position:fixed;
-      inset:0;
-      z-index:-1;
-      opacity:.16;
-      background:
-        radial-gradient(circle at 25px 25px, rgba(244,239,231,.10) 2px, transparent 2.6px),
-        linear-gradient(90deg, rgba(244,239,231,.06) 1px, transparent 1px),
-        linear-gradient(0deg, rgba(244,239,231,.04) 1px, transparent 1px);
-      background-size: 50px 50px, 50px 50px, 50px 50px;
-      mix-blend-mode: overlay;
-      pointer-events:none;
+      display: none;
     }
 
     .container{
@@ -77,22 +61,33 @@
       padding: 18px 14px 110px;
     }
 
-    /* Header */
     .topbar{
+      background: linear-gradient(135deg, #FFFFFF 0%, #F9F5F0 100%);
+      border-bottom: 2px solid #D4AF37;
+      padding: 18px 22px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(212,175,55,.08);
       position: sticky;
       top: 0;
       z-index: 30;
-      padding: 12px 0 10px;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      background: linear-gradient(180deg, rgba(74,31,20,.76), rgba(74,31,20,.30));
-      border-bottom: 1px solid rgba(227,199,122,.14);
+    }
+    .topbar::before {
+      content: "✦ ✦ ✦";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: -8px;
+      text-align: center;
+      color: #D4AF37;
+      font-size: 8px;
+      letter-spacing: 8px;
     }
     .topbar-inner{
-      display:flex;
+      display:none;
       gap: 10px;
       align-items:center;
-      justify-content:space-between;
+      justify-content:center;
+      flex-wrap: wrap;
     }
 
     .brand{
@@ -100,17 +95,19 @@
       gap: 12px;
       align-items:center;
       min-width: 0;
+      justify-content: center;
     }
     .logo{
-      width: 46px; height: 46px;
-      border-radius: 16px;
-      background: linear-gradient(135deg, rgba(227,199,122,.22), rgba(110,127,58,.14));
-      border: 1px solid rgba(227,199,122,.24);
-      box-shadow: 0 10px 25px rgba(0,0,0,.22);
+      width: 100px; height: 100px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      border: 3px solid #D4AF37;
+      box-shadow: 0 16px 40px rgba(212,175,55,.15), 0 8px 20px rgba(0,0,0,.1);
       display:flex; align-items:center; justify-content:center;
       flex: 0 0 auto;
+      overflow: hidden;
     }
-    .logo svg{width: 26px; height: 26px; opacity:.92}
+    .logo img{width: 100%; height: 100%; object-fit: cover}
     .brand h1{
       margin:0;
       font-family: "Playfair Display", serif;
@@ -129,23 +126,21 @@
       text-overflow:ellipsis;
     }
 
-    .right-controls{
-      display:flex;
+    .right-controls{display:none;
       gap: 10px;
       align-items:center;
       flex-wrap:wrap;
       justify-content:flex-end;
     }
 
-    .chip{
-      display:inline-flex;
+    .chip{display:none;
       align-items:center;
       gap: 8px;
       padding: 10px 12px;
       border-radius: 999px;
       background: rgba(0,0,0,.18);
       border: 1px solid rgba(227,199,122,.22);
-      color: var(--text);
+      color: #1A1A1A;
       text-decoration:none;
       font-size: 13px;
       cursor:pointer;
@@ -174,7 +169,7 @@
       border:0;
       outline:none;
       background: transparent;
-      color: var(--text);
+      color: #1A1A1A;
       font-size: 13px;
     }
     .search input::placeholder{color: rgba(247,245,240,.55)}
@@ -265,7 +260,7 @@
       border: 1px solid rgba(227,199,122,.14);
       background: rgba(0,0,0,.16);
       text-decoration:none;
-      color: var(--text);
+      color: #1A1A1A;
       font-size: 13px;
       transition: background .16s ease, border-color .16s ease, transform .12s ease;
     }
@@ -417,7 +412,7 @@
     .btn{
       border:0;
       cursor:pointer;
-      color: var(--text);
+      color: #1A1A1A;
       background: linear-gradient(135deg, rgba(227,199,122,.22), rgba(110,127,58,.16));
       border: 1px solid rgba(227,199,122,.22);
       padding: 10px 12px;
@@ -594,7 +589,7 @@
       border: 1px solid rgba(227,199,122,.20);
       background: rgba(0,0,0,.18);
       padding: 10px 10px;
-      color: var(--text);
+      color: #1A1A1A;
       outline:none;
       font-size: 12px;
     }
@@ -1265,7 +1260,7 @@
         route:"Route",
         call:"Anrufen",
         mail:"E-Mail",
-        disclaimer:"Hinweis: Preise/Produkte können sich ändern. Für Lieferungen bitte  nutzen.",
+        disclaimer:"Hinweis: Preise/Produkte können sich ändern. ",
         cart:"Warenkorb",
         close:"Close",
         cartLine:(n)=>`Warenkorb: ${n} Artikel`,
@@ -1297,7 +1292,7 @@
         route:"Directions",
         call:"Call",
         mail:"Email",
-        disclaimer:"Note: prices/items may change. For delivery please use .",
+        disclaimer:"Note: prices/items may change. ",
         cart:"Cart",
         close:"Close",
         cartLine:(n)=>`Cart: ${n} items`,
@@ -1329,7 +1324,7 @@
         route:"Yol tarifi",
         call:"Ara",
         mail:"E-posta",
-        disclaimer:"Not: fiyatlar/ürünler değişebilir. Teslimat için  kullanın.",
+        disclaimer:"Not: fiyatlar/ürünler değişebilir. ",
         cart:"Sepet",
         close:"Kapat",
         cartLine:(n)=>`Sepet: ${n} ürün`,
@@ -1361,7 +1356,7 @@
         route:"Маршрут",
         call:"Позвонить",
         mail:"Email",
-        disclaimer:"Примечание: цены/позиции могут меняться. Для доставки используйте .",
+        disclaimer:"Примечание: цены/позиции могут меняться. ",
         cart:"Корзина",
         close:"Закрыть",
         cartLine:(n)=>`Корзина: ${n} шт.`,

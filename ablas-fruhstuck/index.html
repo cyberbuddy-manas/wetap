@@ -534,7 +534,7 @@
         </a>
 
         <!-- Digital Speisekarte -->
-        <a class="btn" href="menu.html" target="_blank" rel="noopener noreferrer">
+        <a class="btn" href="javascript:openTableModal()" onclick="return false;">
           <span class="left">
             <span class="icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none">
@@ -545,6 +545,23 @@
             <span class="label">
               <span>Digital Speisekarte</span>
               <small>Menü & Preise online ansehen</small>
+            </span>
+          </span>
+          <span class="arrow">→</span>
+        </a>
+
+        <!-- POS Dashboard -->
+        <a class="btn" href="dashboard.html">
+          <span class="left">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <rect x="3" y="3" width="18" height="18" rx="2" stroke="#000000" stroke-width="1.6"/>
+                <path d="M9 12h6M9 7h6M9 17h2" stroke="#000000" stroke-width="1.4" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="label">
+              <span>POS Dashboard</span>
+              <small>Bestellungen verwalten</small>
             </span>
           </span>
           <span class="arrow">→</span>
@@ -651,6 +668,155 @@
       </footer>
     </main>
   </div>
+
+  <div id="tableModal" class="table-modal">
+    <div class="table-modal-content">
+      <h2>Tischnummer eingeben</h2>
+      <p>Bitte geben Sie Ihre Tischnummer ein</p>
+      <input type="text" id="tableInput" placeholder="z.B. 5 oder A1" maxlength="10">
+      <div class="table-modal-buttons">
+        <button class="table-modal-cancel" onclick="closeTableModal()">Abbrechen</button>
+        <button class="table-modal-confirm" onclick="goToMenu()">Weiter zum Menü</button>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .table-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.6);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn .2s ease-out;
+    }
+    
+    .table-modal.active {
+      display: flex;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    .table-modal-content {
+      background: #FFFFFF;
+      border-radius: 20px;
+      padding: 32px 24px;
+      max-width: 380px;
+      width: 90%;
+      box-shadow: 0 20px 60px rgba(0,0,0,.3);
+      animation: slideUp .3s ease-out;
+    }
+    
+    @keyframes slideUp {
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    
+    .table-modal-content h2 {
+      margin: 0 0 8px;
+      font-size: 24px;
+      font-weight: 700;
+      color: #000000;
+    }
+    
+    .table-modal-content p {
+      margin: 0 0 24px;
+      color: #666666;
+      font-size: 14px;
+    }
+    
+    #tableInput {
+      width: 100%;
+      padding: 14px 12px;
+      border: 2px solid #E8E8E8;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      font-family: Inter;
+      margin-bottom: 20px;
+      transition: border-color .2s;
+    }
+    
+    #tableInput:focus {
+      outline: none;
+      border-color: #000000;
+    }
+    
+    .table-modal-buttons {
+      display: flex;
+      gap: 12px;
+    }
+    
+    .table-modal-cancel,
+    .table-modal-confirm {
+      flex: 1;
+      padding: 12px;
+      border: none;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .2s;
+      font-family: Inter;
+    }
+    
+    .table-modal-cancel {
+      background: #F0F0F0;
+      color: #666666;
+    }
+    
+    .table-modal-cancel:hover {
+      background: #E0E0E0;
+    }
+    
+    .table-modal-confirm {
+      background: #000000;
+      color: #FFFFFF;
+    }
+    
+    .table-modal-confirm:hover {
+      background: #1A1A1A;
+      transform: translateY(-1px);
+    }
+    
+    .table-modal-confirm:disabled {
+      opacity: .5;
+      cursor: not-allowed;
+      transform: none;
+    }
+  </style>
+
+  <script>
+    function openTableModal() {
+      document.getElementById('tableModal').classList.add('active');
+      document.getElementById('tableInput').focus();
+      document.getElementById('tableInput').value = '';
+    }
+    
+    function closeTableModal() {
+      document.getElementById('tableModal').classList.remove('active');
+    }
+    
+    function goToMenu() {
+      const table = document.getElementById('tableInput').value.trim();
+      if (!table) {
+        alert('Bitte geben Sie eine Tischnummer ein');
+        return;
+      }
+      localStorage.setItem('tableNumber', table);
+      localStorage.setItem('orders', JSON.stringify({}));
+      window.location.href = 'menu.html';
+    }
+    
+    document.getElementById('tableInput').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') goToMenu();
+    });
+  </script>
 
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
