@@ -62,33 +62,8 @@
     }
 
 
-    .chip:hover{
-      transform: translateY(-1px);
-      border-color: rgba(227,199,122,.35);
-      background: rgba(0,0,0,.24);
-    }
-    .chip svg{width:16px; height:16px; opacity:.92}
 
-    .search{
-      display:flex;
-      align-items:center;
-      gap: 10px;
-      padding: 10px 12px;
-      border-radius: 999px;
-      background: rgba(0,0,0,.18);
-      border: 1px solid rgba(227,199,122,.22);
-      min-width: min(420px, 70vw);
-    }
-    .search input{
-      width: 100%;
-      border:0;
-      outline:none;
-      background: transparent;
-      color: #1A1A1A;
-      font-size: 13px;
-    }
-    .search input::placeholder{color: rgba(247,245,240,.55)}
-    .search svg{width:16px; height:16px; opacity:.85}
+
 
     /* Layout */
     .grid{
@@ -531,7 +506,7 @@
     }
     .note{
       font-size: 11px;
-      color: #1A1A1A;
+      color: rgba(247,245,240,.62);
       line-height: 1.35;
     }
 
@@ -546,4 +521,1101 @@
 </head>
 
 <body>
-  <div class="container">
+          <div class="toggle" data-filter="vegan" id="fVegan">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M20 4c-6 1-10 4-12 10 6-2 9-6 10-12Z" stroke="#1A1A1A" stroke-width="1.6" stroke-linejoin="round"/>
+              <path d="M4 20c4-8 9-11 16-12" stroke="#555555" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+            <span id="tVegan">Vegan</span>
+          </div>
+
+          <div class="toggle" data-filter="vegetarian" id="fVeg">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 21c4.5-3.2 6.5-7 6.5-11.3C18.5 6 16.7 3.5 12 3.5S5.5 6 5.5 9.7C5.5 14 7.5 17.8 12 21Z" stroke="#1A1A1A" stroke-width="1.6"/>
+            </svg>
+            <span id="tVeg">Vegetarisch</span>
+          </div>
+
+          <div class="toggle" data-filter="spicy" id="fSpicy">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 3c2 3-1 5-1 7s2 3 2 5-2 6-2 6 7-3 7-9c0-4-2-7-6-9Z" stroke="#1A1A1A" stroke-width="1.6" stroke-linejoin="round"/>
+            </svg>
+            <span id="tSpicy">Scharf</span>
+          </div>
+
+          <div class="toggle" data-filter="halal" id="fHalal">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" stroke="#1A1A1A" stroke-width="1.6"/>
+              <path d="M8 12h8" stroke="#1A1A1A" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+            <span>Halal</span>
+          </div>
+        </div>
+
+        <div style="height:12px"></div>
+        <h3 id="infoTitle">Info</h3>
+        <div class="links">
+          <a class="linkbtn" href="https://maps.google.com/?q=Mayener%20Str.%201%2C%2056070%20Koblenz" target="_blank" rel="noopener noreferrer">
+            <span><b id="routeLbl">Route</b><br><small>Mayener Str. 1, Koblenz</small></span>
+            <span>→</span>
+          </a>
+          <a class="linkbtn" href="tel:+4926139052717">
+            <span><b id="callLbl">Anrufen</b><br><small>0261 39052717</small></span>
+            <span>→</span>
+          </a>
+          <a class="linkbtn" href="mailto:ablasfruehstueck@hotmail.com">
+            <span><b id="mailLbl">E-Mail</b><br><small>ablasfruehstueck@hotmail.com</small></span>
+            <span>→</span>
+          </a>
+        </div>
+        <p class="note" id="disclaimer" style="margin:12px 0 0">
+          Hinweis: Preise/Produkte können sich ändern.
+        </p>
+      </aside>
+
+      <!-- Main -->
+      <main class="main">
+        <div class="panel">
+          <div class="section-title">
+            <div>
+              <h2 id="menuTitle">Menü</h2>
+              <p id="menuHint">Tippe auf <b>+</b> um Artikel in den Warenkorb zu legen.</p>
+            </div>
+            <button class="btn secondary" id="resetBtn">Reset</button>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="cards" id="cards"></div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Cart bar -->
+  <div class="cartbar" role="region" aria-label="Warenkorb">
+    <div class="cartbar-inner">
+      <div class="cart-summary">
+        <strong id="cartLine">Warenkorb: 0 Artikel</strong>
+        <span id="cartTotal">Total: 0,00 €</span>
+      </div>
+      <div class="cart-actions">
+        <button class="btn secondary" id="openCartBtn">Cart</button>
+        <button class="btn" id="checkoutBtn">Checkout</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cart drawer -->
+  <div class="drawer" id="drawer">
+    <div class="overlay" id="overlay"></div>
+    <div class="sheet" role="dialog" aria-label="Warenkorb">
+      <header>
+        <h3 id="cartTitle">Warenkorb</h3>
+        <button class="btn secondary" id="closeCartBtn">Close</button>
+      </header>
+
+      <div class="cartlist" id="cartlist"></div>
+
+      <div class="totals">
+        <div class="discount">
+          <input id="coupon" placeholder="Discount code (z.B. ABLA10)" />
+          <button class="btn secondary" id="applyCoupon">Apply</button>
+        </div>
+
+        <div class="row"><span id="subLbl">Zwischensumme</span><span id="subVal">0,00 €</span></div>
+        <div class="row"><span id="discLbl">Rabatt</span><span id="discVal">0,00 €</span></div>
+        <div class="row"><span><b id="totLbl">Total</b></span><strong id="totVal">0,00 €</strong></div>
+
+        <button class="btn" id="copyOrderBtn">Copy Order</button>
+        <button class="btn secondary" id="clearBtn">Clear Cart</button>
+        <p class="note" id="cartNote">
+          Dieses Menü ist eine QR-Menü-Ansicht. Bezahlen erfolgt vor Ort oder über Lieferplattformen.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /***********************
+     * 1) MENU DATA (editable)
+     ***********************/
+    const MENU = [
+      // Frühstück & Toast
+      {
+        id:"toast_gouda",
+        category:"breakfast",
+        price:5.20,
+        tags:["vegetarian"],
+        emoji:"🥖",
+        image:"",
+        t:{
+          de:{name:"Baguette-Toast Frühstück mit Gouda", desc:"Beilagen: Tomaten, Gurken, Weichkäse und Oliven."},
+          en:{name:"Baguette toast breakfast with Gouda", desc:"Sides: tomatoes, cucumbers, soft cheese and olives."},
+          tr:{name:"Gouda’lı baget tost kahvaltı", desc:"Yanında: domates, salatalık, beyaz peynir ve zeytin."},
+          ru:{name:"Багет-тост завтрак с гаудой", desc:"Гарнир: помидоры, огурцы, мягкий сыр и оливки."}
+        }
+      },
+      {
+        id:"abla_toast",
+        category:"breakfast",
+        price:6.90,
+        tags:["spicy"],
+        emoji:"🌶️",
+        image:"",
+        t:{
+          de:{name:"Abla’s Spezial-Toast", desc:"Baguette-Toast mit Sucuk, Paprikamark (Salçalı), Ei und Paprika (scharf). Beilagen: Tomaten, Gurken, Oliven und Weichkäse."},
+          en:{name:"Abla’s Special Toast", desc:"Baguette toast with sucuk, pepper paste (salça), egg and spicy pepper. Sides: tomatoes, cucumbers, olives and soft cheese."},
+          tr:{name:"Abla Özel Tost", desc:"Sucuk, salça, yumurta ve acı biberli baget tost. Yanında: domates, salatalık, zeytin ve peynir."},
+          ru:{name:"Фирменный тост Abla", desc:"Багет-тост с суджуком, перцовой пастой (салча), яйцом и острым перцем. Гарнир: помидоры, огурцы, оливки и мягкий сыр."}
+        }
+      },
+      {
+        id:"takeaway_gouda",
+        category:"takeaway",
+        price:4.50,
+        tags:["vegetarian"],
+        emoji:"🥪",
+        image:"",
+        t:{
+          de:{name:"Schnelles Frühstück: Baguette-Toast mit Gouda", desc:"Zum Mitnehmen."},
+          en:{name:"Quick breakfast: Baguette toast with Gouda", desc:"To go."},
+          tr:{name:"Hızlı kahvaltı: Gouda’lı baget tost", desc:"Paket servis."},
+          ru:{name:"Быстрый завтрак: багет-тост с гаудой", desc:"С собой."}
+        }
+      },
+      {
+        id:"takeaway_gouda_sucuk",
+        category:"takeaway",
+        price:5.40,
+        tags:[],
+        emoji:"🥪",
+        image:"",
+        t:{
+          de:{name:"Schnelles Frühstück: Gouda & Sucuk", desc:"Baguette-Toast."},
+          en:{name:"Quick breakfast: Gouda & Sucuk", desc:"Baguette toast."},
+          tr:{name:"Hızlı kahvaltı: Gouda & Sucuk", desc:"Baget tost."},
+          ru:{name:"Быстрый завтрак: гауда и суджук", desc:"Багет-тост."}
+        }
+      },
+      {
+        id:"takeaway_gouda_pastirma",
+        category:"takeaway",
+        price:5.40,
+        tags:[],
+        emoji:"🥪",
+        image:"",
+        t:{
+          de:{name:"Schnelles Frühstück: Gouda & Pastırma", desc:"Baguette-Toast."},
+          en:{name:"Quick breakfast: Gouda & Pastırma", desc:"Baguette toast."},
+          tr:{name:"Hızlı kahvaltı: Gouda & Pastırma", desc:"Baget tost."},
+          ru:{name:"Быстрый завтрак: гауда и пастырма", desc:"Багет-тост."}
+        }
+      },
+      {
+        id:"takeaway_egg_sucuk",
+        category:"takeaway",
+        price:5.90,
+        tags:["spicy"],
+        emoji:"🍳",
+        image:"",
+        t:{
+          de:{name:"Schnelles Frühstück: Ei, Sucuk & Paprika", desc:"Baguette-Toast."},
+          en:{name:"Quick breakfast: egg, sucuk & pepper", desc:"Baguette toast."},
+          tr:{name:"Hızlı kahvaltı: yumurta, sucuk & biber", desc:"Baget tost."},
+          ru:{name:"Быстрый завтрак: яйцо, суджук и перец", desc:"Багет-тост."}
+        }
+      },
+      {
+        id:"belegtes_broetchen",
+        category:"sandwiches",
+        price:2.90,
+        tags:[],
+        emoji:"🥯",
+        image:"",
+        t:{
+          de:{name:"Belegtes Brötchen", desc:"Extra: Sucuk, Pute, Thunfisch, Ei, Gouda oder Mozzarella – Aufpreis 0,80 €."},
+          en:{name:"Filled bread roll", desc:"Extras: sucuk, turkey, tuna, egg, gouda or mozzarella – +0.80 €."},
+          tr:{name:"Dolu sandviç ekmek", desc:"Ekstra: sucuk, hindi, ton balığı, yumurta, gouda veya mozzarella – +0,80 €."},
+          ru:{name:"Булочка с начинкой", desc:"Дополнительно: суджук, индейка, тунец, яйцо, гауда или моцарелла – +0,80 €."}
+        }
+      },
+
+      // Menüs
+      {
+        id:"abla_fruehstueck",
+        category:"menus",
+        price:12.90,
+        tags:["halal"],
+        emoji:"🍽️",
+        image:"",
+        t:{
+          de:{name:"Abla’s Frühstück", desc:"2× Brötchen oder 1× Brötchen + 1× Simit, Marmelade, Butter, Gouda, Weichkäse, Gurken, Tomaten, Oliven, Nutella. Dazu: 2× Spiegelei mit Tomaten & Paprikamark (Salçalı Yumurta) scharf."},
+          en:{name:"Abla’s Breakfast", desc:"2 rolls or 1 roll + 1 simit, jam, butter, gouda, soft cheese, cucumbers, tomatoes, olives, Nutella. Plus: 2 fried eggs with tomatoes & pepper paste (salça) spicy."},
+          tr:{name:"Abla Kahvaltısı", desc:"2 ekmek veya 1 ekmek + 1 simit, reçel, tereyağı, gouda, beyaz peynir, salatalık, domates, zeytin, Nutella. Ayrıca: domates & salçalı 2 sahanda yumurta (acı)."},
+          ru:{name:"Завтрак Abla", desc:"2 булочки или 1 булочка + 1 симит, джем, масло, гауда, мягкий сыр, огурцы, помидоры, оливки, Nutella. Плюс: 2 яичницы с помидорами и перцовой пастой (салча), остро."}
+        }
+      },
+      {
+        id:"menu1",
+        category:"menus",
+        price:11.50,
+        tags:["halal"],
+        emoji:"🍽️",
+        image:"",
+        t:{
+          de:{name:"Frühstück-Menü 1", desc:"2× Brötchen oder 1× Brötchen + 1× Simit mit Marmelade, Butter, Gouda, Weichkäse, Gurken, Tomaten, Wurst, Oliven, Nutella. Extra: 2× Spiegelei mit Sucuk / Pastırma / Rinderhack – Aufpreis 2,00 €."},
+          en:{name:"Breakfast Menu 1", desc:"2 rolls or 1 roll + 1 simit with jam, butter, gouda, soft cheese, cucumbers, tomatoes, sausage, olives, Nutella. Optional: 2 eggs with sucuk/pastırma/minced beef +€2.00."},
+          tr:{name:"Kahvaltı Menü 1", desc:"2 ekmek veya 1 ekmek + 1 simit; reçel, tereyağı, gouda, peynir, salatalık, domates, sucuk/wurst, zeytin, Nutella. Ekstra: 2 yumurta (sucuk/pastırma/kıyma) +2,00 €."},
+          ru:{name:"Завтрак-меню 1", desc:"2 булочки или 1 булочка + 1 симит; джем, масло, гауда, мягкий сыр, огурцы, помидоры, колбаса, оливки, Nutella. Доп.: 2 яйца с суджуком/пастырмой/фаршем +2,00 €."}
+        }
+      },
+      {
+        id:"menu2",
+        category:"menus",
+        price:12.90,
+        tags:["halal"],
+        emoji:"🍳",
+        image:"",
+        t:{
+          de:{name:"Frühstück-Menü 2", desc:"2× Brötchen oder 1× Brötchen + 1× Simit mit Marmelade, Butter, Gouda, Weichkäse, Wurst, Gurken, Tomaten, Oliven. Dazu: Rührei (Menemen) mit Tomaten, Paprika und Zwiebeln (oder ohne)."},
+          en:{name:"Breakfast Menu 2", desc:"2 rolls or 1 roll + 1 simit with jam, butter, gouda, soft cheese, sausage, cucumbers, tomatoes, olives. Plus: scrambled eggs (menemen) with tomatoes, peppers and onions (or without)."},
+          tr:{name:"Kahvaltı Menü 2", desc:"2 ekmek veya 1 ekmek + 1 simit; reçel, tereyağı, gouda, peynir, sucuk/wurst, salatalık, domates, zeytin. Ayrıca: menemen (domates, biber, isteğe göre soğanlı/soğansız)."},
+          ru:{name:"Завтрак-меню 2", desc:"2 булочки или 1 булочка + 1 симит; джем, масло, гауда, мягкий сыр, колбаса, огурцы, помидоры, оливки. Плюс: скрэмбл (менемен) с помидорами, перцем и луком (или без)." }
+        }
+      },
+      {
+        id:"menu3",
+        category:"menus",
+        price:14.90,
+        tags:["halal"],
+        emoji:"🍯",
+        image:"",
+        t:{
+          de:{name:"Frühstück-Menü 3", desc:"2× Brötchen oder 1× Brötchen + 1× Simit. 1 Pfanne Spiegelei oder Rührei mit Tomaten und Paprika nach Wahl. Honig, Sahnecreme (Kaymak), Marmelade, Butter, Gouda, Weichkäse, Wurst, Nutella, Tomaten, Gurken, Oliven + 2 Dips. Extra: Hackfleisch/Sucuk/Pastırma – Aufpreis 2,00 €."},
+          en:{name:"Breakfast Menu 3", desc:"2 rolls or 1 roll + 1 simit. Pan of fried eggs or scrambled eggs with tomatoes & peppers. Honey, kaymak, jam, butter, gouda, soft cheese, sausage, Nutella, tomatoes, cucumbers, olives + 2 dips. Optional meat add-on +€2.00."},
+          tr:{name:"Kahvaltı Menü 3", desc:"2 ekmek veya 1 ekmek + 1 simit. Domates ve biberli sahanda yumurta veya çırpılmış yumurta. Bal, kaymak, reçel, tereyağı, gouda, peynir, sucuk/wurst, Nutella, domates, salatalık, zeytin + 2 dip. Ekstra et +2,00 €."},
+          ru:{name:"Завтрак-меню 3", desc:"2 булочки или 1 булочка + 1 симит. Сковорода яичницы или скрэмбла с помидорами и перцем. Мёд, каймак, джем, масло, гауда, мягкий сыр, колбаса, Nutella, помидоры, огурцы, оливки + 2 соуса. Доп. мясо +2,00 €."}
+        }
+      },
+
+      // Börek / Pide / Gebäck
+      {
+        id:"su_boregi",
+        category:"borek",
+        price:2.90,
+        tags:["vegetarian"],
+        emoji:"🧀",
+        image:"",
+        t:{
+          de:{name:"Su Böreği (Käse & Petersilie)", desc:"Traditioneller Schicht-Börek."},
+          en:{name:"Su Böreği (cheese & parsley)", desc:"Traditional layered börek."},
+          tr:{name:"Su Böreği (peynir & maydanoz)", desc:"Geleneksel kat kat börek."},
+          ru:{name:"Су-бёрек (сыр и петрушка)", desc:"Традиционный слоёный бёрек."}
+        }
+      },
+      {
+        id:"balkan_stick_rind",
+        category:"borek",
+        price:1.80,
+        tags:["halal"],
+        emoji:"🥟",
+        image:"",
+        t:{
+          de:{name:"Balkan Börek Stick (Rind)", desc:"Herzhaft gefüllt."},
+          en:{name:"Balkan Börek stick (beef)", desc:"Savory filling."},
+          tr:{name:"Balkan Börek çubuk (dana)", desc:"Lezzetli iç."},
+          ru:{name:"Балканский бёрек-стик (говядина)", desc:"Сытная начинка."}
+        }
+      },
+      {
+        id:"balkan_stick_kaese",
+        category:"borek",
+        price:1.80,
+        tags:["vegetarian"],
+        emoji:"🧀",
+        image:"",
+        t:{
+          de:{name:"Balkan Börek Stick (Käse)", desc:"Würziger Käse."},
+          en:{name:"Balkan Börek stick (cheese)", desc:"Tasty cheese."},
+          tr:{name:"Balkan Börek çubuk (peynir)", desc:"Lezzetli peynir."},
+          ru:{name:"Балканский бёрек-стик (сыр)", desc:"Ароматный сыр."}
+        }
+      },
+      {
+        id:"balkan_oval_kaese",
+        category:"borek",
+        price:2.20,
+        tags:["vegetarian"],
+        emoji:"🥐",
+        image:"",
+        t:{
+          de:{name:"Balkan Börek oval (Käse)", desc:"Hausgemacht, knusprig und mild."},
+          en:{name:"Balkan Börek oval (cheese)", desc:"Homemade, crispy & mild."},
+          tr:{name:"Balkan Börek oval (peynir)", desc:"Ev yapımı, çıtır ve hafif."},
+          ru:{name:"Овальный бёрек (сыр)", desc:"Домашний, хрустящий и нежный."}
+        }
+      },
+      {
+        id:"balkan_oval_spinat",
+        category:"borek",
+        price:2.20,
+        tags:["vegetarian"],
+        emoji:"🌿",
+        image:"",
+        t:{
+          de:{name:"Balkan Börek oval (Spinat)", desc:"Mit Kräutern."},
+          en:{name:"Balkan Börek oval (spinach)", desc:"With fresh herbs."},
+          tr:{name:"Balkan Börek oval (ıspanak)", desc:"Taze otlarla."},
+          ru:{name:"Овальный бёрек (шпинат)", desc:"Со свежими травами."}
+        }
+      },
+      {
+        id:"balkan_oval_rinderhack",
+        category:"borek",
+        price:2.60,
+        tags:["halal"],
+        emoji:"🥩",
+        image:"",
+        t:{
+          de:{name:"Balkan Börek oval (Rinderhack)", desc:"Kräftige Rindfleischfüllung."},
+          en:{name:"Balkan Börek oval (minced beef)", desc:"Rich beef filling."},
+          tr:{name:"Balkan Börek oval (dana kıyma)", desc:"Doyurucu iç."},
+          ru:{name:"Овальный бёрек (говяжий фарш)", desc:"Насыщенная начинка."}
+        }
+      },
+      {
+        id:"balkan_oval_kartoffel",
+        category:"borek",
+        price:2.60,
+        tags:["vegetarian"],
+        emoji:"🥔",
+        image:"",
+        t:{
+          de:{name:"Balkan Börek oval (Kartoffel)", desc:"Feine Kartoffelfüllung."},
+          en:{name:"Balkan Börek oval (potato)", desc:"Soft potato filling."},
+          tr:{name:"Balkan Börek oval (patates)", desc:"Patatesli iç."},
+          ru:{name:"Овальный бёрек (картофель)", desc:"Нежная картофельная начинка."}
+        }
+      },
+      {
+        id:"pide_hack",
+        category:"pide",
+        price:3.20,
+        tags:["halal"],
+        emoji:"🫓",
+        image:"",
+        t:{
+          de:{name:"Pide mit Hackfleisch", desc:"Türkisches Fladenbrot, frisch gebacken."},
+          en:{name:"Pide with minced meat", desc:"Turkish flatbread, freshly baked."},
+          tr:{name:"Kıymalı pide", desc:"Taze pişmiş Türk pidesi."},
+          ru:{name:"Пиде с фаршем", desc:"Турецкая лепёшка, свежая выпечка."}
+        }
+      },
+      {
+        id:"pide_kaese",
+        category:"pide",
+        price:3.20,
+        tags:["vegetarian"],
+        emoji:"🫓",
+        image:"",
+        t:{
+          de:{name:"Pide mit türkischem Käse", desc:"Geschmolzener Käse."},
+          en:{name:"Pide with Turkish cheese", desc:"Melted cheese."},
+          tr:{name:"Peynirli pide", desc:"Eritilmiş peynir."},
+          ru:{name:"Пиде с турецким сыром", desc:"Расплавленный сыр."}
+        }
+      },
+      {
+        id:"simit",
+        category:"bakery",
+        price:1.60,
+        tags:["vegetarian"],
+        emoji:"🥨",
+        image:"",
+        t:{
+          de:{name:"Simit (Sesamring)", desc:"Außen knusprig, innen weich."},
+          en:{name:"Simit (sesame ring)", desc:"Crispy outside, soft inside."},
+          tr:{name:"Simit", desc:"Dışı çıtır, içi yumuşak."},
+          ru:{name:"Симит", desc:"Снаружи хрустящий, внутри мягкий."}
+        }
+      },
+
+      // Kombi / Brötchen / Suppen
+      {
+        id:"kombi_fruehstuecksset",
+        category:"deals",
+        price:4.80,
+        tags:["vegetarian"],
+        emoji:"☕",
+        image:"",
+        t:{
+          de:{name:"Kombi: Frühstücks-Set", desc:"1 belegtes Brötchen mit Käse + 1 Kaffee."},
+          en:{name:"Combo: Breakfast set", desc:"1 filled roll with cheese + 1 coffee."},
+          tr:{name:"Kombi: Kahvaltı seti", desc:"Peynirli sandviç + kahve."},
+          ru:{name:"Комбо: завтрак-сет", desc:"Булочка с сыром + кофе."}
+        }
+      },
+      {
+        id:"kombi_suess",
+        category:"deals",
+        price:3.80,
+        tags:["vegetarian"],
+        emoji:"🥐",
+        image:"",
+        t:{
+          de:{name:"Kombi: Süßes Set", desc:"1 Croissant + 1 Heißgetränk."},
+          en:{name:"Combo: Sweet set", desc:"1 croissant + 1 hot drink."},
+          tr:{name:"Kombi: Tatlı set", desc:"Kruvasan + sıcak içecek."},
+          ru:{name:"Комбо: сладкий сет", desc:"Круассан + горячий напиток."}
+        }
+      },
+      {
+        id:"broetchen_fitness",
+        category:"bread",
+        price:0.90,
+        tags:["vegetarian","vegan"],
+        emoji:"🌾",
+        image:"",
+        t:{
+          de:{name:"Fitness-Baguette-Brötchen", desc:"Mit Vollkorn, Saaten & Körnern."},
+          en:{name:"Fitness baguette roll", desc:"Wholegrain with seeds."},
+          tr:{name:"Fit baget ekmek", desc:"Tam tahıl ve tohumlu."},
+          ru:{name:"Фитнес-булочка", desc:"Цельнозерновая с семенами."}
+        }
+      },
+      {
+        id:"broetchen_baguette",
+        category:"bread",
+        price:0.80,
+        tags:["vegetarian","vegan"],
+        emoji:"🥖",
+        image:"",
+        t:{
+          de:{name:"Baguette-Brötchen (klassisch)", desc:"Außen knusprig, innen weich."},
+          en:{name:"Baguette roll (classic)", desc:"Crispy outside, soft inside."},
+          tr:{name:"Klasik baget ekmek", desc:"Dışı çıtır, içi yumuşak."},
+          ru:{name:"Багет-булочка (классик)", desc:"Снаружи хрустящая, внутри мягкая."}
+        }
+      },
+      {
+        id:"broetchen_sesam",
+        category:"bread",
+        price:0.70,
+        tags:["vegetarian","vegan"],
+        emoji:"🫘",
+        image:"",
+        t:{
+          de:{name:"Kaiser-Sesam-Brötchen", desc:"Goldbraun gebacken, mit Sesam."},
+          en:{name:"Sesame roll", desc:"Golden-baked with sesame."},
+          tr:{name:"Susamlı ekmek", desc:"Susamlı, altın rengi."},
+          ru:{name:"Булочка с кунжутом", desc:"Золотистая выпечка с кунжутом."}
+        }
+      },
+      {
+        id:"broetchen_baecker",
+        category:"bread",
+        price:0.40,
+        tags:["vegetarian","vegan"],
+        emoji:"🥐",
+        image:"",
+        t:{
+          de:{name:"Bäcker-Brötchen", desc:"Klassisch, täglich frisch."},
+          en:{name:"Bakery roll", desc:"Classic, freshly baked daily."},
+          tr:{name:"Fırın ekmeği", desc:"Klasik, günlük taze."},
+          ru:{name:"Булочка пекаря", desc:"Классическая, свежая ежедневно."}
+        }
+      },
+      {
+        id:"broetchen_kuerbis",
+        category:"bread",
+        price:0.80,
+        tags:["vegetarian","vegan"],
+        emoji:"🎃",
+        image:"",
+        t:{
+          de:{name:"Kürbiskern-Brötchen", desc:"Mit Kürbiskernen, kräftiger Geschmack."},
+          en:{name:"Pumpkin seed roll", desc:"With pumpkin seeds, rich taste."},
+          tr:{name:"Kabak çekirdekli ekmek", desc:"Yoğun lezzet."},
+          ru:{name:"Булочка с тыквенными семечками", desc:"Насыщенный вкус."}
+        }
+      },
+      {
+        id:"soup_mercimek",
+        category:"soups",
+        price:6.90,
+        tags:["vegetarian"],
+        emoji:"🥣",
+        image:"",
+        t:{
+          de:{name:"Mercimek (Linsensuppe)", desc:"Klassische türkische Linsensuppe."},
+          en:{name:"Mercimek (lentil soup)", desc:"Classic Turkish lentil soup."},
+          tr:{name:"Mercimek çorbası", desc:"Klasik Türk mercimek çorbası."},
+          ru:{name:"Мерджимек (чечевичный суп)", desc:"Классический турецкий суп."}
+        }
+      },
+      {
+        id:"soup_iskembe",
+        category:"soups",
+        price:6.90,
+        tags:["halal"],
+        emoji:"🥣",
+        image:"",
+        t:{
+          de:{name:"İşkembe (Pansensuppe)", desc:"Herzhaft."},
+          en:{name:"İşkembe (tripe soup)", desc:"Hearty soup."},
+          tr:{name:"İşkembe çorbası", desc:"Doyurucu."},
+          ru:{name:"Ишкембе (суп из рубца)", desc:"Сытный суп."}
+        }
+      },
+      {
+        id:"soup_paca",
+        category:"soups",
+        price:7.80,
+        tags:["halal"],
+        emoji:"🥣",
+        image:"",
+        t:{
+          de:{name:"Paça (Lammkopfsülze)", desc:"Traditionell."},
+          en:{name:"Paça", desc:"Traditional."},
+          tr:{name:"Paça", desc:"Geleneksel."},
+          ru:{name:"Пача", desc:"Традиционное блюдо."}
+        }
+      }
+    ];
+
+    const CATEGORIES = [
+      { key:"all", icon:"", t:{de:"Alles", en:"All", tr:"Hepsi", ru:"Все"} },
+      { key:"breakfast", icon:"", t:{de:"Frühstück & Toast", en:"Breakfast & Toast", tr:"Kahvaltı & Tost", ru:"Завтрак и тосты"} },
+      { key:"menus", icon:"", t:{de:"Menüs", en:"Menus", tr:"Menüler", ru:"Меню"} },
+      { key:"takeaway", icon:"", t:{de:"Zum Mitnehmen", en:"To go", tr:"Paket", ru:"С собой"} },
+      { key:"borek", icon:"", t:{de:"Börek", en:"Börek", tr:"Börek", ru:"Бёрек"} },
+      { key:"pide", icon:"", t:{de:"Pide", en:"Pide", tr:"Pide", ru:"Пиде"} },
+      { key:"sandwiches", icon:"", t:{de:"Belegte Brötchen", en:"Sandwiches", tr:"Sandviçler", ru:"Сэндвичи"} },
+      { key:"deals", icon:"", t:{de:"Kombi-Angebote", en:"Deals", tr:"Kombinasyon", ru:"Комбо"} },
+      { key:"bread", icon:"", t:{de:"Brötchen", en:"Bread rolls", tr:"Ekmekler", ru:"Булочки"} },
+      { key:"soups", icon:"", t:{de:"Suppen", en:"Soups", tr:"Çorbalar", ru:"Супы"} },
+      { key:"bakery", icon:"", t:{de:"Kleingebäck", en:"Bakery", tr:"Fırın", ru:"Выпечка"} },
+    ];
+
+    /***********************
+     * 2) I18N UI STRINGS
+     ***********************/
+    const UI = {
+      de:{
+        subtitle:"Immer frisch • immer lecker",
+        catTitle:"Kategorien",
+        filterTitle:"Filter",
+        infoTitle:"Info",
+        menuTitle:"Menü",
+        menuHint:"Tippe auf + um Artikel in den Warenkorb zu legen.",
+        reset:"Reset",
+        searchPH:"Suche im Menü…",
+        route:"Route",
+        call:"Anrufen",
+        mail:"E-Mail",
+        disclaimer:"Hinweis: Preise/Produkte können sich ändern. ",
+        cart:"Warenkorb",
+        close:"Close",
+        cartLine:(n)=>`Warenkorb: ${n} Artikel`,
+        total:(v)=>`Total: ${v}`,
+        checkout:"Checkout",
+        sub:"Zwischensumme",
+        disc:"Rabatt",
+        tot:"Total",
+        copy:"Copy Order",
+        clear:"Clear Cart",
+        cartNote:"Dieses Menü ist eine QR-Menü-Ansicht. Bezahlen erfolgt vor Ort oder über Lieferplattformen.",
+        apply:"Apply",
+        vegan:"Vegan",
+        veg:"Vegetarisch",
+        spicy:"Scharf",
+        emptyCart:"Dein Warenkorb ist leer.",
+        discountOk:"Rabatt angewendet.",
+        discountBad:"Ungültiger Code."
+      },
+      en:{
+        subtitle:"Always fresh • always tasty",
+        catTitle:"Categories",
+        filterTitle:"Filters",
+        infoTitle:"Info",
+        menuTitle:"Menu",
+        menuHint:"Tap + to add items to the cart.",
+        reset:"Reset",
+        searchPH:"Search the menu…",
+        route:"Directions",
+        call:"Call",
+        mail:"Email",
+        disclaimer:"Note: prices/items may change. ",
+        cart:"Cart",
+        close:"Close",
+        cartLine:(n)=>`Cart: ${n} items`,
+        total:(v)=>`Total: ${v}`,
+        checkout:"Checkout",
+        sub:"Subtotal",
+        disc:"Discount",
+        tot:"Total",
+        copy:"Copy Order",
+        clear:"Clear Cart",
+        cartNote:"This is a QR menu view. Payment happens in-store or via delivery platforms.",
+        apply:"Apply",
+        vegan:"Vegan",
+        veg:"Vegetarian",
+        spicy:"Spicy",
+        emptyCart:"Your cart is empty.",
+        discountOk:"Discount applied.",
+        discountBad:"Invalid code."
+      },
+      tr:{
+        subtitle:"Her zaman taze • her zaman lezzetli",
+        catTitle:"Kategoriler",
+        filterTitle:"Filtreler",
+        infoTitle:"Bilgi",
+        menuTitle:"Menü",
+        menuHint:"+ ile sepete ekleyin.",
+        reset:"Sıfırla",
+        searchPH:"Menüde ara…",
+        route:"Yol tarifi",
+        call:"Ara",
+        mail:"E-posta",
+        disclaimer:"Not: fiyatlar/ürünler değişebilir. ",
+        cart:"Sepet",
+        close:"Kapat",
+        cartLine:(n)=>`Sepet: ${n} ürün`,
+        total:(v)=>`Toplam: ${v}`,
+        checkout:"Devam",
+        sub:"Ara toplam",
+        disc:"İndirim",
+        tot:"Toplam",
+        copy:"Siparişi Kopyala",
+        clear:"Sepeti Temizle",
+        cartNote:"Bu QR menü görünümüdür. Ödeme mağazada veya platformlarda yapılır.",
+        apply:"Uygula",
+        vegan:"Vegan",
+        veg:"Vejetaryen",
+        spicy:"Acılı",
+        emptyCart:"Sepet boş.",
+        discountOk:"İndirim uygulandı.",
+        discountBad:"Geçersiz kod."
+      },
+      ru:{
+        subtitle:"Всегда свежее • всегда вкусно",
+        catTitle:"Категории",
+        filterTitle:"Фильтры",
+        infoTitle:"Инфо",
+        menuTitle:"Меню",
+        menuHint:"Нажмите + чтобы добавить в корзину.",
+        reset:"Сброс",
+        searchPH:"Поиск по меню…",
+        route:"Маршрут",
+        call:"Позвонить",
+        mail:"Email",
+        disclaimer:"Примечание: цены/позиции могут меняться. ",
+        cart:"Корзина",
+        close:"Закрыть",
+        cartLine:(n)=>`Корзина: ${n} шт.`,
+        total:(v)=>`Итого: ${v}`,
+        checkout:"Оформить",
+        sub:"Сумма",
+        disc:"Скидка",
+        tot:"Итого",
+        copy:"Копировать заказ",
+        clear:"Очистить",
+        cartNote:"Это QR-меню. Оплата в заведении или через сервисы доставки.",
+        apply:"Применить",
+        vegan:"Веган",
+        veg:"Вегет.",
+        spicy:"Острое",
+        emptyCart:"Корзина пуста.",
+        discountOk:"Скидка применена.",
+        discountBad:"Неверный код."
+      }
+    };
+
+    /***********************
+     * 3) STATE
+     ***********************/
+    const state = {
+      lang: localStorage.getItem("abla_lang") || "de",
+      category: "all",
+      q: "",
+      filters: {
+        vegan:false,
+        vegetarian:false,
+        spicy:false,
+        halal:false
+      },
+      cart: JSON.parse(localStorage.getItem("abla_cart") || "{}"),
+      coupon: localStorage.getItem("abla_coupon") || "",
+      discount: 0
+    };
+
+    // Discount codes (edit as you like)
+    const COUPONS = {
+      "ABLA10": 0.10,  // 10%
+      "TEA5":  0.05    // 5%
+    };
+
+    /***********************
+     * 4) HELPERS
+     ***********************/
+    const eur = (n) => {
+      // German formatting by default (works fine for all; UI labels are translated anyway)
+      return new Intl.NumberFormat("de-DE", { style:"currency", currency:"EUR" }).format(n);
+    };
+
+    const t = () => UI[state.lang] || UI.de;
+
+    const itemText = (item) => item.t[state.lang] || item.t.de;
+
+    const cartCount = () => Object.values(state.cart).reduce((a,b)=>a+b,0);
+
+    const cartSubtotal = () => {
+      let sum = 0;
+      for (const [id,qty] of Object.entries(state.cart)){
+        const item = MENU.find(x=>x.id===id);
+        if (item) sum += item.price * qty;
+      }
+      return sum;
+    };
+
+    const applyDiscount = () => {
+      const code = (state.coupon || "").trim().toUpperCase();
+      const rate = COUPONS[code] || 0;
+      state.discount = rate * cartSubtotal();
+    };
+
+    const persist = () => {
+      localStorage.setItem("abla_lang", state.lang);
+      localStorage.setItem("abla_cart", JSON.stringify(state.cart));
+      localStorage.setItem("abla_coupon", state.coupon || "");
+    };
+
+    /***********************
+     * 5) RENDER
+     ***********************/
+    function renderCats(){
+      const el = document.getElementById("cats");
+      el.innerHTML = "";
+
+      const counts = {};
+      for (const c of CATEGORIES) counts[c.key] = 0;
+      MENU.forEach(it => {
+        counts[it.category] = (counts[it.category]||0) + 1;
+        counts["all"] = (counts["all"]||0) + 1;
+      });
+
+      CATEGORIES.forEach(cat=>{
+        const div = document.createElement("div");
+        div.className = "cat" + (state.category===cat.key ? " active" : "");
+        div.onclick = () => { state.category = cat.key; renderAll(); };
+        div.innerHTML = `
+          <span>${cat.icon} ${cat.t[state.lang] || cat.t.de}</span>
+          <span class="count">${counts[cat.key] || 0}</span>
+        `;
+        el.appendChild(div);
+      });
+    }
+
+    function matchesFilters(item){
+      const f = state.filters;
+      if (f.vegan && !item.tags.includes("vegan")) return false;
+      if (f.vegetarian && !item.tags.includes("vegetarian")) return false;
+      if (f.spicy && !item.tags.includes("spicy")) return false;
+      if (f.halal && !item.tags.includes("halal")) return false;
+      return true;
+    }
+
+    function matchesQuery(item){
+      const q = state.q.trim().toLowerCase();
+      if (!q) return true;
+      const txt = itemText(item);
+      return (txt.name + " " + txt.desc).toLowerCase().includes(q);
+    }
+
+    function renderCards(){
+      const cards = document.getElementById("cards");
+      cards.innerHTML = "";
+
+      const items = MENU.filter(item=>{
+        const catOk = (state.category==="all" || item.category===state.category);
+        return catOk && matchesFilters(item) && matchesQuery(item);
+      });
+
+      items.forEach(item=>{
+        const txt = itemText(item);
+        const qty = state.cart[item.id] || 0;
+
+        const div = document.createElement("div");
+        div.className = "item";
+
+        const thumb = document.createElement("div");
+        thumb.className = "thumb";
+        if (item.image){
+          const img = document.createElement("img");
+          img.src = item.image;
+          img.alt = txt.name;
+          thumb.appendChild(img);
+        } else {
+          thumb.textContent = item.emoji || "🍽️";
+        }
+
+        const veganTag = item.tags.includes("vegan") ? `<span class="tag">🌿 ${t().vegan}</span>` : "";
+        const vegTag   = (!item.tags.includes("vegan") && item.tags.includes("vegetarian")) ? `<span class="tag">🥗 ${t().veg}</span>` : "";
+        const spicyTag = item.tags.includes("spicy") ? `<span class="tag">🌶️ ${t().spicy}</span>` : "";
+        const halalTag = item.tags.includes("halal") ? `<span class="tag">✅ Halal</span>` : "";
+
+        div.innerHTML = `
+          <div class="thumb">${thumb.innerHTML || ""}</div>
+          <div class="meta">
+            <div class="name-row">
+              <h4 title="${txt.name}">${txt.name}</h4>
+              <div class="price">${eur(item.price)}</div>
+            </div>
+            <p class="desc">${txt.desc}</p>
+            <div class="tags">${veganTag}${vegTag}${spicyTag}${halalTag}</div>
+            <div class="actions">
+              <div class="qty">${qty>0 ? `In cart: <b>${qty}</b>` : ""}</div>
+              <div style="display:flex; gap:8px">
+                <button class="btn secondary" data-minus="${item.id}">−</button>
+                <button class="btn" data-plus="${item.id}">+</button>
+              </div>
+            </div>
+          </div>
+        `;
+
+        // fix thumb injection (since we created thumb separately)
+        div.querySelector(".thumb").replaceWith(thumb);
+
+        div.querySelector("[data-plus]").onclick = () => add(item.id, 1);
+        div.querySelector("[data-minus]").onclick = () => add(item.id, -1);
+
+        cards.appendChild(div);
+      });
+
+      if (items.length === 0){
+        const empty = document.createElement("div");
+        empty.className = "muted";
+        empty.style.padding = "12px";
+        empty.textContent = "No results.";
+        cards.appendChild(empty);
+      }
+    }
+
+    function renderCart(){
+      applyDiscount();
+      const list = document.getElementById("cartlist");
+      list.innerHTML = "";
+
+      const entries = Object.entries(state.cart).filter(([_,qty])=>qty>0);
+
+      if (!entries.length){
+        const p = document.createElement("p");
+        p.className = "muted";
+        p.textContent = t().emptyCart;
+        list.appendChild(p);
+      } else {
+        entries.forEach(([id,qty])=>{
+          const item = MENU.find(x=>x.id===id);
+          if (!item) return;
+          const txt = itemText(item);
+
+          const line = document.createElement("div");
+          line.className = "line";
+          line.innerHTML = `
+            <div class="t">
+              <b>${txt.name}</b>
+              <small>${eur(item.price)} × ${qty}</small>
+            </div>
+            <div class="c">
+              <div><b>${eur(item.price*qty)}</b></div>
+              <div class="stepper">
+                <button data-d="${id}">−</button>
+                <span>${qty}</span>
+                <button data-i="${id}">+</button>
+              </div>
+            </div>
+          `;
+          line.querySelector("[data-i]").onclick = ()=> add(id, 1);
+          line.querySelector("[data-d]").onclick = ()=> add(id, -1);
+          list.appendChild(line);
+        });
+      }
+
+      const sub = cartSubtotal();
+      const disc = Math.min(state.discount, sub);
+      const total = Math.max(0, sub - disc);
+
+      document.getElementById("subVal").textContent = eur(sub);
+      document.getElementById("discVal").textContent = eur(disc);
+      document.getElementById("totVal").textContent = eur(total);
+
+      const n = cartCount();
+      document.getElementById("cartLine").textContent = t().cartLine(n);
+      document.getElementById("cartTotal").textContent = t().total(eur(total));
+
+      document.getElementById("coupon").value = state.coupon || "";
+    }
+
+    function renderTexts(){
+      const L = t();
+
+      document.getElementById("subtitle").textContent = L.subtitle;
+      document.getElementById("catTitle").textContent = L.catTitle;
+      document.getElementById("filterTitle").textContent = L.filterTitle;
+      document.getElementById("infoTitle").textContent = L.infoTitle;
+      document.getElementById("menuTitle").textContent = L.menuTitle;
+      document.getElementById("menuHint").innerHTML = L.menuHint.replace("+","<b>+</b>");
+      document.getElementById("resetBtn").textContent = L.reset;
+      document.getElementById("q").placeholder = L.searchPH;
+
+      document.getElementById("routeLbl").textContent = L.route;
+      document.getElementById("callLbl").textContent = L.call;
+      document.getElementById("mailLbl").textContent = L.mail;
+      document.getElementById("disclaimer").textContent = L.disclaimer;
+
+      document.getElementById("cartTitle").textContent = L.cart;
+      document.getElementById("closeCartBtn").textContent = L.close;
+      document.getElementById("checkoutBtn").textContent = L.checkout;
+      document.getElementById("openCartBtn").textContent = L.cart;
+
+      document.getElementById("subLbl").textContent = L.sub;
+      document.getElementById("discLbl").textContent = L.disc;
+      document.getElementById("totLbl").textContent = L.tot;
+      document.getElementById("copyOrderBtn").textContent = L.copy;
+      document.getElementById("clearBtn").textContent = L.clear;
+      document.getElementById("cartNote").textContent = L.cartNote;
+      document.getElementById("applyCoupon").textContent = L.apply;
+
+      document.getElementById("tVegan").textContent = L.vegan;
+      document.getElementById("tVeg").textContent = L.veg;
+      document.getElementById("tSpicy").textContent = L.spicy;
+
+      document.getElementById("langLabel").textContent = state.lang.toUpperCase();
+    }
+
+    function renderAll(){
+      renderTexts();
+      renderCats();
+      renderCards();
+      renderCart();
+      persist();
+    }
+
+    /***********************
+     * 6) ACTIONS
+     ***********************/
+    function add(id, delta){
+      const cur = state.cart[id] || 0;
+      const next = Math.max(0, cur + delta);
+      if (next === 0) delete state.cart[id];
+      else state.cart[id] = next;
+      renderAll();
+    }
+
+    function setLang(next){
+      state.lang = next;
+      renderAll();
+    }
+
+    /***********************
+     * 7) EVENTS
+     ***********************/
+    document.getElementById("q").addEventListener("input", (e)=>{
+      state.q = e.target.value || "";
+      renderCards();
+    });
+
+    // Toggle filters
+    document.querySelectorAll(".toggle").forEach(el=>{
+      el.addEventListener("click", ()=>{
+        const key = el.getAttribute("data-filter");
+        state.filters[key] = !state.filters[key];
+        el.classList.toggle("active", state.filters[key]);
+        renderCards();
+      });
+    });
+
+    // Language cycle: DE → EN → TR → RU → DE
+    document.getElementById("langBtn").addEventListener("click", ()=>{
+      const order = ["de","en","tr","ru"];
+      const i = order.indexOf(state.lang);
+      setLang(order[(i+1) % order.length]);
+    });
+
+    // Reset
+    document.getElementById("resetBtn").addEventListener("click", ()=>{
+      state.category = "all";
+      state.q = "";
+      document.getElementById("q").value = "";
+      state.filters = { vegan:false, vegetarian:false, spicy:false, halal:false };
+      document.querySelectorAll(".toggle").forEach(x=>x.classList.remove("active"));
+      renderAll();
+    });
+
+    // Cart drawer open/close
+    const drawer = document.getElementById("drawer");
+    const openCart = () => { drawer.classList.add("open"); renderCart(); };
+    const closeCart = () => drawer.classList.remove("open");
+
+    document.getElementById("openCartBtn").addEventListener("click", openCart);
+    document.getElementById("checkoutBtn").addEventListener("click", openCart);
+    document.getElementById("closeCartBtn").addEventListener("click", closeCart);
+    document.getElementById("overlay").addEventListener("click", closeCart);
+
+    // Coupon
+    document.getElementById("applyCoupon").addEventListener("click", ()=>{
+      state.coupon = document.getElementById("coupon").value || "";
+      applyDiscount();
+      persist();
+      renderCart();
+      alert((COUPONS[(state.coupon||"").trim().toUpperCase()] ? t().discountOk : t().discountBad));
+    });
+
+    // Clear cart
+    document.getElementById("clearBtn").addEventListener("click", ()=>{
+      state.cart = {};
+      renderAll();
+    });
+
+    // Copy order text
+    document.getElementById("copyOrderBtn").addEventListener("click", async ()=>{
+      const lines = [];
+      for (const [id,qty] of Object.entries(state.cart)){
+        const item = MENU.find(x=>x.id===id);
+        if (!item) continue;
+        const txt = itemText(item);
+        lines.push(`${qty}× ${txt.name} (${eur(item.price)})`);
+      }
+      const sub = cartSubtotal();
+      applyDiscount();
+      const disc = Math.min(state.discount, sub);
+      const total = Math.max(0, sub - disc);
+      lines.push(`---`);
+      lines.push(`${t().sub}: ${eur(sub)}`);
+      lines.push(`${t().disc}: ${eur(disc)}`);
+      lines.push(`${t().tot}: ${eur(total)}`);
+
+      const text = lines.join("\n");
+      try{
+        await navigator.clipboard.writeText(text);
+        alert("Copied ✅");
+      }catch{
+        prompt("Copy this:", text);
+      }
+    });
+
+    // Init
+    (function init(){
+      // Restore coupon
+      state.coupon = state.coupon || "";
+      // Set filter UI based on state
+      document.getElementById("fVegan").classList.toggle("active", state.filters.vegan);
+      document.getElementById("fVeg").classList.toggle("active", state.filters.vegetarian);
+      document.getElementById("fSpicy").classList.toggle("active", state.filters.spicy);
+      document.getElementById("fHalal").classList.toggle("active", state.filters.halal);
+      renderAll();
+    })();
+  </script>
+</body>
+</html>
