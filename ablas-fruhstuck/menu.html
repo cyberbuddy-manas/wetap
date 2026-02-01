@@ -98,11 +98,11 @@
       justify-content: center;
     }
     .logo{
-      width: 100px; height: 100px;
+      width: 70px; height: 70px;
       border-radius: 50%;
       background: #FFFFFF;
-      border: 3px solid #D4AF37;
-      box-shadow: 0 16px 40px rgba(212,175,55,.15), 0 8px 20px rgba(0,0,0,.1);
+      border: 2px solid #D4AF37;
+      box-shadow: 0 8px 20px rgba(212,175,55,.12);
       display:flex; align-items:center; justify-content:center;
       flex: 0 0 auto;
       overflow: hidden;
@@ -111,7 +111,7 @@
     .brand h1{
       margin:0;
       font-family: "Playfair Display", serif;
-      font-size: 18px;
+      font-size: 16px;
       line-height: 1.05;
       white-space:nowrap;
       overflow:hidden;
@@ -178,12 +178,16 @@
     /* Layout */
     .grid{
       display:grid;
-      grid-template-columns: 280px 1fr;
+      grid-template-columns: 1fr;
       gap: 14px;
       margin-top: 14px;
     }
-    @media (max-width: 860px){
-      .grid{ grid-template-columns: 1fr; }
+    @media (min-width: 860px){
+      .grid{ grid-template-columns: 280px 1fr; }
+    }
+    @media (max-width: 600px){
+      .grid{ margin-top: 8px; gap: 8px; }
+      aside.panel{ display: block; margin-bottom: 16px; }
     }
 
     /* Sidebar */
@@ -202,11 +206,28 @@
     }
     .cats{
       display:flex;
-      flex-direction:column;
+      flex-direction:row;
       gap: 8px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding-bottom: 8px;
+      -webkit-overflow-scrolling: touch;
+      scroll-behavior: smooth;
+    }
+    .cats::-webkit-scrollbar{
+      height: 4px;
+    }
+    .cats::-webkit-scrollbar-track{
+      background: #F0F0F0;
+    }
+    .cats::-webkit-scrollbar-thumb{
+      background: #D4AF37;
+      border-radius: 2px;
     }
     .cat{
       display:flex;
+      flex-shrink: 0;
+      min-width: max-content;
       align-items:center;
       justify-content:space-between;
       gap: 10px;
@@ -220,7 +241,7 @@
     }
     .cat:hover{ transform: translateY(-1px); border-color: rgba(227,199,122,.30); background: rgba(0,0,0,.22); }
     .cat.active{ border-color: rgba(110,127,58,.55); background: rgba(110,127,58,.14); }
-    .count{ color: rgba(247,245,240,.65); font-size: 12px; }
+    .count{ color: #555555; font-size: 12px; }
 
     .filters{
       display:flex;
@@ -265,7 +286,7 @@
       transition: background .16s ease, border-color .16s ease, transform .12s ease;
     }
     .linkbtn:hover{ transform: translateY(-1px); border-color: rgba(227,199,122,.30); background: rgba(0,0,0,.22); }
-    .linkbtn small{ color: rgba(247,245,240,.65) }
+    .linkbtn small{ color: #555555 }
 
     /* Main content */
     .main{
@@ -288,7 +309,7 @@
     .section-title p{
       margin:0;
       font-size: 12px;
-      color: rgba(247,245,240,.65);
+      color: #555555;
     }
 
     .cards{
@@ -635,9 +656,9 @@
           <button class="chip" id="langBtn" title="Sprache wechseln">
             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" stroke="#1A1A1A" stroke-width="1.6"/>
-              <path d="M3 12h18" stroke="rgba(247,245,240,.75)" stroke-width="1.6" stroke-linecap="round"/>
-              <path d="M12 3c3 3 3 15 0 18" stroke="rgba(247,245,240,.75)" stroke-width="1.6" stroke-linecap="round"/>
-              <path d="M12 3c-3 3-3 15 0 18" stroke="rgba(247,245,240,.75)" stroke-width="1.6" stroke-linecap="round"/>
+              <path d="M3 12h18" stroke="#555555" stroke-width="1.6" stroke-linecap="round"/>
+              <path d="M12 3c3 3 3 15 0 18" stroke="#555555" stroke-width="1.6" stroke-linecap="round"/>
+              <path d="M12 3c-3 3-3 15 0 18" stroke="#555555" stroke-width="1.6" stroke-linecap="round"/>
             </svg>
             <span id="langLabel">DE</span>
           </button>
@@ -666,7 +687,7 @@
           <div class="toggle" data-filter="vegan" id="fVegan">
             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <path d="M20 4c-6 1-10 4-12 10 6-2 9-6 10-12Z" stroke="#1A1A1A" stroke-width="1.6" stroke-linejoin="round"/>
-              <path d="M4 20c4-8 9-11 16-12" stroke="rgba(247,245,240,.75)" stroke-width="1.6" stroke-linecap="round"/>
+              <path d="M4 20c4-8 9-11 16-12" stroke="#555555" stroke-width="1.6" stroke-linecap="round"/>
             </svg>
             <span id="tVegan">Vegan</span>
           </div>
@@ -1227,17 +1248,17 @@
     ];
 
     const CATEGORIES = [
-      { key:"all", icon:"✨", t:{de:"Alles", en:"All", tr:"Hepsi", ru:"Все"} },
-      { key:"breakfast", icon:"🍳", t:{de:"Frühstück & Toast", en:"Breakfast & Toast", tr:"Kahvaltı & Tost", ru:"Завтрак и тосты"} },
-      { key:"menus", icon:"🍽️", t:{de:"Menüs", en:"Menus", tr:"Menüler", ru:"Меню"} },
-      { key:"takeaway", icon:"🥪", t:{de:"Zum Mitnehmen", en:"To go", tr:"Paket", ru:"С собой"} },
-      { key:"borek", icon:"🥟", t:{de:"Börek", en:"Börek", tr:"Börek", ru:"Бёрек"} },
-      { key:"pide", icon:"🫓", t:{de:"Pide", en:"Pide", tr:"Pide", ru:"Пиде"} },
-      { key:"sandwiches", icon:"🥯", t:{de:"Belegte Brötchen", en:"Sandwiches", tr:"Sandviçler", ru:"Сэндвичи"} },
-      { key:"deals", icon:"🏷️", t:{de:"Kombi-Angebote", en:"Deals", tr:"Kombinasyon", ru:"Комбо"} },
-      { key:"bread", icon:"🥖", t:{de:"Brötchen", en:"Bread rolls", tr:"Ekmekler", ru:"Булочки"} },
-      { key:"soups", icon:"🥣", t:{de:"Suppen", en:"Soups", tr:"Çorbalar", ru:"Супы"} },
-      { key:"bakery", icon:"🥨", t:{de:"Kleingebäck", en:"Bakery", tr:"Fırın", ru:"Выпечка"} },
+      { key:"all", icon:"", t:{de:"Alles", en:"All", tr:"Hepsi", ru:"Все"} },
+      { key:"breakfast", icon:"", t:{de:"Frühstück & Toast", en:"Breakfast & Toast", tr:"Kahvaltı & Tost", ru:"Завтрак и тосты"} },
+      { key:"menus", icon:"", t:{de:"Menüs", en:"Menus", tr:"Menüler", ru:"Меню"} },
+      { key:"takeaway", icon:"", t:{de:"Zum Mitnehmen", en:"To go", tr:"Paket", ru:"С собой"} },
+      { key:"borek", icon:"", t:{de:"Börek", en:"Börek", tr:"Börek", ru:"Бёрек"} },
+      { key:"pide", icon:"", t:{de:"Pide", en:"Pide", tr:"Pide", ru:"Пиде"} },
+      { key:"sandwiches", icon:"", t:{de:"Belegte Brötchen", en:"Sandwiches", tr:"Sandviçler", ru:"Сэндвичи"} },
+      { key:"deals", icon:"", t:{de:"Kombi-Angebote", en:"Deals", tr:"Kombinasyon", ru:"Комбо"} },
+      { key:"bread", icon:"", t:{de:"Brötchen", en:"Bread rolls", tr:"Ekmekler", ru:"Булочки"} },
+      { key:"soups", icon:"", t:{de:"Suppen", en:"Soups", tr:"Çorbalar", ru:"Супы"} },
+      { key:"bakery", icon:"", t:{de:"Kleingebäck", en:"Bakery", tr:"Fırın", ru:"Выпечка"} },
     ];
 
     /***********************
