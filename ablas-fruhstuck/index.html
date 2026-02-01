@@ -15,23 +15,24 @@
   <style>
     :root{
     /* Abla's Frühstück brand colours */
-    --bg-deep: #4A1F14;
-    --olive:   #6E7F3A;
-    --olive2:  #5F6F33;
-    --brown:   #6B2E1A;
-    --brown2:  #A44A1C;
-    --cream:   #F4EFE7;
-    --gold:    #E3C77A;
+    --bg-deep: #FFFFFF;
+    --olive:   #000000;
+    --olive2:  #000000;
+    --brown:   #000000;
+    --brown2:  #000000;
+    --cream:   #FFFFFF;
+    --gold:    #000000;
 
-    --text: rgba(247,245,240,.95);
-    --muted: rgba(247,245,240,.75);
-    --border: rgba(227,199,122,.28);
+    --text: #000000;
+    --muted: #333333;
+    --border: #000000;
 
-    --card: rgba(255,255,255,.06);
-    --card2: rgba(255,255,255,.10);
+    --card: rgba(255,255,255,.02);
+    --card2: rgba(0,0,0,.05);
 
-    --shadow: 0 22px 60px rgba(0,0,0,.55);
+    --shadow: 0 8px 24px rgba(0,0,0,.1);
     --radius: 22px;
+    --shadow-logo: 0 8px 20px rgba(0,0,0,.08);
     }
 
 
@@ -41,41 +42,24 @@
       margin:0;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
       color: var(--text);
-      background: var(--bg-deep);
+      background: #FAFAFA;
       overflow-x:hidden;
     }
 
-    /* Turkish-inspired background: layered gradients + subtle "tile" texture */
+    /* Clean white background */
     body::before{
     content:"";
     position:fixed;
     inset:-30%;
     z-index:-2;
-    background:
-        radial-gradient(900px 520px at 20% 10%, rgba(227,199,122,.22), transparent 65%),
-        radial-gradient(900px 520px at 85% 30%, rgba(110,127,58,.25), transparent 60%),
-        radial-gradient(700px 520px at 60% 90%, rgba(164,74,28,.35), transparent 60%),
-        linear-gradient(140deg, #4A1F14, #6B2E1A);
-    filter: saturate(1.05) contrast(1.04);
-    transform: rotate(-5deg);
+    background: #FFFFFF;
     }
 
 
-    /* tile pattern overlay */
+    /* Remove tile pattern */
     body::after{
       content:"";
-      position:fixed;
-      inset:0;
-      z-index:-1;
-      opacity:.18;
-      background:
-        radial-gradient(circle at 25px 25px, rgba(244,239,231,.10) 2px, transparent 2.5px),
-        radial-gradient(circle at 0 0, rgba(215,180,106,.08) 1px, transparent 1.8px),
-        linear-gradient(90deg, rgba(244,239,231,.06) 1px, transparent 1px),
-        linear-gradient(0deg, rgba(244,239,231,.04) 1px, transparent 1px);
-      background-size: 50px 50px, 50px 50px, 50px 50px, 50px 50px;
-      mix-blend-mode: overlay;
-      pointer-events:none;
+      display: none;
     }
 
     .wrap{
@@ -90,73 +74,136 @@
       width:100%;
       max-width: 560px;
       border-radius: var(--radius);
-      background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.05));
-      border: 1.2px solid var(--border);
-      box-shadow: 0 28px 68px rgba(0,0,0,.65), inset 0 1px 2px rgba(255,255,255,.12);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      padding: 22px;
+      background: #FFFFFF;
+      border: 2px solid #000000;
+      box-shadow: 0 4px 16px rgba(0,0,0,.08);
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      padding: 0;
       position:relative;
       overflow:hidden;
+    }
+
+    .card::top-header{
+      content:"";
+      display: block;
+      height: 60px;
+      background: linear-gradient(90deg, #1a1a1a 0%, #2a1a10 50%, #3d2416 100%);
+      border-bottom: 2px solid rgba(227,199,122,.2);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
     }
 
     /* subtle edge glow */
     .card::before{
       content:"";
-      position:absolute;
-      inset:-2px;
-      background: radial-gradient(900px 220px at 15% 0%, rgba(215,180,106,.22), transparent 55%),
-                  radial-gradient(900px 240px at 95% 30%, rgba(46,90,63,.22), transparent 60%);
-      opacity:.55;
-      pointer-events:none;
+      display: none;
     }
 
-    header{
-      position:relative;
-      display:flex;
-      gap: 14px;
-      align-items:center;
-      margin-bottom: 18px;
-      padding-bottom: 14px;
-      border-bottom: 1px solid rgba(255,255,255,.10);
+    /* Premium gradient header */
+    .header-top{
+      background: #FFFFFF;
+      border-bottom: 2px solid #000000;
+      padding: 16px 22px;
+      text-align: center;
+      box-shadow: none;
+    }
+
+    .header-top .brand-name{
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1.8px;
+      color: #000000;
+      text-transform: uppercase;
+      margin: 0;
+      opacity: 1;
+      background: linear-gradient(90deg, #000000 0%, #000000 20%, #666666 50%, #000000 80%, #000000 100%);
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shine 3s infinite;
+    }
+
+    @keyframes shine {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    .main-header-content{
+      padding: 28px 22px 22px;
     }
 
     .logo{
-      width: 108px;
-      height: 108px;
-      border-radius: 18px;
-      background: linear-gradient(135deg, rgba(215,180,106,.28), rgba(46,90,63,.22));
-      border: 1.2px solid rgba(255,255,255,.22);
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      border: 2px solid #000000;
       display:flex;
       align-items:center;
       justify-content:center;
-      box-shadow: 0 12px 32px rgba(0,0,0,.35), inset 0 1px 2px rgba(255,255,255,.15);
+      box-shadow: 0 8px 20px rgba(0,0,0,.08);
       flex: 0 0 auto;
       overflow:hidden;
+      margin: 0 auto;
     }
 
-    .logo svg{ width: 34px; height: 34px; opacity:.92; }
+    .logo img{ width: 100%; height: 100%; object-fit: cover; }
 
     .title{
       display:flex;
       flex-direction:column;
-      gap: 4px;
+      gap: 6px;
       min-width:0;
+      text-align: center;
     }
 
     h1{
       font-family: "Playfair Display", serif;
-      font-size: 24px;
+      font-size: 32px;
       line-height: 1.05;
       margin:0;
       letter-spacing: .2px;
+      color: var(--text);
     }
 
     .sub{
       margin:0;
       color: var(--muted);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .contact-info{
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 12px;
+      padding: 14px;
+      background: #F8F8F8;
+      border-radius: 14px;
+      border: 1px solid #E0E0E0;
+    }
+
+    .contact-item{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
       font-size: 13px;
-      line-height: 1.35;
+      color: #000000;
+      text-decoration: none;
+      transition: color .2s ease;
+    }
+
+    .contact-item:hover{
+      color: #333333;
+    }
+
+    .contact-item svg{
+      width: 16px;
+      height: 16px;
+      opacity: .8;
     }
 
     .badges{
@@ -172,20 +219,45 @@
       gap: 8px;
       padding: 8px 10px;
       border-radius: 999px;
-      background: linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
-      border: 1.2px solid rgba(255,255,255,.14);
+      background: #F5F5F5;
+      border: 1.2px solid #000000;
       font-size: 12px;
-      color: rgba(255,255,255,.85);
+      color: #000000;
       text-decoration:none;
       transition: background .18s ease, border-color .18s ease, transform .12s ease, box-shadow .18s ease;
-      box-shadow: 0 2px 6px rgba(0,0,0,.12);
+      box-shadow: 0 2px 6px rgba(0,0,0,.06);
     }
     .badge:hover{
-      background: linear-gradient(135deg, rgba(255,255,255,.12), rgba(255,255,255,.06));
-      border-color: rgba(215,180,106,.35);
+      background: #EBEBEB;
+      border-color: #000000;
       transform: translateY(-1px);
     }
     .badge svg{ width: 14px; height: 14px; opacity:.92; }
+
+    /* Speed badge for digital menu */
+    .speed-badge{
+      position: absolute;
+      top: 50%;
+      right: 50px;
+      transform: translateY(-50%);
+      background: linear-gradient(135deg, rgba(0,0,0,.08), rgba(0,0,0,.03));
+      border: 1.5px solid #000000;
+      border-radius: 999px;
+      padding: 5px 10px;
+      font-size: 10px;
+      font-weight: 700;
+      color: #000000;
+      text-transform: uppercase;
+      letter-spacing: .6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.06);
+      animation: pulse-glow 2s ease-in-out infinite;
+      white-space: nowrap;
+    }
+
+    @keyframes pulse-glow{
+      0%, 100% { box-shadow: 0 2px 8px rgba(0,0,0,.06), 0 0 0 0 rgba(0,0,0,.1); }
+      50% { box-shadow: 0 2px 8px rgba(0,0,0,.06), 0 0 8px 2px rgba(0,0,0,.15); }
+    }
 
     .btns{
       position:relative;
@@ -193,13 +265,16 @@
       flex-direction:column;
       gap: 12px;
       margin-top: 18px;
+      padding: 18px 0;
+      border-top: none;
+      border-bottom: none;
     }
 
     a.btn{
       text-decoration:none;
       color: var(--text);
-      background: linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
-      border: 1px solid rgba(255,255,255,.14);
+      background: #FFFFFF;
+      border: 1px solid #000000;
       border-radius: 18px;
       padding: 14px 14px;
       display:flex;
@@ -207,14 +282,14 @@
       justify-content:space-between;
       transition: transform .12s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease;
       will-change: transform;
-      box-shadow: 0 4px 12px rgba(0,0,0,.15);
+      box-shadow: 0 2px 8px rgba(0,0,0,.06);
     }
 
     a.btn:hover{
       transform: translateY(-2px);
-      background: linear-gradient(135deg, rgba(255,255,255,.12), rgba(255,255,255,.08));
-      border-color: rgba(215,180,106,.45);
-      box-shadow: 0 12px 32px rgba(0,0,0,.28);
+      background: #F8F8F8;
+      border-color: #000000;
+      box-shadow: 0 8px 20px rgba(0,0,0,.12);
     }
 
     a.btn:active{
@@ -230,18 +305,23 @@
     }
 
     .icon{
-      width: 40px;
-      height: 40px;
-      border-radius: 14px;
-      background: linear-gradient(135deg, rgba(215,180,106,.20), rgba(46,90,63,.16));
-      border: 1.2px solid rgba(255,255,255,.18);
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #F0F0F0;
+      border: 1.5px solid #000000;
       display:flex;
       align-items:center;
       justify-content:center;
       flex: 0 0 auto;
-      box-shadow: 0 4px 10px rgba(0,0,0,.15), inset 0 1px 2px rgba(255,255,255,.08);
+      box-shadow: 0 2px 8px rgba(0,0,0,.06);
+      transition: transform .2s ease, box-shadow .2s ease;
     }
-    .icon svg{ width: 18px; height: 18px; opacity:.95; }
+    .btn:hover .icon{
+      transform: scale(1.08);
+      box-shadow: 0 4px 12px rgba(0,0,0,.1);
+    }
+    .icon svg{ width: 22px; height: 22px; opacity:.95; }
 
     .label{
       display:flex;
@@ -256,7 +336,7 @@
       text-overflow:ellipsis;
     }
     .label small{
-      color: rgba(255,255,255,.65);
+      color: #666666;
       font-weight: 500;
       font-size: 12px;
       white-space:nowrap;
@@ -265,7 +345,7 @@
     }
 
     .arrow{
-      color: rgba(255,255,255,.65);
+      color: #666666;
       font-size: 14px;
       margin-left: 10px;
       flex: 0 0 auto;
@@ -275,7 +355,7 @@
       position:relative;
       margin-top: 18px;
       padding-top: 14px;
-      border-top: 1px solid rgba(255,255,255,.10);
+      border-top: 1px solid #E0E0E0;
       color: var(--muted);
       font-size: 13px;
       line-height: 1.55;
@@ -293,19 +373,19 @@
       align-items:center;
       padding: 10px 12px;
       border-radius: 999px;
-      background: linear-gradient(135deg, rgba(255,255,255,.09), rgba(255,255,255,.04));
-      border: 1.2px solid rgba(255,255,255,.14);
-      color: rgba(255,255,255,.88);
+      background: #F5F5F5;
+      border: 1.2px solid #000000;
+      color: #000000;
       text-decoration:none;
       font-size: 13px;
       transition: background .18s ease, border-color .18s ease, transform .12s ease, box-shadow .18s ease;
-      box-shadow: 0 4px 10px rgba(0,0,0,.12);
+      box-shadow: 0 2px 6px rgba(0,0,0,.06);
     }
     .pill:hover{
-      background: linear-gradient(135deg, rgba(255,255,255,.14), rgba(255,255,255,.08));
-      border-color: rgba(215,180,106,.40);
+      background: #EBEBEB;
+      border-color: #000000;
       transform: translateY(-2px);
-      box-shadow: 0 8px 18px rgba(0,0,0,.18);
+      box-shadow: 0 6px 14px rgba(0,0,0,.12);
     }
     .pill svg{ width: 16px; height: 16px; opacity:.9; }
 
@@ -327,45 +407,35 @@
 <body>
   <div class="wrap">
     <main class="card" role="main" aria-label="Abla's Frühstück Links">
-      <header>
-        <div class="logo" aria-hidden="true" title="Abla's Frühstück">
-          <!-- Simple tulip-like mark (Turkish vibe) -->
-          <img src="./hero.png" style="width: 100%" alt="" srcset="">
-        </div>
+      <!-- Premium Gradient Header -->
+      <div class="header-top">
+        <p class="brand-name">Abla's Frühstück</p>
+      </div>
 
-        <div class="title">
-          <h1>Abla's Frühstück</h1>
-          <p class="sub">Frisch, Herzlich &amp; Lecker • Türkisches Frühstück • Café &amp; Bistro</p>
-
-          <div class="badges">
-            <a class="badge" href="https://maps.google.com/?q=Mayener%20Str.%201%2C%2056070%20Koblenz" target="_blank" rel="noopener noreferrer">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path d="M12 22s7-5.2 7-12a7 7 0 1 0-14 0c0 6.8 7 12 7 12Z" stroke="rgba(255,255,255,.85)" stroke-width="1.6"/>
-                <path d="M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" stroke="rgba(255,255,255,.85)" stroke-width="1.6"/>
-              </svg>
-              Mayener Str. 1 • Koblenz
-            </a>
-
-            <a class="badge" href="tel:+4926139052717">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path d="M7 4h3l1 5-2 1c1 3 3 5 6 6l1-2 5 1v3c0 1-1 2-2 2C10 20 4 14 4 6c0-1 1-2 3-2Z" stroke="rgba(255,255,255,.85)" stroke-width="1.6" stroke-linejoin="round"/>
-              </svg>
-              0261 39052717
-            </a>
+      <!-- Main Content -->
+      <div class="main-header-content">
+        <header style="flex-direction: column; gap: 18px; align-items: center; margin-bottom: 0; padding-bottom: 0; border-bottom: none;">
+          <div class="logo" aria-hidden="true" title="Abla's Frühstück">
+            <img src="./hero.png" alt="" srcset="">
           </div>
-        </div>
-      </header>
 
-      <section class="btns" aria-label="Links">
+          <div class="title">
+            <h1>Abla's Frühstück</h1>
+            <p class="sub">Frisch, Herzlich &amp; Lecker • Türkisches Frühstück • Café &amp; Bistro</p>
+          </div>
+        </header>
+      </div>
+
+      <section class="btns" aria-label="Links" style="padding: 0 22px;">
         <!-- Website (replace #) -->
         <a class="btn" href="#" target="_blank" rel="noopener noreferrer">
           <span class="left">
             <span class="icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none">
-                <path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" stroke="rgba(255,255,255,.9)" stroke-width="1.6"/>
-                <path d="M3 12h18" stroke="rgba(255,255,255,.8)" stroke-width="1.6" stroke-linecap="round"/>
-                <path d="M12 3c3 3 3 15 0 18" stroke="rgba(255,255,255,.8)" stroke-width="1.6" stroke-linecap="round"/>
-                <path d="M12 3c-3 3-3 15 0 18" stroke="rgba(255,255,255,.8)" stroke-width="1.6" stroke-linecap="round"/>
+                <path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" stroke="#000000" stroke-width="1.6"/>
+                <path d="M3 12h18" stroke="#000000" stroke-width="1.6" stroke-linecap="round"/>
+                <path d="M12 3c3 3 3 15 0 18" stroke="#000000" stroke-width="1.6" stroke-linecap="round"/>
+                <path d="M12 3c-3 3-3 15 0 18" stroke="#000000" stroke-width="1.6" stroke-linecap="round"/>
               </svg>
             </span>
             <span class="label">
@@ -377,11 +447,11 @@
         </a>
 
         <!-- Google Reviews -->
-        <a class="btn" href="https://share.google/ioxcFfB2UydL3Ue7d" target="_blank" rel="noopener noreferrer">
+        <a class="btn" href="https://www.google.com/search?hl=en-DE&gl=de&q=Ablas+Fr%C3%BChst%C3%BCck+Koblenz,+Mayener+Str.+1,+56070+Koblenz&ludocid=7736963494179424913&lsig=AB86z5UCac-a2TRBQJOppoA2yBrN#lrd=0x47be7d06396c2f7b:0x6b5f374e46baca91,3" target="_blank" rel="noopener noreferrer">
           <span class="left">
             <span class="icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none">
-                <path d="M12 3l2.6 5.6 6.1.8-4.5 4.2 1.1 6-5.3-3-5.3 3 1.1-6-4.5-4.2 6.1-.8L12 3Z" stroke="rgba(255,255,255,.9)" stroke-width="1.6" stroke-linejoin="round"/>
+                <path d="M12 3l2.6 5.6 6.1.8-4.5 4.2 1.1 6-5.3-3-5.3 3 1.1-6-4.5-4.2 6.1-.8L12 3Z" stroke="#000000" stroke-width="1.6" stroke-linejoin="round"/>
               </svg>
             </span>
             <span class="label">
@@ -397,8 +467,8 @@
           <span class="left">
             <span class="icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none">
-                <path d="M8 4h8c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H8c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2Z" stroke="rgba(255,255,255,.9)" stroke-width="1.6"/>
-                <path d="M10 7h4M10 10h4M10 13h4" stroke="rgba(255,255,255,.8)" stroke-width="1.4" stroke-linecap="round"/>
+                <path d="M8 4h8c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H8c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2Z" stroke="#000000" stroke-width="1.6"/>
+                <path d="M10 7h4M10 10h4M10 13h4" stroke="#000000" stroke-width="1.4" stroke-linecap="round"/>
               </svg>
             </span>
             <span class="label">
@@ -414,9 +484,9 @@
           <span class="left">
             <span class="icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none">
-                <path d="M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4Z" stroke="rgba(255,255,255,.9)" stroke-width="1.6"/>
-                <path d="M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" stroke="rgba(255,255,255,.85)" stroke-width="1.6"/>
-                <path d="M17.5 6.7h.01" stroke="rgba(255,255,255,.85)" stroke-width="3" stroke-linecap="round"/>
+                <path d="M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4Z" stroke="#000000" stroke-width="1.6"/>
+                <path d="M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" stroke="#000000" stroke-width="1.6"/>
+                <path d="M17.5 6.7h.01" stroke="#000000" stroke-width="3" stroke-linecap="round"/>
               </svg>
             </span>
             <span class="label">
@@ -428,12 +498,12 @@
         </a>
 
         <!-- TikTok (replace # with real link) -->
-        <a class="btn" href="#" target="_blank" rel="noopener noreferrer">
+        <a class="btn" href="https://www.tiktok.com/@ablas2025?_r=1&_d=ebghdj7ag2am2e&sec_uid=MS4wLjABAAAA6UIgxxG1utpbtJ8IBfQznyGCUEuhy5EbK0s4BvV4iMdu_lTEmkOTZrF-c3vz6O_R&share_author_id=6532039361540702210&sharer_language=de&source=h5_m&u_code=cm1ch988djeb6g&item_author_type=1&utm_source=whatsapp&tt_from=whatsapp&enable_checksum=1&utm_medium=ios&share_link_id=FF9716F1-F5B6-4A68-811A-25008084ABD0&user_id=6532039361540702210&sec_user_id=MS4wLjABAAAA6UIgxxG1utpbtJ8IBfQznyGCUEuhy5EbK0s4BvV4iMdu_lTEmkOTZrF-c3vz6O_R&social_share_type=5&ug_btm=b8727,b0&utm_campaign=client_share&share_app_id=1233" target="_blank" rel="noopener noreferrer">
           <span class="left">
             <span class="icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none">
-                <path d="M14 4v10.2a3.8 3.8 0 1 1-3-3.7" stroke="rgba(255,255,255,.9)" stroke-width="1.6" stroke-linecap="round"/>
-                <path d="M14 4c1.1 2.6 3.2 4.2 6 4.6" stroke="rgba(255,255,255,.85)" stroke-width="1.6" stroke-linecap="round"/>
+                <path d="M14 4v10.2a3.8 3.8 0 1 1-3-3.7" stroke="#000000" stroke-width="1.6" stroke-linecap="round"/>
+                <path d="M14 4c1.1 2.6 3.2 4.2 6 4.6" stroke="#000000" stroke-width="1.6" stroke-linecap="round"/>
               </svg>
             </span>
             <span class="label">
@@ -449,7 +519,7 @@
           <span class="left">
             <span class="icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none">
-                <path d="M14 8h3V5h-3c-2 0-4 1.6-4 4v3H7v3h3v6h3v-6h3l1-3h-4V9c0-.6.4-1 1-1Z" stroke="rgba(255,255,255,.9)" stroke-width="1.6" stroke-linejoin="round"/>
+                <path d="M14 8h3V5h-3c-2 0-4 1.6-4 4v3H7v3h3v6h3v-6h3l1-3h-4V9c0-.6.4-1 1-1Z" stroke="#000000" stroke-width="1.6" stroke-linejoin="round"/>
               </svg>
             </span>
             <span class="label">
@@ -460,57 +530,56 @@
           <span class="arrow">→</span>
         </a>
 
-        <!-- Menu / Order -->
-        <a class="btn" href="https://www.ubereats.com/de/store/ablas-brunch-and-lunch/vVx8UchgXJaW11WG4qGScg" target="_blank" rel="noopener noreferrer">
+        <!-- WLAN -->
+        <a class="btn" href="#">
           <span class="left">
             <span class="icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none">
-                <path d="M7 4v8" stroke="rgba(255,255,255,.9)" stroke-width="1.6" stroke-linecap="round"/>
-                <path d="M7 12c0 4 2 8 5 8s5-4 5-8" stroke="rgba(255,255,255,.85)" stroke-width="1.6" stroke-linecap="round"/>
-                <path d="M12 4v4" stroke="rgba(255,255,255,.9)" stroke-width="1.6" stroke-linecap="round"/>
-                <path d="M17 4v8" stroke="rgba(255,255,255,.9)" stroke-width="1.6" stroke-linecap="round"/>
+                <path d="M12 19a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" stroke="#000000" stroke-width="1.6" stroke-linecap="round"/>
+                <path d="M9 13a3 3 0 0 1 6 0" stroke="#000000" stroke-width="1.6" stroke-linecap="round"/>
+                <path d="M6 7a7 7 0 0 1 12 0" stroke="#000000" stroke-width="1.6" stroke-linecap="round"/>
               </svg>
             </span>
             <span class="label">
-              <span>Order from Uber eats</span>
-              <small>Online bestellen</small>
+              <span>WLAN</span>
+              <small>Kostenlos verbinden</small>
             </span>
           </span>
           <span class="arrow">→</span>
         </a>
       </section>
 
-      <section class="info" aria-label="Info">
-        <strong style="color: rgba(255,255,255,.88);">Info</strong><br/>
+      <section class="info" aria-label="Info" style="padding: 14px 22px 16px 22px; margin: 0; border-top: 1px solid rgba(255,255,255,.10);">
+        <strong style="color: #000000;">Info</strong><br/>
         Mayener Str. 1, 56070 Koblenz<br/>
 
         <div class="pillrow">
           <a class="pill" href="tel:+4926139052717">
             <svg viewBox="0 0 24 24" fill="none">
-              <path d="M7 4h3l1 5-2 1c1 3 3 5 6 6l1-2 5 1v3c0 1-1 2-2 2C10 20 4 14 4 6c0-1 1-2 3-2Z" stroke="rgba(255,255,255,.9)" stroke-width="1.6" stroke-linejoin="round"/>
+              <path d="M7 4h3l1 5-2 1c1 3 3 5 6 6l1-2 5 1v3c0 1-1 2-2 2C10 20 4 14 4 6c0-1 1-2 3-2Z" stroke="#000000" stroke-width="1.6" stroke-linejoin="round"/>
             </svg>
             Anrufen
           </a>
 
           <a class="pill" href="mailto:ablasfruehstueck@hotmail.com">
             <svg viewBox="0 0 24 24" fill="none">
-              <path d="M4 7h16v10H4V7Z" stroke="rgba(255,255,255,.9)" stroke-width="1.6"/>
-              <path d="M4 8l8 6 8-6" stroke="rgba(255,255,255,.85)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M4 7h16v10H4V7Z" stroke="#000000" stroke-width="1.6"/>
+              <path d="M4 8l8 6 8-6" stroke="#000000" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
             E-Mail
           </a>
 
           <a class="pill" href="https://maps.google.com/?q=Mayener%20Str.%201%2C%2056070%20Koblenz" target="_blank" rel="noopener noreferrer">
             <svg viewBox="0 0 24 24" fill="none">
-              <path d="M12 22s7-5.2 7-12a7 7 0 1 0-14 0c0 6.8 7 12 7 12Z" stroke="rgba(255,255,255,.9)" stroke-width="1.6"/>
-              <path d="M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" stroke="rgba(255,255,255,.85)" stroke-width="1.6"/>
+              <path d="M12 22s7-5.2 7-12a7 7 0 1 0-14 0c0 6.8 7 12 7 12Z" stroke="#000000" stroke-width="1.6"/>
+              <path d="M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" stroke="#000000" stroke-width="1.6"/>
             </svg>
             Route
           </a>
         </div>
       </section>
 
-      <footer>
+      <footer style="padding: 16px 22px; margin: 0; background: #FFFFFF; border-top: 1px solid #E0E0E0; text-align: center; color: #666666; font-size: 12px;">
         © <span id="y"></span> Abla's Frühstück • Powered by WeTap
       </footer>
     </main>
