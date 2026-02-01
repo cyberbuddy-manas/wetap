@@ -37,8 +37,8 @@
     body{
       margin:0;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
-      color: var(--text);
-      background: var(--bg);
+      color: #1A1A1A;
+      background: #FAFAFA;
       overflow-x:hidden;
     }
 
@@ -48,27 +48,11 @@
       position:fixed;
       inset:-30%;
       z-index:-2;
-      background:
-        radial-gradient(900px 540px at 18% 10%, rgba(227,199,122,.22), transparent 65%),
-        radial-gradient(820px 540px at 85% 25%, rgba(110,127,58,.22), transparent 62%),
-        radial-gradient(720px 520px at 60% 92%, rgba(164,74,28,.35), transparent 62%),
-        linear-gradient(140deg, var(--bg), var(--bg2));
-      transform: rotate(-5deg);
-      filter: saturate(1.06) contrast(1.04);
+      background: #FFFFFF;
     }
     body::after{
       content:"";
-      position:fixed;
-      inset:0;
-      z-index:-1;
-      opacity:.16;
-      background:
-        radial-gradient(circle at 25px 25px, rgba(244,239,231,.10) 2px, transparent 2.6px),
-        linear-gradient(90deg, rgba(244,239,231,.06) 1px, transparent 1px),
-        linear-gradient(0deg, rgba(244,239,231,.04) 1px, transparent 1px);
-      background-size: 50px 50px, 50px 50px, 50px 50px;
-      mix-blend-mode: overlay;
-      pointer-events:none;
+      display: none;
     }
 
     .container{
@@ -77,22 +61,33 @@
       padding: 18px 14px 110px;
     }
 
-    /* Header */
     .topbar{
+      background: linear-gradient(135deg, #FFFFFF 0%, #F9F5F0 100%);
+      border-bottom: 2px solid #D4AF37;
+      padding: 18px 22px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(212,175,55,.08);
       position: sticky;
       top: 0;
       z-index: 30;
-      padding: 12px 0 10px;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      background: linear-gradient(180deg, rgba(74,31,20,.76), rgba(74,31,20,.30));
-      border-bottom: 1px solid rgba(227,199,122,.14);
+    }
+    .topbar::before {
+      content: "✦ ✦ ✦";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: -8px;
+      text-align: center;
+      color: #D4AF37;
+      font-size: 8px;
+      letter-spacing: 8px;
     }
     .topbar-inner{
-      display:flex;
+      display:none;
       gap: 10px;
       align-items:center;
-      justify-content:space-between;
+      justify-content:center;
+      flex-wrap: wrap;
     }
 
     .brand{
@@ -100,17 +95,19 @@
       gap: 12px;
       align-items:center;
       min-width: 0;
+      justify-content: center;
     }
     .logo{
-      width: 46px; height: 46px;
-      border-radius: 16px;
-      background: linear-gradient(135deg, rgba(227,199,122,.22), rgba(110,127,58,.14));
-      border: 1px solid rgba(227,199,122,.24);
-      box-shadow: 0 10px 25px rgba(0,0,0,.22);
+      width: 100px; height: 100px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      border: 3px solid #D4AF37;
+      box-shadow: 0 16px 40px rgba(212,175,55,.15), 0 8px 20px rgba(0,0,0,.1);
       display:flex; align-items:center; justify-content:center;
       flex: 0 0 auto;
+      overflow: hidden;
     }
-    .logo svg{width: 26px; height: 26px; opacity:.92}
+    .logo img{width: 100%; height: 100%; object-fit: cover}
     .brand h1{
       margin:0;
       font-family: "Playfair Display", serif;
@@ -129,23 +126,21 @@
       text-overflow:ellipsis;
     }
 
-    .right-controls{
-      display:flex;
+    .right-controls{display:none;
       gap: 10px;
       align-items:center;
       flex-wrap:wrap;
       justify-content:flex-end;
     }
 
-    .chip{
-      display:inline-flex;
+    .chip{display:none;
       align-items:center;
       gap: 8px;
       padding: 10px 12px;
       border-radius: 999px;
       background: rgba(0,0,0,.18);
       border: 1px solid rgba(227,199,122,.22);
-      color: var(--text);
+      color: #1A1A1A;
       text-decoration:none;
       font-size: 13px;
       cursor:pointer;
@@ -174,7 +169,7 @@
       border:0;
       outline:none;
       background: transparent;
-      color: var(--text);
+      color: #1A1A1A;
       font-size: 13px;
     }
     .search input::placeholder{color: rgba(247,245,240,.55)}
@@ -193,8 +188,8 @@
 
     /* Sidebar */
     .panel{
-      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
-      border: 1px solid rgba(227,199,122,.18);
+      background: #FFFFFF;
+      border: 2px solid #E8E8E8;
       border-radius: var(--r2);
       box-shadow: var(--shadow);
       padding: 14px;
@@ -202,7 +197,7 @@
     .panel h3{
       margin: 0 0 10px;
       font-size: 13px;
-      color: rgba(247,245,240,.88);
+      color: #1A1A1A;
       letter-spacing: .2px;
     }
     .cats{
@@ -239,7 +234,7 @@
       gap: 8px;
       padding: 10px 12px;
       border-radius: 999px;
-      border: 1px solid rgba(227,199,122,.18);
+      border: 2px solid #E8E8E8;
       background: rgba(0,0,0,.16);
       font-size: 12px;
       cursor:pointer;
@@ -265,7 +260,7 @@
       border: 1px solid rgba(227,199,122,.14);
       background: rgba(0,0,0,.16);
       text-decoration:none;
-      color: var(--text);
+      color: #1A1A1A;
       font-size: 13px;
       transition: background .16s ease, border-color .16s ease, transform .12s ease;
     }
@@ -323,7 +318,7 @@
       border-radius: 18px;
       flex: 0 0 auto;
       overflow:hidden;
-      border: 1px solid rgba(227,199,122,.18);
+      border: 2px solid #E8E8E8;
       background:
         radial-gradient(90px 90px at 30% 30%, rgba(227,199,122,.22), transparent 60%),
         radial-gradient(120px 120px at 80% 70%, rgba(110,127,58,.18), transparent 60%),
@@ -417,7 +412,7 @@
     .btn{
       border:0;
       cursor:pointer;
-      color: var(--text);
+      color: #1A1A1A;
       background: linear-gradient(135deg, rgba(227,199,122,.22), rgba(110,127,58,.16));
       border: 1px solid rgba(227,199,122,.22);
       padding: 10px 12px;
@@ -594,7 +589,7 @@
       border: 1px solid rgba(227,199,122,.20);
       background: rgba(0,0,0,.18);
       padding: 10px 10px;
-      color: var(--text);
+      color: #1A1A1A;
       outline:none;
       font-size: 12px;
     }
@@ -620,11 +615,7 @@
       <div class="topbar-inner">
         <div class="brand">
           <div class="logo" aria-hidden="true">
-            <!-- tulip-ish icon -->
-            <svg viewBox="0 0 24 24" fill="none">
-              <path d="M12 21c4.5-3.2 6.5-7 6.5-11.3C18.5 6 16.7 3.5 12 3.5S5.5 6 5.5 9.7C5.5 14 7.5 17.8 12 21Z" stroke="rgba(247,245,240,.95)" stroke-width="1.6"/>
-              <path d="M12 7.2v13.3" stroke="rgba(247,245,240,.75)" stroke-width="1.4" stroke-linecap="round"/>
-            </svg>
+            <img src="hero.png" alt="Ablas Fruhstuck Logo">
           </div>
           <div style="min-width:0">
             <h1>Abla’s Frühstück</h1>
@@ -635,15 +626,15 @@
         <div class="right-controls">
           <div class="search" role="search">
             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z" stroke="rgba(247,245,240,.85)" stroke-width="1.6"/>
-              <path d="M16.5 16.5 21 21" stroke="rgba(247,245,240,.85)" stroke-width="1.6" stroke-linecap="round"/>
+              <path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z" stroke="#1A1A1A" stroke-width="1.6"/>
+              <path d="M16.5 16.5 21 21" stroke="#1A1A1A" stroke-width="1.6" stroke-linecap="round"/>
             </svg>
             <input id="q" placeholder="Suche im Menü…" autocomplete="off" />
           </div>
 
           <button class="chip" id="langBtn" title="Sprache wechseln">
             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" stroke="rgba(247,245,240,.85)" stroke-width="1.6"/>
+              <path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" stroke="#1A1A1A" stroke-width="1.6"/>
               <path d="M3 12h18" stroke="rgba(247,245,240,.75)" stroke-width="1.6" stroke-linecap="round"/>
               <path d="M12 3c3 3 3 15 0 18" stroke="rgba(247,245,240,.75)" stroke-width="1.6" stroke-linecap="round"/>
               <path d="M12 3c-3 3-3 15 0 18" stroke="rgba(247,245,240,.75)" stroke-width="1.6" stroke-linecap="round"/>
@@ -653,7 +644,7 @@
 
           <a class="chip" href="https://share.google/ioxcFfB2UydL3Ue7d" target="_blank" rel="noopener noreferrer">
             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M12 3l2.6 5.6 6.1.8-4.5 4.2 1.1 6-5.3-3-5.3 3 1.1-6-4.5-4.2 6.1-.8L12 3Z" stroke="rgba(247,245,240,.9)" stroke-width="1.6" stroke-linejoin="round"/>
+              <path d="M12 3l2.6 5.6 6.1.8-4.5 4.2 1.1 6-5.3-3-5.3 3 1.1-6-4.5-4.2 6.1-.8L12 3Z" stroke="#1A1A1A" stroke-width="1.6" stroke-linejoin="round"/>
             </svg>
             Google
           </a>
@@ -674,7 +665,7 @@
         <div class="filters">
           <div class="toggle" data-filter="vegan" id="fVegan">
             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M20 4c-6 1-10 4-12 10 6-2 9-6 10-12Z" stroke="rgba(247,245,240,.9)" stroke-width="1.6" stroke-linejoin="round"/>
+              <path d="M20 4c-6 1-10 4-12 10 6-2 9-6 10-12Z" stroke="#1A1A1A" stroke-width="1.6" stroke-linejoin="round"/>
               <path d="M4 20c4-8 9-11 16-12" stroke="rgba(247,245,240,.75)" stroke-width="1.6" stroke-linecap="round"/>
             </svg>
             <span id="tVegan">Vegan</span>
@@ -682,22 +673,22 @@
 
           <div class="toggle" data-filter="vegetarian" id="fVeg">
             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M12 21c4.5-3.2 6.5-7 6.5-11.3C18.5 6 16.7 3.5 12 3.5S5.5 6 5.5 9.7C5.5 14 7.5 17.8 12 21Z" stroke="rgba(247,245,240,.9)" stroke-width="1.6"/>
+              <path d="M12 21c4.5-3.2 6.5-7 6.5-11.3C18.5 6 16.7 3.5 12 3.5S5.5 6 5.5 9.7C5.5 14 7.5 17.8 12 21Z" stroke="#1A1A1A" stroke-width="1.6"/>
             </svg>
             <span id="tVeg">Vegetarisch</span>
           </div>
 
           <div class="toggle" data-filter="spicy" id="fSpicy">
             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M12 3c2 3-1 5-1 7s2 3 2 5-2 6-2 6 7-3 7-9c0-4-2-7-6-9Z" stroke="rgba(247,245,240,.9)" stroke-width="1.6" stroke-linejoin="round"/>
+              <path d="M12 3c2 3-1 5-1 7s2 3 2 5-2 6-2 6 7-3 7-9c0-4-2-7-6-9Z" stroke="#1A1A1A" stroke-width="1.6" stroke-linejoin="round"/>
             </svg>
             <span id="tSpicy">Scharf</span>
           </div>
 
           <div class="toggle" data-filter="halal" id="fHalal">
             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" stroke="rgba(247,245,240,.9)" stroke-width="1.6"/>
-              <path d="M8 12h8" stroke="rgba(247,245,240,.85)" stroke-width="1.6" stroke-linecap="round"/>
+              <path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" stroke="#1A1A1A" stroke-width="1.6"/>
+              <path d="M8 12h8" stroke="#1A1A1A" stroke-width="1.6" stroke-linecap="round"/>
             </svg>
             <span>Halal</span>
           </div>
