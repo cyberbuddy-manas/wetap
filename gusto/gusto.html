@@ -1,0 +1,865 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0f1a14" />
+    <meta
+      name="description"
+      content="Gusto Koblenz — Offizielle Links, Reservierung, Bewertungen & Route"
+    />
+    <title>Gusto Koblenz — Links</title>
+
+    <!-- Premium fonts (fast + modern) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&family=Cormorant+Garamond:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        /* Gusto — clean premium Italian palette */
+        --bg: #ffffff;
+        --text: #151515;
+        --muted: #5c5c5c;
+
+        --green: #008C45;
+        --white: #ffffff;
+        --red: #CD212A;
+        --border: #e9e9e9;
+        --border-accent: #008C45;
+        --shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+        --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.12);
+        --radius: 24px;
+        --shadow-logo: 0 16px 40px rgba(0, 140, 69, 0.16), 0 8px 20px rgba(205, 33, 42, 0.16), 0 8px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI,
+          Roboto, Arial;
+        color: var(--text);
+        background: #fafafa;
+        overflow-x: hidden;
+      }
+
+      /* Clean white background */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: -30%;
+        z-index: -2;
+        background: var(--bg);
+      }
+
+      .wrap {
+        min-height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 28px 16px 40px;
+      }
+
+      .card {
+        width: 100%;
+        max-width: 560px;
+        border-radius: var(--radius);
+        background: var(--bg);
+        border: 2px solid var(--border);
+        box-shadow: var(--shadow);
+        padding: 0;
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* Subtle premium shimmer */
+      .card::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(212, 175, 55, 0.08),
+          transparent
+        );
+        animation: shimmer 3.2s infinite;
+        pointer-events: none;
+      }
+
+      @keyframes shimmer {
+        0% {
+          left: -100%;
+        }
+        100% {
+          left: 100%;
+        }
+      }
+
+      /* Premium header */
+      .header-top {
+        background: linear-gradient(135deg, #ffffff 0%, #fbf7ef 100%);
+        border-bottom: 2px solid var(--border-accent);
+        padding: 18px 22px;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(212, 175, 55, 0.08);
+        position: relative;
+      }
+
+      .header-top::before {
+        content: "✦ ✦ ✦";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: -8px;
+        text-align: center;
+        color: var(--green);
+        font-size: 8px;
+        letter-spacing: 8px;
+        opacity: 0.95;
+      }
+
+      .header-top .brand-name {
+        font-size: 12.5px;
+        font-weight: 800;
+        letter-spacing: 2.4px;
+        text-transform: uppercase;
+        margin: 0;
+        background: linear-gradient(
+          90deg,
+          var(--green) 0%,
+          var(--white) 50%,
+          var(--red) 100%
+        );
+        background-size: 200% 100%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: shine 3s infinite;
+      }
+
+      @keyframes shine {
+        0% {
+          background-position: 200% 0;
+        }
+        100% {
+          background-position: -200% 0;
+        }
+      }
+
+      .main-header-content {
+        padding: 28px 22px 10px;
+      }
+
+      .logo {
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        background: #ffffff;
+        border: 3px solid var(--border-accent);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: var(--shadow-logo);
+        overflow: hidden;
+        margin: 0 auto;
+        position: relative;
+      }
+
+      .logo::before {
+        content: "";
+        position: absolute;
+        inset: -3px;
+        border-radius: 50%;
+        background: conic-gradient(
+          from 0deg,
+          var(--green) 0deg,
+          var(--white) 120deg,
+          var(--red) 240deg,
+          var(--green) 360deg
+        );
+        opacity: 0.3;
+        animation: rotate 9s linear infinite;
+      }
+
+      @keyframes rotate {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: relative;
+        z-index: 1;
+      }
+
+      .title {
+        margin-top: 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+      }
+
+      h1 {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 40px;
+        line-height: 1.05;
+        margin: 0;
+        letter-spacing: 0.3px;
+        color: var(--text);
+        font-weight: 700;
+      }
+
+      .sub {
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.5;
+      }
+
+      .badges {
+        margin-top: 14px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: center;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 10px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, #fbf7ef 0%, #f4efe6 100%);
+        border: 1.2px solid rgba(212, 175, 55, 0.7);
+        font-size: 12px;
+        color: var(--text);
+        text-decoration: none;
+        box-shadow: 0 2px 6px rgba(212, 175, 55, 0.06);
+        user-select: none;
+      }
+
+      .badge svg {
+        width: 14px;
+        height: 14px;
+        opacity: 0.92;
+      }
+
+      .btns {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 18px;
+        padding: 14px 0 18px;
+      }
+
+      a.btn {
+        text-decoration: none;
+        color: var(--text);
+        background: linear-gradient(135deg, #ffffff 0%, #fbf7ef 100%);
+        border: 1.5px solid var(--border);
+        border-radius: 18px;
+        padding: 14px 14px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        transition: transform 0.12s ease, background 0.18s ease,
+          border-color 0.18s ease, box-shadow 0.18s ease;
+        box-shadow: 0 4px 12px rgba(212, 175, 55, 0.06);
+      }
+
+      a.btn:hover {
+        transform: translateY(-2px);
+        background: linear-gradient(135deg, #fffaf3 0%, #f5efe6 100%);
+        border-color: var(--border-accent);
+        box-shadow: 0 10px 28px rgba(212, 175, 55, 0.12);
+      }
+
+      a.btn:active {
+        transform: translateY(-1px) scale(0.995);
+      }
+
+      .left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 650;
+        min-width: 0;
+      }
+
+      .icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #fbf7ef 0%, #f4efe6 100%);
+        border: 1.5px solid rgba(212, 175, 55, 0.75);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 auto;
+        box-shadow: 0 4px 12px rgba(212, 175, 55, 0.08);
+        transition: transform 0.2s ease, box-shadow 0.2s ease,
+          background 0.2s ease;
+      }
+
+      .btn:hover .icon {
+        transform: scale(1.08);
+        background: linear-gradient(135deg, #fffaf3 0%, #f5efe6 100%);
+        box-shadow: 0 6px 16px rgba(212, 175, 55, 0.15);
+      }
+
+      .icon svg {
+        width: 22px;
+        height: 22px;
+        opacity: 0.95;
+      }
+
+      .label {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        min-width: 0;
+        flex: 1;
+      }
+
+      .label span:first-child {
+        font-size: 14px;
+        word-break: break-word;
+        line-height: 1.3;
+      }
+
+      .label small {
+        color: var(--muted);
+        font-weight: 500;
+        font-size: 12px;
+        word-break: break-word;
+        line-height: 1.2;
+      }
+
+      .arrow {
+        color: #666666;
+        font-size: 14px;
+        margin-left: 10px;
+        flex: 0 0 auto;
+      }
+
+      .info {
+        margin-top: 2px;
+        padding: 14px 22px 16px 22px;
+        border-top: 1px solid #e6e6e6;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.55;
+      }
+
+      .pillrow {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 12px;
+      }
+
+      .pill {
+        display: inline-flex;
+        gap: 8px;
+        align-items: center;
+        padding: 10px 12px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, #fbf7ef 0%, #f4efe6 100%);
+        border: 1.2px solid rgba(212, 175, 55, 0.7);
+        color: var(--text);
+        text-decoration: none;
+        font-size: 13px;
+        transition: background 0.18s ease, border-color 0.18s ease,
+          transform 0.12s ease, box-shadow 0.18s ease;
+        box-shadow: 0 2px 8px rgba(212, 175, 55, 0.06);
+      }
+
+      .pill:hover {
+        background: linear-gradient(135deg, #fffaf3 0%, #f5efe6 100%);
+        border-color: rgba(122, 31, 36, 0.55);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 14px rgba(212, 175, 55, 0.12);
+      }
+
+      .pill svg {
+        width: 16px;
+        height: 16px;
+        opacity: 0.9;
+      }
+
+      footer {
+        padding: 16px 22px;
+        margin: 0;
+        background: linear-gradient(135deg, #ffffff 0%, #fbf7ef 100%);
+        border-top: 1.5px solid var(--border-accent);
+        text-align: center;
+        color: var(--muted);
+        font-size: 12px;
+        letter-spacing: 0.5px;
+      }
+
+      /* Better accessibility for reduced motion */
+      @media (prefers-reduced-motion: reduce) {
+        a.btn,
+        .pill {
+          transition: none;
+        }
+        a.btn:hover,
+        .pill:hover {
+          transform: none;
+        }
+        .card::after,
+        .logo::before,
+        .header-top .brand-name {
+          animation: none;
+        }
+      }
+
+      /* Modal */
+      .table-modal {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: 9999;
+        align-items: center;
+        justify-content: center;
+        animation: fadeIn 0.2s ease-out;
+      }
+      .table-modal.active {
+        display: flex;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      .table-modal-content {
+        background: #ffffff;
+        border-radius: 20px;
+        padding: 32px 24px;
+        max-width: 380px;
+        width: 90%;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        animation: slideUp 0.3s ease-out;
+        border: 1.5px solid rgba(212, 175, 55, 0.45);
+      }
+      @keyframes slideUp {
+        from {
+          transform: translateY(30px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+      .table-modal-content h2 {
+        margin: 0 0 8px;
+        font-size: 24px;
+        font-weight: 800;
+        color: #000000;
+      }
+      .table-modal-content p {
+        margin: 0 0 24px;
+        color: #666666;
+        font-size: 14px;
+      }
+      #tableInput {
+        width: 100%;
+        padding: 14px 12px;
+        border: 2px solid #e8e8e8;
+        border-radius: 12px;
+        font-size: 16px;
+        font-weight: 700;
+        font-family: Inter;
+        margin-bottom: 20px;
+        transition: border-color 0.2s;
+      }
+      #tableInput:focus {
+        outline: none;
+        border-color: #000000;
+      }
+      .table-modal-buttons {
+        display: flex;
+        gap: 12px;
+      }
+      .table-modal-cancel,
+      .table-modal-confirm {
+        flex: 1;
+        padding: 12px;
+        border: none;
+        border-radius: 12px;
+        font-size: 15px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-family: Inter;
+      }
+      .table-modal-cancel {
+        background: #f0f0f0;
+        color: #666666;
+      }
+      .table-modal-cancel:hover {
+        background: #e0e0e0;
+      }
+      .table-modal-confirm {
+        background: #000000;
+        color: #ffffff;
+      }
+      .table-modal-confirm:hover {
+        background: #1a1a1a;
+        transform: translateY(-1px);
+      }
+      .table-modal-confirm:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        transform: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="wrap">
+      <main class="card" role="main" aria-label="Gusto Koblenz Links">
+        <div class="header-top">
+          <p class="brand-name">Gusto • Koblenz</p>
+        </div>
+
+        <div class="main-header-content">
+          <header
+            style="
+              display: flex;
+              flex-direction: column;
+              gap: 18px;
+              align-items: center;
+              margin-bottom: 0;
+              padding-bottom: 0;
+              border-bottom: none;
+            "
+          >
+            <!-- Logo placeholder: replace ./hero.png with the real logo image -->
+            <div class="logo" aria-hidden="true" title="Gusto Koblenz">
+              <img src="Logo-Gusto.png" alt="Gusto Koblenz Logo" />
+            </div>
+
+            <div class="title">
+              <h1>Gusto</h1>
+              <p class="sub">
+                Premium italienisches Restaurant • Pizza &amp; Klassiker •
+                Koblenz-Metternich
+              </p>
+
+              <div class="badges" aria-label="Highlights">
+                <span class="badge" title="Preisniveau">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M6 7h12v10H6V7Z"
+                      stroke="#151515"
+                      stroke-width="1.6"
+                    />
+                    <path
+                      d="M9 10h6M9 13h4"
+                      stroke="#151515"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                  €10–20 pro Person
+                </span>
+
+                <span class="badge" title="Öffnet heute">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z"
+                      stroke="#151515"
+                      stroke-width="1.6"
+                    />
+                    <path
+                      d="M12 6v6l4 2"
+                      stroke="#151515"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  Öffnet 17:30
+                </span>
+
+                <span class="badge" title="Italienische Küche">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M12 21c5 0 9-4 9-9S17 3 12 3 3 7 3 12s4 9 9 9Z"
+                      stroke="#151515"
+                      stroke-width="1.6"
+                    />
+                    <path
+                      d="M7 12h10"
+                      stroke="#151515"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M12 7v10"
+                      stroke="#151515"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                  Italienisch
+                </span>
+              </div>
+            </div>
+          </header>
+        </div>
+
+        <section class="btns" aria-label="Links" style="padding: 0 22px">
+          <!-- Website -->
+          <a
+            class="btn"
+            href="https://gusto-ristorante.de/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span class="left">
+              <span class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z"
+                    stroke="#151515"
+                    stroke-width="1.6"
+                  />
+                  <path
+                    d="M3 12h18"
+                    stroke="#151515"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M12 3c3 3 3 15 0 18"
+                    stroke="#151515"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M12 3c-3 3-3 15 0 18"
+                    stroke="#151515"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </span>
+              <span class="label">
+                <span>Webseite</span>
+                <small>Infos, Öffnungszeiten &amp; Kontakt</small>
+              </span>
+            </span>
+            <span class="arrow">→</span>
+          </a>
+
+          <!-- Google Maps -->
+          <a
+            class="btn"
+            href="https://maps.app.goo.gl/qCggpMEQfL4Kdf4a9"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span class="left">
+              <span class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M12 22s7-5.2 7-12a7 7 0 1 0-14 0c0 6.8 7 12 7 12Z"
+                    stroke="#151515"
+                    stroke-width="1.6"
+                  />
+                  <path
+                    d="M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"
+                    stroke="#151515"
+                    stroke-width="1.6"
+                  />
+                </svg>
+              </span>
+              <span class="label">
+                <span>Google Maps</span>
+                <small>Route starten &amp; Standort ansehen</small>
+              </span>
+            </span>
+            <span class="arrow">→</span>
+          </a>
+
+          <!-- TripAdvisor -->
+          <a
+            class="btn"
+            href="https://www.tripadvisor.de/Restaurant_Review-g187391-d3839826-Reviews-Gusto-Koblenz_Rhineland_Palatinate.html"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span class="left">
+              <span class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M12 3l2.6 5.6 6.1.8-4.5 4.2 1.1 6-5.3-3-5.3 3 1.1-6-4.5-4.2 6.1-.8L12 3Z"
+                    stroke="#151515"
+                    stroke-width="1.6"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </span>
+              <span class="label">
+                <span>Tripadvisor</span>
+                <small>Bewertungen &amp; Eindrücke</small>
+              </span>
+            </span>
+            <span class="arrow">→</span>
+          </a>
+
+          <!-- ...existing code... -->
+
+          <!-- Instagram -->
+          <a
+            class="btn"
+            href="https://www.instagram.com/explore/locations/209100115795290/gusto-koblenz-metternich/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span class="left">
+              <span class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4Z"
+                    stroke="#151515"
+                    stroke-width="1.6"
+                  />
+                  <path
+                    d="M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z"
+                    stroke="#151515"
+                    stroke-width="1.6"
+                  />
+                  <path
+                    d="M17.5 6.7h.01"
+                    stroke="#151515"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </span>
+              <span class="label">
+                <span>Instagram</span>
+                <small>Fotos &amp; Updates</small>
+              </span>
+            </span>
+            <span class="arrow">→</span>
+          </a>
+
+          <!-- Facebook -->
+          <a
+            class="btn"
+            href="https://www.facebook.com/groups/578418786189548/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span class="left">
+              <span class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M14 8h3V5h-3c-2 0-4 1.6-4 4v3H7v3h3v6h3v-6h3l1-3h-4V9c0-.6.4-1 1-1Z"
+                    stroke="#151515"
+                    stroke-width="1.6"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </span>
+              <span class="label">
+                <span>Facebook</span>
+                <small>Community &amp; Neuigkeiten</small>
+              </span>
+            </span>
+            <span class="arrow">→</span>
+          </a>
+        </section>
+
+        <section class="info" aria-label="Kontakt & Info">
+          <strong style="color: #000000">Kontakt</strong><br />
+          Trierer Str. 322a, 56072 Koblenz<br />
+          <span style="color: #7a1f24; font-weight: 700">Telefon:</span>
+          <span style="color: #151515; font-weight: 700">0261 2080</span>
+
+          <div class="pillrow" role="list" aria-label="Aktionen">
+            <a class="pill" href="tel:+492612080" role="listitem">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M7 4h3l1 5-2 1c1 3 3 5 6 6l1-2 5 1v3c0 1-1 2-2 2C10 20 4 14 4 6c0-1 1-2 3-2Z"
+                  stroke="#151515"
+                  stroke-width="1.6"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              Anrufen
+            </a>
+
+            <a
+              class="pill"
+              href="https://maps.google.com/?q=Trierer%20Str.%20322a%2C%2056072%20Koblenz"
+              target="_blank"
+              rel="noopener noreferrer"
+              role="listitem"
+            >
+              <svg viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M12 22s7-5.2 7-12a7 7 0 1 0-14 0c0 6.8 7 12 7 12Z"
+                  stroke="#151515"
+                  stroke-width="1.6"
+                />
+                <path
+                  d="M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"
+                  stroke="#151515"
+                  stroke-width="1.6"
+                />
+              </svg>
+              Route
+            </a>
+
+            <!-- Optional: add email pill if you have it
+            <a class="pill" href="mailto:info@gusto-ristorante.de" role="listitem"> ... </a>
+            -->
+          </div>
+        </section>
+
+        <footer>
+          ©️ <span id="y"></span> Gusto Koblenz • Powered by WeTap
+        </footer>
+      </main>
+    </div>
+
+    <!-- Table modal (for digital menu flow) -->
+    <!-- ...existing code... -->
+
+    <script>
+      document.getElementById("y").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
