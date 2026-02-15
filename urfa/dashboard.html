@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="Abla's Frühstück — Kitchen Dashboard" />
+  <title>Kitchen Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--primary:#000;--success:#10b981;--warning:#f59e0b;--danger:#ef4444;--border:#e8e8e8;--grey:#757575;--light:#f5f5f5;--shadow:0 4px 12px rgba(0,0,0,.1)}
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;font-family:Inter,-apple-system,Segoe UI,sans-serif;background:#fff;color:#1a1a1a}
+    body{overflow-x:hidden}
+    .dashboard{min-height:100vh;display:flex;flex-direction:column}
+    header{background:var(--primary);color:#fff;padding:20px;text-align:center;box-shadow:var(--shadow)}
+    header h1{margin:0;font-size:24px;font-weight:700}
+    header p{margin:8px 0 0;font-size:14px;opacity:.9}
+    .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:16px;padding:20px;background:#f9f9f9;border-bottom:1px solid var(--border)}
+    .stat-card{background:#fff;padding:16px;border-radius:12px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.05);border:1px solid var(--border)}
+    .stat-label{font-size:12px;color:var(--grey);font-weight:600;text-transform:uppercase;margin-bottom:8px}
+    .stat-value{font-size:28px;font-weight:700;color:var(--primary)}
+    .stat-value.success{color:var(--success)}
+    .stat-value.warning{color:var(--warning)}
+    .controls{padding:16px;display:flex;gap:12px;border-bottom:1px solid var(--border);flex-wrap:wrap}
+    .btn{padding:10px 16px;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;font-family:Inter}
+    .btn-primary{background:var(--primary);color:#fff}
+    .btn-primary:hover{opacity:.9;transform:translateY(-1px)}
+    .btn-secondary{background:var(--light);color:var(--primary);border:1.5px solid var(--border)}
+    .btn-secondary:hover{background:#e8e8e8}
+    .orders-container{flex:1;padding:20px;overflow-y:auto}
+    .orders-empty{text-align:center;color:var(--grey);padding:40px 20px}
+    .order-card{background:#fff;border:1.5px solid var(--border);border-radius:12px;padding:16px;margin-bottom:12px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+    .order-card.completed{border-color:var(--success);background:rgba(16,185,129,.02)}
+    .order-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+    .order-table{font-size:18px;font-weight:700;color:var(--primary)}
+    .order-time{font-size:12px;color:var(--grey)}
+    .order-status{padding:4px 12px;border-radius:20px;font-size:12px;font-weight:600;text-transform:uppercase}
+    .status-pending{background:var(--warning);color:#000}
+    .status-completed{background:var(--success);color:#fff}
+    .order-items{margin:12px 0;padding:12px;background:var(--light);border-radius:8px}
+    .order-item{display:flex;justify-content:space-between;align-items:center;padding:6px 0;font-size:13px;border-bottom:1px solid #e0e0e0}
+    .order-item:last-child{border-bottom:none}
+    .item-name{font-weight:600}
+    .item-qty{color:var(--grey);margin:0 8px}
+    .item-price{font-weight:600}
+    .order-total{display:flex;justify-content:space-between;align-items:center;font-size:16px;font-weight:700;padding-top:12px;border-top:2px solid #e0e0e0;margin-top:12px}
+    .order-actions{display:flex;gap:8px;margin-top:12px}
+    .action-btn{flex:1;padding:8px;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;font-family:Inter}
+    .btn-complete{background:var(--success);color:#fff}
+    .btn-complete:hover{opacity:.9}
+    .btn-undo{background:var(--danger);color:#fff}
+    .btn-undo:hover{opacity:.9}
+    .pin-screen{position:fixed;inset:0;background:rgba(0,0,0,.8);display:flex;align-items:center;justify-content:center;z-index:1000}
+    .pin-screen.hidden{display:none}
+    .pin-box{background:#fff;padding:40px;border-radius:20px;text-align:center;max-width:300px;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+    .pin-title{font-size:24px;font-weight:700;margin-bottom:8px}
+    .pin-subtitle{color:var(--grey);margin-bottom:24px}
+    .pin-input{width:100%;padding:16px;font-size:24px;letter-spacing:8px;text-align:center;border:2px solid var(--border);border-radius:12px;font-family:monospace;margin-bottom:20px;font-weight:700}
+    .pin-input:focus{outline:none;border-color:var(--primary)}
+    .pin-keypad{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+    .pin-key{padding:12px;background:var(--light);border:none;border-radius:8px;font-size:16px;font-weight:700;cursor:pointer;transition:all .2s;font-family:Inter}
+    .pin-key:hover{background:#e0e0e0;transform:scale(1.05)}
+    .pin-key.delete{grid-column:span 2;background:var(--danger);color:#fff}
+    .pin-key.enter{background:var(--primary);color:#fff}
+    @media(max-width:768px){.stats{grid-template-columns:repeat(2,1fr)}.controls{flex-direction:column}}
+  </style>
+</head>
+<body>
+  <div id="pinScreen" class="pin-screen">
+    <div class="pin-box">
+      <h2 class="pin-title">PIN eingeben</h2>
+      <p class="pin-subtitle">Küchen-Dashboard entsperren</p>
+      <input type="password" id="pinInput" class="pin-input" placeholder="••••••" maxlength="6">
+      <div class="pin-keypad">
+        <button class="pin-key" onclick="addPin('1')">1</button>
+        <button class="pin-key" onclick="addPin('2')">2</button>
+        <button class="pin-key" onclick="addPin('3')">3</button>
+        <button class="pin-key" onclick="addPin('4')">4</button>
+        <button class="pin-key" onclick="addPin('5')">5</button>
+        <button class="pin-key" onclick="addPin('6')">6</button>
+        <button class="pin-key" onclick="addPin('7')">7</button>
+        <button class="pin-key" onclick="addPin('8')">8</button>
+        <button class="pin-key" onclick="addPin('9')">9</button>
+        <button class="pin-key delete" onclick="deletePin()">LÖSCHEN</button>
+        <button class="pin-key" onclick="addPin('0')">0</button>
+        <button class="pin-key enter" onclick="checkPin()">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="dashboard" id="dashboard" style="display:none">
+    <header>
+      <h1>👨‍🍳 Küchen-Dashboard</h1>
+      <p>Abla's Frühstück POS System</p>
+    </header>
+
+    <div class="stats">
+      <div class="stat-card">
+        <div class="stat-label">Ausstehend</div>
+        <div class="stat-value warning" id="pendingCount">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Abgeschlossen</div>
+        <div class="stat-value success" id="completedCount">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Tische Aktiv</div>
+        <div class="stat-value" id="tableCount">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Tagesumsatz</div>
+        <div class="stat-value" id="revenue">0,00 €</div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button class="btn btn-primary" onclick="refreshOrders()">🔄 Aktualisieren</button>
+      <button class="btn btn-secondary" onclick="logout()">📴 Abmelden</button>
+    </div>
+
+    <div class="orders-container" id="ordersContainer">
+      <div class="orders-empty">Keine Bestellungen vorhanden</div>
+    </div>
+  </div>
+
+  <script>
+    const CORRECT_PIN = '560723';
+    let isUnlocked = false;
+
+    function addPin(num) {
+      const input = document.getElementById('pinInput');
+      if (input.value.length < 6) {
+        input.value += num;
+      }
+    }
+
+    function deletePin() {
+      const input = document.getElementById('pinInput');
+      input.value = input.value.slice(0, -1);
+    }
+
+    function checkPin() {
+      const input = document.getElementById('pinInput');
+      if (input.value === CORRECT_PIN) {
+        isUnlocked = true;
+        document.getElementById('pinScreen').classList.add('hidden');
+        document.getElementById('dashboard').style.display = 'flex';
+        loadOrders();
+        setInterval(loadOrders, 2000);
+      } else {
+        alert('PIN falsch');
+        input.value = '';
+      }
+    }
+
+    function logout() {
+      isUnlocked = false;
+      document.getElementById('pinScreen').classList.remove('hidden');
+      document.getElementById('dashboard').style.display = 'none';
+      document.getElementById('pinInput').value = '';
+    }
+
+    async function loadOrders() {
+      try {
+        const response = await fetch('/api/orders');
+        const orders = await response.json();
+        updateStats(orders);
+        renderOrders(orders);
+      } catch (error) {
+        console.error('Error loading orders:', error);
+      }
+    }
+
+    function updateStats(orders) {
+      const pending = orders.filter(o => o.status === 'pending').length;
+      const completed = orders.filter(o => o.status === 'completed').length;
+      const tables = new Set(orders.map(o => o.table)).size;
+      const revenue = orders.reduce((sum, o) => sum + (o.total || 0), 0);
+
+      document.getElementById('pendingCount').textContent = pending;
+      document.getElementById('completedCount').textContent = completed;
+      document.getElementById('tableCount').textContent = tables;
+      document.getElementById('revenue').textContent = revenue.toFixed(2) + ' €';
+    }
+
+    function renderOrders(orders) {
+      const container = document.getElementById('ordersContainer');
+      
+      if (orders.length === 0) {
+        container.innerHTML = '<div class="orders-empty">Keine Bestellungen vorhanden</div>';
+        return;
+      }
+
+      const sorted = [...orders].reverse();
+      container.innerHTML = sorted.map(order => {
+        const time = new Date(order.timestamp).toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
+        const itemsHtml = order.items.map(item => 
+          `<div class="order-item">
+            <span class="item-name">${item.name}</span>
+            <span class="item-qty">×${item.qty}</span>
+            <span class="item-price">${(item.price * item.qty).toFixed(2)} €</span>
+          </div>`
+        ).join('');
+
+        return `
+          <div class="order-card ${order.status === 'completed' ? 'completed' : ''}">
+            <div class="order-header">
+              <div>
+                <div class="order-table">🪑 Tisch ${order.table}</div>
+                <div class="order-time">${time}</div>
+              </div>
+              <span class="order-status status-${order.status}">${order.status === 'pending' ? '⏳ Ausstehend' : '✅ Fertig'}</span>
+            </div>
+            <div class="order-items">${itemsHtml}</div>
+            <div class="order-total">
+              <span>Gesamt:</span>
+              <span>${order.total.toFixed(2)} €</span>
+            </div>
+            ${order.status === 'pending' ? `
+              <div class="order-actions">
+                <button class="action-btn btn-complete" onclick="updateOrderStatus('${order.id}', 'completed')">✓ Abgeschlossen</button>
+              </div>
+            ` : `
+              <div class="order-actions">
+                <button class="action-btn btn-undo" onclick="updateOrderStatus('${order.id}', 'pending')">↺ Rückgängig</button>
+              </div>
+            `}
+          </div>
+        `;
+      }).join('');
+    }
+
+    async function updateOrderStatus(orderId, status) {
+      try {
+        await fetch(`/api/orders/${orderId}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ status })
+        });
+        loadOrders();
+      } catch (error) {
+        console.error('Error updating order:', error);
+      }
+    }
+
+    function refreshOrders() {
+      loadOrders();
+    }
+
+    document.getElementById('pinInput').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') checkPin();
+    });
+  </script>
+</body>
+</html>
