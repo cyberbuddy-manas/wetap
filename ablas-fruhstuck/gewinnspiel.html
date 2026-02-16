@@ -36,7 +36,6 @@
           sans-serif;
         color: var(--cream);
         overflow-x: hidden;
-
         background:
           radial-gradient(
             1100px 700px at 50% 22%,
@@ -57,7 +56,7 @@
       }
 
       .topband {
-        height: 76px;
+        height: 35px;
         position: relative;
         border-bottom: 1px solid rgba(214, 178, 94, 0.35);
         background:
@@ -154,7 +153,6 @@
         min-height: calc(100vh - 76px);
         display: grid;
         place-items: center;
-        padding: 22px;
       }
 
       .stage {
@@ -248,27 +246,71 @@
         pointer-events: none;
       }
 
+      /* Confetti layer on main panel (behind wheel + pointer) */
+      .confettiLayer {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        overflow: hidden;
+        z-index: 1;
+      }
+      .confetti {
+        position: absolute;
+        top: -12px;
+        border-radius: 2px;
+        opacity: 0.95;
+        animation: fall linear forwards;
+        filter: drop-shadow(0 10px 10px rgba(0, 0, 0, 0.35));
+      }
+      @keyframes fall {
+        to {
+          transform: translate3d(var(--dx), 120vh, 0) rotate(var(--rot));
+        }
+      }
+
+      /* Bigger + clearer pointer */
       .pointer {
+        position: relative;
+        top: 35px;
+        z-index: 5;
         width: 0;
         height: 0;
-        border-left: 16px solid transparent;
-        border-right: 16px solid transparent;
-        border-bottom: 26px solid var(--gold3);
-        filter: drop-shadow(0 12px 12px rgba(0, 0, 0, 0.65));
-        margin-top: 2px;
-        position: relative;
-        z-index: 3;
+
+        border-left: 26px solid transparent;
+        border-right: 26px solid transparent;
+        border-bottom: 52px solid var(--gold3);
+
+        filter: drop-shadow(0 18px 16px rgba(0, 0, 0, 0.72));
+        rotate: 180deg;
       }
+
+      /* bold base + a notch “tip marker” */
       .pointer:after {
         content: "";
         position: absolute;
-        left: -6px;
-        top: -2px;
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
+        left: -14px;
+        top: 38px;
+        width: 28px;
+        height: 28px;
+        border-radius: 999px;
         background: linear-gradient(180deg, var(--gold3), var(--gold2));
-        box-shadow: 0 8px 14px rgba(0, 0, 0, 0.45);
+        box-shadow: 0 10px 16px rgba(0, 0, 0, 0.55);
+        border: 2px solid rgba(0, 0, 0, 0.28);
+      }
+      .pointer:before {
+        content: "";
+        position: absolute;
+        left: -7px;
+        top: 46px;
+        width: 14px;
+        height: 10px;
+        background: rgba(0, 0, 0, 0.45);
+        clip-path: polygon(
+          50% 100%,
+          0 0,
+          100% 0
+        ); /* small notch pointing down */
+        filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.6));
       }
 
       canvas {
@@ -290,7 +332,7 @@
         flex-wrap: wrap;
         justify-content: center;
         position: relative;
-        z-index: 3;
+        z-index: 5;
       }
       button {
         border: 0;
@@ -312,7 +354,6 @@
       button:active {
         transform: translateY(1px);
       }
-
       button.secondary {
         color: var(--cream);
         background: rgba(0, 0, 0, 0.22);
@@ -331,7 +372,7 @@
         text-align: center;
         line-height: 1.35;
         position: relative;
-        z-index: 3;
+        z-index: 5;
       }
       .status b {
         color: var(--gold3);
@@ -390,179 +431,42 @@
         justify-content: flex-end;
         flex-wrap: wrap;
       }
-      .hint {
-        font-size: 12px;
-        opacity: 0.9;
-      }
-      .hint code {
-        background: rgba(214, 178, 94, 0.14);
-        border: 1px solid rgba(214, 178, 94, 0.26);
-        padding: 2px 6px;
-        border-radius: 8px;
-      }
       .line {
         width: 100%;
         height: 1px;
         background: rgba(214, 178, 94, 0.2);
       }
 
-      /* Winner popup */
-      .winBack {
-        position: fixed;
-        inset: 0;
-        display: none;
-        align-items: center;
-        justify-content: center;
-        padding: 18px;
-        background: rgba(0, 0, 0, 0.72);
-        z-index: 1000;
-      }
-      .winCard {
-        width: min(560px, 94vw);
-        border-radius: 22px;
-        border: 1px solid rgba(240, 212, 138, 0.65);
-        background: linear-gradient(
-          180deg,
-          rgba(20, 10, 8, 0.95),
-          rgba(10, 7, 7, 0.92)
-        );
-        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.75);
-        position: relative;
-        overflow: hidden;
-        padding: 18px 16px 14px;
-      }
-      .winGlow {
+      .stopGlow {
         position: absolute;
-        inset: -2px;
+        inset: 0;
+        border-radius: 22px;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 260ms ease;
+        z-index: 4;
         background:
           radial-gradient(
-            700px 260px at 50% -10%,
-            rgba(240, 212, 138, 0.28),
+            420px 420px at 50% 42%,
+            rgba(240, 212, 138, 0.3),
             transparent 62%
           ),
           radial-gradient(
-            520px 300px at 15% 30%,
+            520px 520px at 50% 50%,
             rgba(214, 178, 94, 0.16),
             transparent 70%
-          ),
-          radial-gradient(
-            520px 300px at 85% 30%,
-            rgba(214, 178, 94, 0.14),
-            transparent 70%
           );
-        pointer-events: none;
       }
-      .winTop {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-        position: relative;
-        z-index: 2;
-      }
-      .badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 6px 10px;
-        border-radius: 999px;
-        border: 1px solid rgba(240, 212, 138, 0.45);
-        background: rgba(0, 0, 0, 0.18);
-        font-size: 12px;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: var(--gold3);
-      }
-      .closeX {
-        border: 0;
-        background: rgba(0, 0, 0, 0.18);
-        color: var(--cream);
-        border: 1px solid rgba(240, 212, 138, 0.35);
-        width: 38px;
-        height: 38px;
-        border-radius: 999px;
-        cursor: pointer;
-        font-weight: 900;
-      }
-      .winTitle {
-        margin: 12px 0 6px;
-        font-size: 14px;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        opacity: 0.9;
-        position: relative;
-        z-index: 2;
-      }
-      .winName {
-        margin: 0;
-        font-size: 34px;
-        line-height: 1.05;
-        font-weight: 1000;
-        color: var(--gold3);
-        text-shadow: 0 16px 44px rgba(0, 0, 0, 0.55);
-        position: relative;
-        z-index: 2;
-      }
-      .winSub {
-        margin: 8px 0 0;
-        font-size: 12px;
-        opacity: 0.85;
-        position: relative;
-        z-index: 2;
-      }
-      .winActions {
-        margin-top: 14px;
-        display: flex;
-        gap: 10px;
-        justify-content: flex-end;
-        flex-wrap: wrap;
-        position: relative;
-        z-index: 2;
-      }
-
-      /* Confetti */
-      .confettiLayer {
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
-        overflow: hidden;
-        z-index: 1;
-      }
-      .confetti {
-        position: absolute;
-        top: -12px;
-        width: 10px;
-        height: 16px;
-        border-radius: 2px;
-        opacity: 0.95;
-        animation: fall linear forwards;
-        filter: drop-shadow(0 10px 10px rgba(0, 0, 0, 0.35));
-      }
-      @keyframes fall {
-        to {
-          transform: translate3d(var(--dx), 120vh, 0) rotate(var(--rot));
-        }
-      }
-      .pop {
-        animation: pop 0.22s ease-out both;
-      }
-      @keyframes pop {
-        from {
-          transform: scale(0.96);
-          opacity: 0;
-        }
-        to {
-          transform: scale(1);
-          opacity: 1;
-        }
+      .stopGlow.on {
+        opacity: 1;
       }
     </style>
   </head>
+
   <body>
     <div class="topband"></div>
     <div class="orn tl"></div>
     <div class="orn br"></div>
-    <div class="vignette"></div>
 
     <div class="wrap">
       <div class="stage">
@@ -571,7 +475,6 @@
 
           <div class="cupMark">
             <h1 class="headline"><span class="gold">Abla's</span> Frühstück</h1>
-            <!-- simple golden cup icon -->
             <svg
               class="cupIcon"
               viewBox="0 0 64 64"
@@ -592,7 +495,12 @@
           <div class="tagline">IMMER FRISCH • IMMER LECKER</div>
         </div>
 
+        <div class="stopGlow" id="stopGlow"></div>
+
         <div class="panel">
+          <!-- Main-screen winning effect layer -->
+          <div class="confettiLayer" id="confettiLayer"></div>
+
           <div class="pointer" title="Zeiger"></div>
           <canvas id="wheel" width="460" height="460"></canvas>
 
@@ -624,32 +532,6 @@
       </div>
     </div>
 
-    <!-- Winner Popup -->
-    <div class="winBack" id="winBack" aria-hidden="true">
-      <div
-        class="winCard pop"
-        role="dialog"
-        aria-modal="true"
-        aria-label="Gewinner Popup"
-      >
-        <div class="winGlow"></div>
-        <div class="confettiLayer" id="confettiLayer"></div>
-
-        <div class="winTop">
-          <div class="badge">Gewinner</div>
-          <button class="closeX" id="winClose" aria-label="Schließen">✕</button>
-        </div>
-
-        <div class="winTitle">Herzlichen Glückwunsch!</div>
-        <h3 class="winName" id="winName">—</h3>
-        <div class="winSub">🎉 Viel Spaß bei Abla's Frühstück!</div>
-
-        <div class="winActions">
-          <button id="winOk">Okay</button>
-        </div>
-      </div>
-    </div>
-
     <script>
       (() => {
         const STORAGE_KEY = "wheel_names_v1";
@@ -668,15 +550,14 @@
         const saveBtn = $("saveBtn");
         const cancelBtn = $("cancelBtn");
 
-        const winBack = $("winBack");
-        const winNameEl = $("winName");
-        const winClose = $("winClose");
-        const winOk = $("winOk");
         const confettiLayer = $("confettiLayer");
+
+        const stopGlow = $("stopGlow");
 
         let names = [];
         let isSpinning = false;
         let rotation = 0;
+        let pendingRemoveIndex = null;
 
         const cx = canvas.width / 2;
         const cy = canvas.height / 2;
@@ -709,20 +590,6 @@
           modalBack.setAttribute("aria-hidden", "true");
         }
 
-        function openWinnerPopup(winner) {
-          winNameEl.textContent = winner;
-          winBack.style.display = "flex";
-          winBack.setAttribute("aria-hidden", "false");
-
-          // confetti
-          launchConfetti();
-        }
-        function closeWinnerPopup() {
-          winBack.style.display = "none";
-          winBack.setAttribute("aria-hidden", "true");
-          confettiLayer.innerHTML = "";
-        }
-
         function setStatus(html) {
           statusEl.innerHTML = html;
         }
@@ -736,6 +603,24 @@
             const r = u[0];
             if (r < limit) return r % max;
           }
+        }
+
+        function easeSuspense(t) {
+          const out = 1 - Math.pow(1 - t, 3);
+          const late = Math.max(0, (t - 0.85) / 0.15);
+          return out - late * late * 0.04;
+        }
+
+        // Which wedge index is under the pointer at top?
+        function indexAtPointer(rot, n) {
+          const TWO_PI = Math.PI * 2;
+          const anglePer = TWO_PI / n;
+          const pointerAngle = -Math.PI / 2;
+
+          let a = pointerAngle - rot;
+          a = ((a % TWO_PI) + TWO_PI) % TWO_PI;
+
+          return Math.floor(a / anglePer);
         }
 
         function drawWheel() {
@@ -775,19 +660,16 @@
             ctx.arc(cx, cy, radius, start, end);
             ctx.closePath();
 
-            // alternating golden wedges
             const alt = i % 2 === 0;
             ctx.fillStyle = alt
               ? "rgba(214,178,94,0.28)"
               : "rgba(255,255,255,0.07)";
             ctx.fill();
 
-            // wedge lines
             ctx.strokeStyle = "rgba(240,212,138,0.20)";
             ctx.lineWidth = 1;
             ctx.stroke();
 
-            // label
             const label = names[i] || "Namen hinzufügen";
             ctx.save();
             ctx.translate(cx, cy);
@@ -876,28 +758,45 @@
           drawWheel();
         }
 
-        function getIndexAtPointer(rot, n) {
-          // Pointer is at -90deg (top)
-          const pointerAngle = -Math.PI / 2;
+        function launchConfetti() {
+          confettiLayer.innerHTML = "";
+          const count = 180;
 
-          // Convert pointer to wheel-local angle (undo rotation)
-          let a = pointerAngle - rot;
+          for (let i = 0; i < count; i++) {
+            const el = document.createElement("div");
+            el.className = "confetti";
 
-          // Normalize to [0, 2π)
-          a = ((a % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2);
+            const left = Math.random() * 100;
+            const dur = 1.8 + Math.random() * 1.8;
+            const delay = Math.random() * 0.25;
+            const dx = (Math.random() * 2 - 1) * 18 + "vw";
+            const rot = Math.random() * 900 - 450 + "deg";
 
-          const anglePer = (Math.PI * 2) / n;
+            const palette = [
+              "rgba(240,212,138,0.95)",
+              "rgba(214,178,94,0.95)",
+              "rgba(180,138,47,0.95)",
+              "rgba(243,230,201,0.92)",
+            ];
+            el.style.background =
+              palette[Math.floor(Math.random() * palette.length)];
+            el.style.left = left + "vw";
+            el.style.animationDuration = dur + "s";
+            el.style.animationDelay = delay + "s";
+            el.style.setProperty("--dx", dx);
+            el.style.setProperty("--rot", rot);
 
-          // Your wedges start at angle 0 and go clockwise.
-          // The wedge index is simply floor(a / anglePer)
-          return Math.floor(a / anglePer);
-        }
+            const w = 6 + Math.random() * 10;
+            const h = 10 + Math.random() * 18;
+            el.style.width = w + "px";
+            el.style.height = h + "px";
 
-        function easeSuspense(t) {
-          // easeOut + extra slowdown near end
-          const out = 1 - Math.pow(1 - t, 3);
-          const late = Math.max(0, (t - 0.85) / 0.15); // last 15%
-          return out - late * late * 0.04; // tiny "drag"
+            confettiLayer.appendChild(el);
+          }
+
+          setTimeout(() => {
+            confettiLayer.innerHTML = "";
+          }, 4200);
         }
 
         function spin() {
@@ -907,109 +806,88 @@
             return;
           }
 
+          // ✅ REMOVE PREVIOUS WINNER HERE (on next click)
+          if (pendingRemoveIndex !== null) {
+            names.splice(pendingRemoveIndex, 1);
+            pendingRemoveIndex = null;
+            saveToStorage();
+            updateUI();
+          }
+
           isSpinning = true;
           startBtn.disabled = true;
           setStatus("Dreht…");
 
-          const winnerIndex = cryptoRandInt(names.length);
-          const winner = names[winnerIndex];
-
-          // stop with chosen index under pointer (top)
           const n = names.length;
-          const anglePer = (Math.PI * 2) / n;
-          const targetCenter = winnerIndex * anglePer + anglePer / 2;
+          const TWO_PI = Math.PI * 2;
+          const anglePer = TWO_PI / n;
+
+          // Fair pick
+          const winnerIndex = cryptoRandInt(n);
+
+          // Pointer at top
           const pointerAngle = -Math.PI / 2;
 
-          const extraSpins = (6 + Math.random() * 3) * Math.PI * 2;
-          rotation = rotation % (Math.PI * 2);
+          // Winner slice center angle in wheel coords (0 at 3 o'clock, clockwise)
+          const winnerCenterAngle = winnerIndex * anglePer + anglePer / 2;
 
-          let desired = pointerAngle - targetCenter;
-          desired = ((desired % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2);
+          // Normalize current rotation
+          rotation = ((rotation % TWO_PI) + TWO_PI) % TWO_PI;
 
           const startRot = rotation;
-          const endRot = startRot + extraSpins + desired;
+
+          // target rotation (normalized)
+          let targetRotation = pointerAngle - winnerCenterAngle;
+          targetRotation = ((targetRotation % TWO_PI) + TWO_PI) % TWO_PI;
+
+          // Compute an end rotation that includes a few full spins + the offset needed
+          const spins = 6 + Math.floor(Math.random() * 3); // 6-8 full spins for flair
+          const currentRotNormalized = ((startRot % TWO_PI) + TWO_PI) % TWO_PI;
+          const offset =
+            (targetRotation - currentRotNormalized + TWO_PI) % TWO_PI;
+          const endRot = startRot + spins * TWO_PI + offset;
 
           const startTime = performance.now();
-          const duration = 20000 + Math.random() * 1800;
+          const duration = 6000 + Math.random() * 1400;
+
+          // Monotonic easing (never goes backward, ends at 1)
+          const easeOutQuint = (t) => 1 - Math.pow(1 - t, 5);
 
           function frame(now) {
             const t = Math.min(1, (now - startTime) / duration);
-            const e = easeSuspense(t);
-            rotation = startRot + (endRot - startRot) * e;
-            let jitter = 0;
-            if (t > 0.92) jitter = (Math.random() - 0.5) * 0.01; // micro wobble
-            rotation += jitter;
+            const e = easeOutQuint(t);
 
+            rotation = startRot + (endRot - startRot) * e;
             drawWheel();
 
-            if (t < 1) requestAnimationFrame(frame);
-            else {
+            if (t < 1) {
+              if (t > 0.92) stopGlow.classList.add("on");
+              else stopGlow.classList.remove("on");
+              requestAnimationFrame(frame);
+            } else {
+              // End cleanly at exactly endRot
+              rotation = endRot;
+              drawWheel();
+
+              stopGlow.classList.remove("on");
               isSpinning = false;
+
+              // Winner name BEFORE removal
+              const winnerName = names[winnerIndex] || "—";
+
+              // ✅ remember winner, DO NOT remove yet
+              pendingRemoveIndex = winnerIndex;
+
+              // ✅ Redraw + update button state
               updateUI();
-              setStatus(`Gewinner: <b>${escapeHtml(winner)}</b>`);
-              openWinnerPopup(winner);
+
+              // Show winner + effects
+              setStatus(`🎉 Gewinner: <b>${winnerName}</b> 🎉`);
+              launchConfetti();
             }
           }
+
           requestAnimationFrame(frame);
-        }
-
-        function escapeHtml(str) {
-          return String(str).replace(
-            /[&<>"']/g,
-            (m) =>
-              ({
-                "&": "&amp;",
-                "<": "&lt;",
-                ">": "&gt;",
-                '"': "&quot;",
-                "'": "&#039;",
-              })[m],
-          );
-        }
-
-        // Confetti generator (party effect)
-        function launchConfetti() {
-          confettiLayer.innerHTML = "";
-          const count = 140;
-
-          for (let i = 0; i < count; i++) {
-            const el = document.createElement("div");
-            el.className = "confetti";
-            const left = Math.random() * 100;
-            const dur = 1.8 + Math.random() * 1.4;
-            const delay = Math.random() * 0.35;
-            const dx = (Math.random() * 2 - 1) * 18 + "vw";
-            const rot = Math.random() * 900 - 450 + "deg";
-
-            // mostly gold + a few cream accents
-            const palette = [
-              "rgba(240,212,138,0.95)",
-              "rgba(214,178,94,0.95)",
-              "rgba(180,138,47,0.95)",
-              "rgba(243,230,201,0.90)",
-            ];
-            const color = palette[Math.floor(Math.random() * palette.length)];
-
-            el.style.left = left + "vw";
-            el.style.background = color;
-            el.style.animationDuration = dur + "s";
-            el.style.animationDelay = delay + "s";
-            el.style.setProperty("--dx", dx);
-            el.style.setProperty("--rot", rot);
-
-            // random sizes
-            const w = 6 + Math.random() * 10;
-            const h = 10 + Math.random() * 16;
-            el.style.width = w + "px";
-            el.style.height = h + "px";
-
-            confettiLayer.appendChild(el);
-          }
-
-          // auto clear after a while
-          setTimeout(() => {
-            confettiLayer.innerHTML = "";
-          }, 3500);
         }
 
         // Events
@@ -1030,16 +908,14 @@
             .split("\n")
             .map(normalizeLine)
             .filter(Boolean);
-
           names = uniq(raw);
           saveToStorage();
           closeModal();
           rotation = 0;
           updateUI();
 
-          if (names.length < 2) {
+          if (names.length < 2)
             setStatus("Bitte mindestens <b>2</b> Namen hinzufügen.");
-          }
         });
 
         cancelBtn.addEventListener("click", () => {
@@ -1057,18 +933,9 @@
           }
         });
 
-        // Winner popup close
-        winClose.addEventListener("click", closeWinnerPopup);
-        winOk.addEventListener("click", closeWinnerPopup);
-        winBack.addEventListener("click", (e) => {
-          if (e.target === winBack) closeWinnerPopup();
-        });
-
-        // Esc to close popups
         window.addEventListener("keydown", (e) => {
           if (e.key === "Escape") {
-            if (winBack.style.display === "flex") closeWinnerPopup();
-            else if (modalBack.style.display === "flex" && names.length > 0)
+            if (modalBack.style.display === "flex" && names.length > 0)
               closeModal();
           }
         });
