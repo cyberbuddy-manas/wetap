@@ -1,0 +1,1066 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Abla's Frühstück • Glücksrad</title>
+    <style>
+      :root {
+        --bg1: #230b06;
+        --bg2: #6a2a14;
+        --bg3: #2a0f08;
+        --gold: #d6b25e;
+        --gold2: #b48a2f;
+        --gold3: #f0d48a;
+        --cream: #f3e6c9;
+        --shadow: rgba(0, 0, 0, 0.55);
+        --card: rgba(18, 10, 8, 0.7);
+        --stroke: rgba(214, 178, 94, 0.55);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        font-family:
+          system-ui,
+          -apple-system,
+          Segoe UI,
+          Roboto,
+          Arial,
+          sans-serif;
+        color: var(--cream);
+        overflow-x: hidden;
+
+        background:
+          radial-gradient(
+            1100px 700px at 50% 22%,
+            rgba(255, 190, 120, 0.18),
+            transparent 60%
+          ),
+          radial-gradient(
+            900px 700px at 55% 75%,
+            rgba(0, 0, 0, 0.38),
+            transparent 70%
+          ),
+          radial-gradient(
+            800px 500px at 20% 40%,
+            rgba(214, 178, 94, 0.1),
+            transparent 60%
+          ),
+          linear-gradient(180deg, var(--bg2), var(--bg1) 45%, var(--bg3));
+      }
+
+      .topband {
+        height: 76px;
+        position: relative;
+        border-bottom: 1px solid rgba(214, 178, 94, 0.35);
+        background:
+          linear-gradient(180deg, rgba(214, 178, 94, 0.22), rgba(0, 0, 0, 0)),
+          repeating-linear-gradient(
+            90deg,
+            rgba(214, 178, 94, 0.35) 0 8px,
+            rgba(0, 0, 0, 0) 8px 20px
+          );
+        mask-image: linear-gradient(180deg, black 0 78%, transparent);
+      }
+      .topband:after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            circle at 10% 80%,
+            rgba(214, 178, 94, 0.22),
+            transparent 55%
+          ),
+          radial-gradient(
+            circle at 90% 70%,
+            rgba(214, 178, 94, 0.18),
+            transparent 55%
+          );
+        opacity: 0.9;
+        pointer-events: none;
+      }
+
+      .orn {
+        position: fixed;
+        width: 280px;
+        height: 280px;
+        border-radius: 50%;
+        border: 1px solid rgba(214, 178, 94, 0.28);
+        background:
+          radial-gradient(
+            circle at 50% 50%,
+            rgba(214, 178, 94, 0.1),
+            transparent 62%
+          ),
+          conic-gradient(
+            from 0deg,
+            rgba(214, 178, 94, 0.25),
+            rgba(0, 0, 0, 0) 30%,
+            rgba(214, 178, 94, 0.22) 55%,
+            rgba(0, 0, 0, 0) 80%,
+            rgba(214, 178, 94, 0.18)
+          );
+        opacity: 0.55;
+        pointer-events: none;
+      }
+      .orn.tl {
+        top: -120px;
+        left: -120px;
+        transform: rotate(18deg);
+      }
+      .orn.br {
+        bottom: -140px;
+        right: -140px;
+        transform: rotate(-12deg);
+      }
+
+      .vignette {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background:
+          radial-gradient(
+            1200px 900px at 50% 45%,
+            rgba(0, 0, 0, 0),
+            rgba(0, 0, 0, 0.58)
+          ),
+          radial-gradient(
+            circle at 20% 30%,
+            rgba(255, 255, 255, 0.05),
+            transparent 40%
+          ),
+          radial-gradient(
+            circle at 70% 60%,
+            rgba(255, 255, 255, 0.04),
+            transparent 45%
+          ),
+          radial-gradient(
+            circle at 40% 80%,
+            rgba(255, 255, 255, 0.03),
+            transparent 45%
+          );
+        opacity: 0.9;
+      }
+
+      .wrap {
+        min-height: calc(100vh - 76px);
+        display: grid;
+        place-items: center;
+        padding: 22px;
+      }
+
+      .stage {
+        width: min(600px, 92vw);
+        display: grid;
+        gap: 14px;
+        justify-items: center;
+      }
+
+      .brand {
+        display: grid;
+        gap: 8px;
+        justify-items: center;
+        text-align: center;
+      }
+      .brand .site {
+        font-size: 12px;
+        letter-spacing: 0.1em;
+        opacity: 0.9;
+      }
+      .brand .headline {
+        margin: 0;
+        font-weight: 900;
+        line-height: 1.05;
+        font-size: 38px;
+        text-shadow: 0 14px 40px rgba(0, 0, 0, 0.55);
+      }
+      .brand .headline .gold {
+        color: var(--gold3);
+      }
+      .brand .tagline {
+        font-size: 12px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        opacity: 0.9;
+      }
+      .cupMark {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        justify-content: center;
+      }
+      .cupIcon {
+        width: 44px;
+        height: 44px;
+        filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.45));
+      }
+      .cupIcon path,
+      .cupIcon line {
+        stroke: rgba(240, 212, 138, 0.95);
+      }
+
+      .panel {
+        width: 100%;
+        background: linear-gradient(
+          180deg,
+          rgba(18, 10, 8, 0.8),
+          rgba(10, 7, 7, 0.68)
+        );
+        border: 1px solid rgba(214, 178, 94, 0.6);
+        border-radius: 22px;
+        box-shadow: 0 22px 55px rgba(0, 0, 0, 0.62);
+        padding: 16px 16px 14px;
+        display: grid;
+        gap: 12px;
+        justify-items: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .panel:before {
+        content: "";
+        position: absolute;
+        inset: -2px;
+        background:
+          radial-gradient(
+            620px 230px at 50% -10%,
+            rgba(240, 212, 138, 0.22),
+            transparent 60%
+          ),
+          radial-gradient(
+            420px 240px at 15% 20%,
+            rgba(214, 178, 94, 0.12),
+            transparent 70%
+          ),
+          radial-gradient(
+            420px 240px at 85% 20%,
+            rgba(214, 178, 94, 0.1),
+            transparent 70%
+          ),
+          linear-gradient(180deg, rgba(214, 178, 94, 0.06), transparent 35%);
+        pointer-events: none;
+      }
+
+      .pointer {
+        width: 0;
+        height: 0;
+        border-left: 16px solid transparent;
+        border-right: 16px solid transparent;
+        border-bottom: 26px solid var(--gold3);
+        filter: drop-shadow(0 12px 12px rgba(0, 0, 0, 0.65));
+        margin-top: 2px;
+        position: relative;
+        z-index: 3;
+      }
+      .pointer:after {
+        content: "";
+        position: absolute;
+        left: -6px;
+        top: -2px;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: linear-gradient(180deg, var(--gold3), var(--gold2));
+        box-shadow: 0 8px 14px rgba(0, 0, 0, 0.45);
+      }
+
+      canvas {
+        width: 460px;
+        height: 460px;
+        max-width: 90vw;
+        max-height: 90vw;
+        border-radius: 26px;
+        background: rgba(10, 7, 7, 0.35);
+        border: 1px solid rgba(214, 178, 94, 0.3);
+        position: relative;
+        z-index: 2;
+      }
+
+      .actions {
+        width: 100%;
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+        position: relative;
+        z-index: 3;
+      }
+      button {
+        border: 0;
+        cursor: pointer;
+        padding: 11px 16px;
+        border-radius: 999px;
+        font-weight: 900;
+        letter-spacing: 0.02em;
+        color: #2a1208;
+        background: linear-gradient(180deg, var(--gold3), var(--gold2));
+        box-shadow: 0 12px 22px rgba(0, 0, 0, 0.4);
+        transition:
+          transform 0.08s ease,
+          filter 0.2s ease;
+      }
+      button:hover {
+        filter: brightness(1.05);
+      }
+      button:active {
+        transform: translateY(1px);
+      }
+
+      button.secondary {
+        color: var(--cream);
+        background: rgba(0, 0, 0, 0.22);
+        border: 1px solid rgba(214, 178, 94, 0.55);
+        box-shadow: 0 12px 22px rgba(0, 0, 0, 0.28);
+      }
+      button:disabled {
+        opacity: 0.55;
+        cursor: not-allowed;
+        filter: saturate(0.85);
+      }
+
+      .status {
+        font-size: 12px;
+        opacity: 0.92;
+        text-align: center;
+        line-height: 1.35;
+        position: relative;
+        z-index: 3;
+      }
+      .status b {
+        color: var(--gold3);
+      }
+
+      /* Names modal */
+      .modalBack {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.7);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 18px;
+        z-index: 999;
+      }
+      .modal {
+        width: min(620px, 94vw);
+        background: linear-gradient(
+          180deg,
+          rgba(18, 10, 8, 0.96),
+          rgba(10, 7, 7, 0.92)
+        );
+        border: 1px solid rgba(214, 178, 94, 0.6);
+        border-radius: 20px;
+        box-shadow: 0 26px 70px rgba(0, 0, 0, 0.7);
+        padding: 16px;
+        display: grid;
+        gap: 10px;
+      }
+      .modal h2 {
+        margin: 0;
+        font-size: 16px;
+        color: var(--cream);
+      }
+      .modal p {
+        margin: 0;
+        font-size: 12px;
+        opacity: 0.88;
+        line-height: 1.45;
+      }
+      textarea {
+        width: 100%;
+        min-height: 190px;
+        resize: vertical;
+        padding: 12px;
+        border-radius: 14px;
+        outline: none;
+        border: 1px solid rgba(214, 178, 94, 0.35);
+        background: rgba(0, 0, 0, 0.22);
+        color: var(--cream);
+      }
+      .modalActions {
+        display: flex;
+        gap: 10px;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+      }
+      .hint {
+        font-size: 12px;
+        opacity: 0.9;
+      }
+      .hint code {
+        background: rgba(214, 178, 94, 0.14);
+        border: 1px solid rgba(214, 178, 94, 0.26);
+        padding: 2px 6px;
+        border-radius: 8px;
+      }
+      .line {
+        width: 100%;
+        height: 1px;
+        background: rgba(214, 178, 94, 0.2);
+      }
+
+      /* Winner popup */
+      .winBack {
+        position: fixed;
+        inset: 0;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 18px;
+        background: rgba(0, 0, 0, 0.72);
+        z-index: 1000;
+      }
+      .winCard {
+        width: min(560px, 94vw);
+        border-radius: 22px;
+        border: 1px solid rgba(240, 212, 138, 0.65);
+        background: linear-gradient(
+          180deg,
+          rgba(20, 10, 8, 0.95),
+          rgba(10, 7, 7, 0.92)
+        );
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.75);
+        position: relative;
+        overflow: hidden;
+        padding: 18px 16px 14px;
+      }
+      .winGlow {
+        position: absolute;
+        inset: -2px;
+        background:
+          radial-gradient(
+            700px 260px at 50% -10%,
+            rgba(240, 212, 138, 0.28),
+            transparent 62%
+          ),
+          radial-gradient(
+            520px 300px at 15% 30%,
+            rgba(214, 178, 94, 0.16),
+            transparent 70%
+          ),
+          radial-gradient(
+            520px 300px at 85% 30%,
+            rgba(214, 178, 94, 0.14),
+            transparent 70%
+          );
+        pointer-events: none;
+      }
+      .winTop {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        position: relative;
+        z-index: 2;
+      }
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(240, 212, 138, 0.45);
+        background: rgba(0, 0, 0, 0.18);
+        font-size: 12px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--gold3);
+      }
+      .closeX {
+        border: 0;
+        background: rgba(0, 0, 0, 0.18);
+        color: var(--cream);
+        border: 1px solid rgba(240, 212, 138, 0.35);
+        width: 38px;
+        height: 38px;
+        border-radius: 999px;
+        cursor: pointer;
+        font-weight: 900;
+      }
+      .winTitle {
+        margin: 12px 0 6px;
+        font-size: 14px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        opacity: 0.9;
+        position: relative;
+        z-index: 2;
+      }
+      .winName {
+        margin: 0;
+        font-size: 34px;
+        line-height: 1.05;
+        font-weight: 1000;
+        color: var(--gold3);
+        text-shadow: 0 16px 44px rgba(0, 0, 0, 0.55);
+        position: relative;
+        z-index: 2;
+      }
+      .winSub {
+        margin: 8px 0 0;
+        font-size: 12px;
+        opacity: 0.85;
+        position: relative;
+        z-index: 2;
+      }
+      .winActions {
+        margin-top: 14px;
+        display: flex;
+        gap: 10px;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+        position: relative;
+        z-index: 2;
+      }
+
+      /* Confetti */
+      .confettiLayer {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        overflow: hidden;
+        z-index: 1;
+      }
+      .confetti {
+        position: absolute;
+        top: -12px;
+        width: 10px;
+        height: 16px;
+        border-radius: 2px;
+        opacity: 0.95;
+        animation: fall linear forwards;
+        filter: drop-shadow(0 10px 10px rgba(0, 0, 0, 0.35));
+      }
+      @keyframes fall {
+        to {
+          transform: translate3d(var(--dx), 120vh, 0) rotate(var(--rot));
+        }
+      }
+      .pop {
+        animation: pop 0.22s ease-out both;
+      }
+      @keyframes pop {
+        from {
+          transform: scale(0.96);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="topband"></div>
+    <div class="orn tl"></div>
+    <div class="orn br"></div>
+    <div class="vignette"></div>
+
+    <div class="wrap">
+      <div class="stage">
+        <div class="brand">
+          <div class="site">www.ablasfruhstuck.de</div>
+
+          <div class="cupMark">
+            <h1 class="headline"><span class="gold">Abla's</span> Frühstück</h1>
+            <!-- simple golden cup icon -->
+            <svg
+              class="cupIcon"
+              viewBox="0 0 64 64"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M16 22h30v14c0 9-7 16-16 16h-4c-9 0-10-7-10-16V22Z"
+                stroke-width="3"
+              />
+              <path d="M46 24h6c4 0 6 3 6 7s-2 7-6 7h-6" stroke-width="3" />
+              <path d="M20 54h28" stroke-width="3" />
+              <path d="M26 16c0-5 7-5 7-10" stroke-width="3" opacity=".9" />
+              <path d="M34 16c0-5 7-5 7-10" stroke-width="3" opacity=".9" />
+            </svg>
+          </div>
+
+          <div class="tagline">IMMER FRISCH • IMMER LECKER</div>
+        </div>
+
+        <div class="panel">
+          <div class="pointer" title="Zeiger"></div>
+          <canvas id="wheel" width="460" height="460"></canvas>
+
+          <div class="actions">
+            <button id="startBtn" disabled>Start</button>
+            <button id="manageBtn" class="secondary">Namen bearbeiten</button>
+            <button id="clearBtn" class="secondary">Alles löschen</button>
+          </div>
+
+          <div class="status" id="status">Bitte Namen hinzufügen.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Names Modal -->
+    <div class="modalBack" id="modalBack" aria-hidden="true">
+      <div class="modal" role="dialog" aria-modal="true">
+        <h2>Namen hinzufügen</h2>
+        <p>Ein Name pro Zeile.</p>
+        <div class="line"></div>
+        <textarea
+          id="namesInput"
+          placeholder="Mansi&#10;Palash&#10;John&#10;..."
+        ></textarea>
+        <div class="modalActions">
+          <button id="cancelBtn" class="secondary">Abbrechen</button>
+          <button id="saveBtn">Speichern</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Winner Popup -->
+    <div class="winBack" id="winBack" aria-hidden="true">
+      <div
+        class="winCard pop"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Gewinner Popup"
+      >
+        <div class="winGlow"></div>
+        <div class="confettiLayer" id="confettiLayer"></div>
+
+        <div class="winTop">
+          <div class="badge">Gewinner</div>
+          <button class="closeX" id="winClose" aria-label="Schließen">✕</button>
+        </div>
+
+        <div class="winTitle">Herzlichen Glückwunsch!</div>
+        <h3 class="winName" id="winName">—</h3>
+        <div class="winSub">🎉 Viel Spaß bei Abla's Frühstück!</div>
+
+        <div class="winActions">
+          <button id="winOk">Okay</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (() => {
+        const STORAGE_KEY = "wheel_names_v1";
+
+        const $ = (id) => document.getElementById(id);
+        const canvas = $("wheel");
+        const ctx = canvas.getContext("2d");
+
+        const startBtn = $("startBtn");
+        const manageBtn = $("manageBtn");
+        const clearBtn = $("clearBtn");
+        const statusEl = $("status");
+
+        const modalBack = $("modalBack");
+        const namesInput = $("namesInput");
+        const saveBtn = $("saveBtn");
+        const cancelBtn = $("cancelBtn");
+
+        const winBack = $("winBack");
+        const winNameEl = $("winName");
+        const winClose = $("winClose");
+        const winOk = $("winOk");
+        const confettiLayer = $("confettiLayer");
+
+        let names = [];
+        let isSpinning = false;
+        let rotation = 0;
+
+        const cx = canvas.width / 2;
+        const cy = canvas.height / 2;
+        const radius = Math.min(cx, cy) - 16;
+
+        function normalizeLine(s) {
+          return (s || "").trim().replace(/\s+/g, " ");
+        }
+        function uniq(arr) {
+          const seen = new Set();
+          const out = [];
+          for (const x of arr) {
+            const k = x.toLowerCase();
+            if (!seen.has(k)) {
+              seen.add(k);
+              out.push(x);
+            }
+          }
+          return out;
+        }
+
+        function openModal() {
+          namesInput.value = names.join("\n");
+          modalBack.style.display = "flex";
+          modalBack.setAttribute("aria-hidden", "false");
+          setTimeout(() => namesInput.focus(), 50);
+        }
+        function closeModal() {
+          modalBack.style.display = "none";
+          modalBack.setAttribute("aria-hidden", "true");
+        }
+
+        function openWinnerPopup(winner) {
+          winNameEl.textContent = winner;
+          winBack.style.display = "flex";
+          winBack.setAttribute("aria-hidden", "false");
+
+          // confetti
+          launchConfetti();
+        }
+        function closeWinnerPopup() {
+          winBack.style.display = "none";
+          winBack.setAttribute("aria-hidden", "true");
+          confettiLayer.innerHTML = "";
+        }
+
+        function setStatus(html) {
+          statusEl.innerHTML = html;
+        }
+
+        // secure random int [0, max)
+        function cryptoRandInt(max) {
+          const u = new Uint32Array(1);
+          const limit = Math.floor(0xffffffff / max) * max;
+          while (true) {
+            crypto.getRandomValues(u);
+            const r = u[0];
+            if (r < limit) return r % max;
+          }
+        }
+
+        function drawWheel() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+          // warm glow background
+          const glow = ctx.createRadialGradient(
+            cx,
+            cy - 40,
+            18,
+            cx,
+            cy,
+            radius + 70,
+          );
+          glow.addColorStop(0, "rgba(240,212,138,0.20)");
+          glow.addColorStop(0.55, "rgba(0,0,0,0.10)");
+          glow.addColorStop(1, "rgba(0,0,0,0.46)");
+          ctx.fillStyle = glow;
+          ctx.beginPath();
+          ctx.arc(cx, cy, radius + 22, 0, Math.PI * 2);
+          ctx.fill();
+
+          const n = Math.max(names.length, 1);
+          const anglePer = (Math.PI * 2) / n;
+
+          ctx.save();
+          ctx.translate(cx, cy);
+          ctx.rotate(rotation);
+          ctx.translate(-cx, -cy);
+
+          for (let i = 0; i < n; i++) {
+            const start = i * anglePer;
+            const end = start + anglePer;
+
+            ctx.beginPath();
+            ctx.moveTo(cx, cy);
+            ctx.arc(cx, cy, radius, start, end);
+            ctx.closePath();
+
+            // alternating golden wedges
+            const alt = i % 2 === 0;
+            ctx.fillStyle = alt
+              ? "rgba(214,178,94,0.28)"
+              : "rgba(255,255,255,0.07)";
+            ctx.fill();
+
+            // wedge lines
+            ctx.strokeStyle = "rgba(240,212,138,0.20)";
+            ctx.lineWidth = 1;
+            ctx.stroke();
+
+            // label
+            const label = names[i] || "Namen hinzufügen";
+            ctx.save();
+            ctx.translate(cx, cy);
+            ctx.rotate(start + anglePer / 2);
+            ctx.textAlign = "right";
+            ctx.fillStyle = "rgba(243,230,201,0.95)";
+            ctx.font =
+              "800 14px system-ui, -apple-system, Segoe UI, Roboto, Arial";
+            const txt = label.length > 18 ? label.slice(0, 18) + "…" : label;
+            ctx.fillText(txt, radius - 12, 6);
+            ctx.restore();
+          }
+
+          ctx.restore();
+
+          // outer ring
+          ctx.beginPath();
+          ctx.arc(cx, cy, radius + 4, 0, Math.PI * 2);
+          ctx.strokeStyle = "rgba(240,212,138,0.62)";
+          ctx.lineWidth = 6;
+          ctx.stroke();
+
+          // inner ring
+          ctx.beginPath();
+          ctx.arc(cx, cy, radius - 10, 0, Math.PI * 2);
+          ctx.strokeStyle = "rgba(214,178,94,0.22)";
+          ctx.lineWidth = 2;
+          ctx.stroke();
+
+          // center cap
+          ctx.beginPath();
+          ctx.arc(cx, cy, 52, 0, Math.PI * 2);
+          ctx.fillStyle = "rgba(18,10,8,0.95)";
+          ctx.fill();
+          ctx.strokeStyle = "rgba(240,212,138,0.62)";
+          ctx.lineWidth = 2;
+          ctx.stroke();
+
+          // center text
+          ctx.fillStyle = "rgba(240,212,138,0.98)";
+          ctx.font =
+            "900 12px system-ui, -apple-system, Segoe UI, Roboto, Arial";
+          ctx.textAlign = "center";
+          ctx.fillText(names.length ? "START" : "HINZUFÜGEN", cx, cy + 4);
+
+          // sparkle dots
+          for (let i = 0; i < 14; i++) {
+            const a = (i / 14) * Math.PI * 2;
+            const r = radius + 12;
+            const x = cx + Math.cos(a) * r;
+            const y = cy + Math.sin(a) * r;
+            ctx.beginPath();
+            ctx.arc(x, y, 1.8, 0, Math.PI * 2);
+            ctx.fillStyle = "rgba(240,212,138,0.60)";
+            ctx.fill();
+          }
+        }
+
+        function loadFromStorage() {
+          try {
+            const raw = localStorage.getItem(STORAGE_KEY);
+            if (!raw) return false;
+            const parsed = JSON.parse(raw);
+            if (!Array.isArray(parsed)) return false;
+            names = uniq(parsed.map(normalizeLine).filter(Boolean));
+            return names.length > 0;
+          } catch {
+            return false;
+          }
+        }
+
+        function saveToStorage() {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(names));
+        }
+
+        function updateUI() {
+          startBtn.disabled = names.length < 2 || isSpinning;
+
+          if (names.length === 0) {
+            setStatus("Bitte Namen hinzufügen.");
+          } else {
+            setStatus(
+              `Gespeichert: <b>${names.length}</b> Namen. Klicke auf <b>Start</b>, um zu drehen.`,
+            );
+          }
+          drawWheel();
+        }
+
+        function easeSuspense(t) {
+          // easeOut + extra slowdown near end
+          const out = 1 - Math.pow(1 - t, 3);
+          const late = Math.max(0, (t - 0.85) / 0.15); // last 15%
+          return out - late * late * 0.04; // tiny "drag"
+        }
+
+        function spin() {
+          if (isSpinning) return;
+          if (names.length < 2) {
+            openModal();
+            return;
+          }
+
+          isSpinning = true;
+          startBtn.disabled = true;
+          setStatus("Dreht…");
+
+          const winnerIndex = cryptoRandInt(names.length);
+          const winner = names[winnerIndex];
+
+          // stop with chosen index under pointer (top)
+          const n = names.length;
+          const anglePer = (Math.PI * 2) / n;
+          const targetCenter = winnerIndex * anglePer + anglePer / 2;
+          const pointerAngle = -Math.PI / 2;
+
+          const extraSpins = (6 + Math.random() * 3) * Math.PI * 2;
+          rotation = rotation % (Math.PI * 2);
+
+          let desired = pointerAngle - targetCenter;
+          desired = ((desired % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2);
+
+          const startRot = rotation;
+          const endRot = startRot + extraSpins + desired;
+
+          const startTime = performance.now();
+          const duration = 6500 + Math.random() * 1800;
+
+          function frame(now) {
+            const t = Math.min(1, (now - startTime) / duration);
+            const e = easeSuspense(t);
+            rotation = startRot + (endRot - startRot) * e;
+            let jitter = 0;
+            if (t > 0.92) jitter = (Math.random() - 0.5) * 0.01; // micro wobble
+            rotation += jitter;
+
+            drawWheel();
+
+            if (t < 1) requestAnimationFrame(frame);
+            else {
+              isSpinning = false;
+              updateUI();
+              setStatus(`Gewinner: <b>${escapeHtml(winner)}</b>`);
+              openWinnerPopup(winner);
+            }
+          }
+          requestAnimationFrame(frame);
+        }
+
+        function escapeHtml(str) {
+          return String(str).replace(
+            /[&<>"']/g,
+            (m) =>
+              ({
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': "&quot;",
+                "'": "&#039;",
+              })[m],
+          );
+        }
+
+        // Confetti generator (party effect)
+        function launchConfetti() {
+          confettiLayer.innerHTML = "";
+          const count = 140;
+
+          for (let i = 0; i < count; i++) {
+            const el = document.createElement("div");
+            el.className = "confetti";
+            const left = Math.random() * 100;
+            const dur = 1.8 + Math.random() * 1.4;
+            const delay = Math.random() * 0.35;
+            const dx = (Math.random() * 2 - 1) * 18 + "vw";
+            const rot = Math.random() * 900 - 450 + "deg";
+
+            // mostly gold + a few cream accents
+            const palette = [
+              "rgba(240,212,138,0.95)",
+              "rgba(214,178,94,0.95)",
+              "rgba(180,138,47,0.95)",
+              "rgba(243,230,201,0.90)",
+            ];
+            const color = palette[Math.floor(Math.random() * palette.length)];
+
+            el.style.left = left + "vw";
+            el.style.background = color;
+            el.style.animationDuration = dur + "s";
+            el.style.animationDelay = delay + "s";
+            el.style.setProperty("--dx", dx);
+            el.style.setProperty("--rot", rot);
+
+            // random sizes
+            const w = 6 + Math.random() * 10;
+            const h = 10 + Math.random() * 16;
+            el.style.width = w + "px";
+            el.style.height = h + "px";
+
+            confettiLayer.appendChild(el);
+          }
+
+          // auto clear after a while
+          setTimeout(() => {
+            confettiLayer.innerHTML = "";
+          }, 3500);
+        }
+
+        // Events
+        startBtn.addEventListener("click", spin);
+        manageBtn.addEventListener("click", openModal);
+
+        clearBtn.addEventListener("click", () => {
+          names = [];
+          localStorage.removeItem(STORAGE_KEY);
+          rotation = 0;
+          setStatus("Alles gelöscht. Bitte Namen hinzufügen.");
+          updateUI();
+          openModal();
+        });
+
+        saveBtn.addEventListener("click", () => {
+          const raw = namesInput.value
+            .split("\n")
+            .map(normalizeLine)
+            .filter(Boolean);
+
+          names = uniq(raw);
+          saveToStorage();
+          closeModal();
+          rotation = 0;
+          updateUI();
+
+          if (names.length < 2) {
+            setStatus("Bitte mindestens <b>2</b> Namen hinzufügen.");
+          }
+        });
+
+        cancelBtn.addEventListener("click", () => {
+          if (names.length === 0) {
+            setStatus("Bitte zuerst Namen hinzufügen.");
+            return;
+          }
+          closeModal();
+        });
+
+        modalBack.addEventListener("click", (e) => {
+          if (e.target === modalBack) {
+            if (names.length === 0) return;
+            closeModal();
+          }
+        });
+
+        // Winner popup close
+        winClose.addEventListener("click", closeWinnerPopup);
+        winOk.addEventListener("click", closeWinnerPopup);
+        winBack.addEventListener("click", (e) => {
+          if (e.target === winBack) closeWinnerPopup();
+        });
+
+        // Esc to close popups
+        window.addEventListener("keydown", (e) => {
+          if (e.key === "Escape") {
+            if (winBack.style.display === "flex") closeWinnerPopup();
+            else if (modalBack.style.display === "flex" && names.length > 0)
+              closeModal();
+          }
+        });
+
+        // Init
+        const hasStored = loadFromStorage();
+        updateUI();
+        if (!hasStored) openModal();
+      })();
+    </script>
+  </body>
+</html>
