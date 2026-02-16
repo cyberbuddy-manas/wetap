@@ -876,6 +876,23 @@
           drawWheel();
         }
 
+        function getIndexAtPointer(rot, n) {
+          // Pointer is at -90deg (top)
+          const pointerAngle = -Math.PI / 2;
+
+          // Convert pointer to wheel-local angle (undo rotation)
+          let a = pointerAngle - rot;
+
+          // Normalize to [0, 2π)
+          a = ((a % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2);
+
+          const anglePer = (Math.PI * 2) / n;
+
+          // Your wedges start at angle 0 and go clockwise.
+          // The wedge index is simply floor(a / anglePer)
+          return Math.floor(a / anglePer);
+        }
+
         function easeSuspense(t) {
           // easeOut + extra slowdown near end
           const out = 1 - Math.pow(1 - t, 3);
@@ -913,7 +930,7 @@
           const endRot = startRot + extraSpins + desired;
 
           const startTime = performance.now();
-          const duration = 6500 + Math.random() * 1800;
+          const duration = 20000 + Math.random() * 1800;
 
           function frame(now) {
             const t = Math.min(1, (now - startTime) / duration);
