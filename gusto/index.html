@@ -688,6 +688,158 @@
             <span class="arrow">→</span>
           </a>
 
+          <!-- ✅ 1) ADD THIS BUTTON inside <section class="btns"> (e.g., under Instagram/Facebook) -->
+          <a
+            class="btn"
+            href="#"
+            onclick="
+              openWifiModal();
+              return false;
+            "
+          >
+            <span class="left">
+              <span class="icon" aria-hidden="true">
+                <!-- WiFi icon -->
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M5 10c4.7-4 9.3-4 14 0"
+                    stroke="#151515"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M8 13c3-2.5 5-2.5 8 0"
+                    stroke="#151515"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M11 16c1-.8 1.9-.8 3 0"
+                    stroke="#151515"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M12 19h0"
+                    stroke="#151515"
+                    stroke-width="4"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </span>
+              <span class="label">
+                <span>WLAN</span>
+                <small>Benutzername &amp; Passwort anzeigen</small>
+              </span>
+            </span>
+            <span class="arrow">→</span>
+          </a>
+
+          <!-- ✅ 2) ADD THIS MODAL near your Table Modal (below it is perfect) -->
+          <div id="wifiModal" class="table-modal">
+            <div class="table-modal-content">
+              <h2>WLAN Zugang</h2>
+              <p>Hier sind die Zugangsdaten für unser Gäste-WLAN:</p>
+
+              <div
+                style="
+                  padding: 16px;
+                  border-radius: 12px;
+                  background: #f8f8f8;
+                  margin-bottom: 18px;
+                "
+              >
+                <div
+                  style="
+                    display: flex;
+                    justify-content: space-between;
+                    gap: 12px;
+                    align-items: center;
+                  "
+                >
+                  <div style="min-width: 0">
+                    <p
+                      style="
+                        margin: 0;
+                        font-size: 12px;
+                        color: #666;
+                        font-weight: 700;
+                      "
+                    >
+                      Benutzername
+                    </p>
+                    <p
+                      id="wifiUser"
+                      style="
+                        margin: 4px 0 0;
+                        font-size: 18px;
+                        font-weight: 800;
+                        color: #151515;
+                        word-break: break-word;
+                      "
+                    >
+                      Gusto-Wifi
+                    </p>
+                  </div>
+                </div>
+
+                <div style="height: 10px"></div>
+
+                <div
+                  style="
+                    display: flex;
+                    justify-content: space-between;
+                    gap: 12px;
+                    align-items: center;
+                  "
+                >
+                  <div style="min-width: 0">
+                    <p
+                      style="
+                        margin: 0;
+                        font-size: 12px;
+                        color: #666;
+                        font-weight: 700;
+                      "
+                    >
+                      Passwort
+                    </p>
+                    <p
+                      id="wifiPass"
+                      style="
+                        margin: 4px 0 0;
+                        font-size: 18px;
+                        font-weight: 800;
+                        color: #008c45;
+                        word-break: break-word;
+                      "
+                    >
+                      Egista951
+                    </p>
+                  </div>
+                  <button
+                    class="table-modal-confirm"
+                    style="padding: 10px 12px; font-size: 13px"
+                    onclick="
+                      copyText(document.getElementById('wifiPass').textContent)
+                    "
+                  >
+                    Kopieren
+                  </button>
+                </div>
+              </div>
+
+              <div class="table-modal-buttons">
+                <button class="table-modal-cancel" onclick="closeWifiModal()">
+                  Zurück
+                </button>
+                <button class="table-modal-confirm" onclick="closeWifiModal()">
+                  OK
+                </button>
+              </div>
+            </div>
+          </div>
+
           <!-- Google Maps -->
           <a
             class="btn"
@@ -854,10 +1006,18 @@
 
         <section class="info" aria-label="Öffnungszeiten">
           <strong style="color: #000000">Öffnungszeiten</strong><br />
-          <div style="margin-top: 10px; line-height: 1.8;">
-            <span style="color: #151515;">Montag - Sonntag:</span><br />
-            <span style="color: var(--muted);">17:30 - 23:00 Uhr</span><br />
-            <span style="font-size: 12px; color: #008c45; margin-top: 6px; display: block;">✓ Derzeit geöffnet</span>
+          <div style="margin-top: 10px; line-height: 1.8">
+            <span style="color: #151515">Montag - Sonntag:</span><br />
+            <span style="color: var(--muted)">17:30 - 23:00 Uhr</span><br />
+            <span
+              style="
+                font-size: 12px;
+                color: #008c45;
+                margin-top: 6px;
+                display: block;
+              "
+              >✓ Derzeit geöffnet</span
+            >
           </div>
         </section>
 
@@ -902,7 +1062,16 @@
               Route
             </a>
 
-            <button class="pill" onclick="openTableModal()" role="listitem" style="background: linear-gradient(135deg, #fbf7ef 0%, #f4efe6 100%); border: 1.2px solid rgba(212, 175, 55, 0.7); cursor: pointer;">
+            <button
+              class="pill"
+              onclick="openTableModal()"
+              role="listitem"
+              style="
+                background: linear-gradient(135deg, #fbf7ef 0%, #f4efe6 100%);
+                border: 1.2px solid rgba(212, 175, 55, 0.7);
+                cursor: pointer;
+              "
+            >
               <svg viewBox="0 0 24 24" fill="none">
                 <path
                   d="M6 9c0-2.21 1.79-4 4-4h4c2.21 0 4 1.79 4 4v10c0 2.21-1.79 4-4 4h-4c-2.21 0-4-1.79-4-4V9Z"
@@ -932,13 +1101,40 @@
       <div class="table-modal-content">
         <h2>Tisch reservieren</h2>
         <p>Bitte rufen Sie uns an, um einen Tisch zu reservieren:</p>
-        <div style="text-align: center; padding: 16px 0; border-radius: 12px; background: #f8f8f8; margin-bottom: 24px;">
-          <p style="margin: 0; font-size: 32px; font-weight: 800; color: #008c45;">0261 2080</p>
-          <p style="margin: 4px 0 0 0; font-size: 13px; color: #666;">Montag - Sonntag, 17:30 - 23:00 Uhr</p>
+        <div
+          style="
+            text-align: center;
+            padding: 16px 0;
+            border-radius: 12px;
+            background: #f8f8f8;
+            margin-bottom: 24px;
+          "
+        >
+          <p
+            style="margin: 0; font-size: 32px; font-weight: 800; color: #008c45"
+          >
+            0261 2080
+          </p>
+          <p style="margin: 4px 0 0 0; font-size: 13px; color: #666">
+            Montag - Sonntag, 17:30 - 23:00 Uhr
+          </p>
         </div>
         <div class="table-modal-buttons">
-          <button class="table-modal-cancel" onclick="closeTableModal()">Zurück</button>
-          <a href="tel:+492612080" class="table-modal-confirm" style="display: flex; align-items: center; justify-content: center; text-decoration: none; color: #ffffff;">Anrufen</a>
+          <button class="table-modal-cancel" onclick="closeTableModal()">
+            Zurück
+          </button>
+          <a
+            href="tel:+492612080"
+            class="table-modal-confirm"
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              text-decoration: none;
+              color: #ffffff;
+            "
+            >Anrufen</a
+          >
         </div>
       </div>
     </div>
@@ -955,16 +1151,60 @@
       }
 
       // Close modal on outside click
-      document.getElementById("tableModal").addEventListener("click", function(e) {
-        if (e.target === this) {
+      document
+        .getElementById("tableModal")
+        .addEventListener("click", function (e) {
+          if (e.target === this) {
+            closeTableModal();
+          }
+        });
+
+      // Close modal on Escape key
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
           closeTableModal();
         }
       });
+    </script>
 
-      // Close modal on Escape key
-      document.addEventListener("keydown", function(e) {
+    <!-- ✅ 3) ADD/PASTE these JS functions inside your existing <script> (below table modal functions) -->
+    <script>
+      function openWifiModal() {
+        document.getElementById("wifiModal").classList.add("active");
+      }
+
+      function closeWifiModal() {
+        document.getElementById("wifiModal").classList.remove("active");
+      }
+
+      async function copyText(text) {
+        try {
+          await navigator.clipboard.writeText(text.trim());
+          // Optional tiny feedback
+          // alert("Kopiert!");
+        } catch (err) {
+          // Fallback for older browsers
+          const ta = document.createElement("textarea");
+          ta.value = text.trim();
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand("copy");
+          document.body.removeChild(ta);
+        }
+      }
+
+      // Close WiFi modal on outside click
+      document
+        .getElementById("wifiModal")
+        .addEventListener("click", function (e) {
+          if (e.target === this) closeWifiModal();
+        });
+
+      // Extend Escape key to close both modals
+      document.addEventListener("keydown", function (e) {
         if (e.key === "Escape") {
           closeTableModal();
+          closeWifiModal();
         }
       });
     </script>
