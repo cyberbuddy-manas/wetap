@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { getPlaceBySlug } from "@/lib/places";
+import Background from "@/components/Background";
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
@@ -9,14 +10,6 @@ export async function generateMetadata({ params }) {
   return {
     title: place.meta?.title || `${place.name || slug} — WeTap`,
     description: place.meta?.description || place.subtitle || "",
-    alternates: { canonical: `https://wetap.pro/${slug}` },
-    openGraph: {
-      title: place.meta?.title || `${place.name || slug} — WeTap`,
-      description: place.meta?.description || place.subtitle || "",
-      url: `https://wetap.pro/${slug}`,
-      siteName: "WeTap",
-      type: "website",
-    },
   };
 }
 
@@ -25,16 +18,23 @@ export default async function Page({ params }) {
   const place = await getPlaceBySlug(slug);
   if (!place) notFound();
 
+  const bg = place.theme?.background;
+
   return (
-    <div
+    <main
       style={{
+        minHeight: "100vh",
         padding: 24,
+        color: "#e9eef7",
         fontFamily: "system-ui, -apple-system, Segoe UI, Roboto, Arial",
       }}
     >
-      <h1 style={{ margin: 0 }}>{place.name}</h1>
-      <p style={{ marginTop: 8 }}>{place.subtitle}</p>
-      <p style={{ marginTop: 16, opacity: 0.6 }}>/{place.slug}</p>
-    </div>
+      <Background bg={bg} />
+
+      <div style={{ maxWidth: 900, margin: "0 auto" }}>
+        <h1 style={{ margin: 0 }}>{place.name}</h1>
+        <p style={{ marginTop: 8, opacity: 0.9 }}>{place.subtitle}</p>
+      </div>
+    </main>
   );
 }

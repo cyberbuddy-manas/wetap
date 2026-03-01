@@ -1,10 +1,15 @@
 export const gusto = {
   slug: "gusto",
   meta: {
-    title: "Gusto Koblenz — Links",
-    description:
-      "Gusto Koblenz — Offizielle Links, Reservierung, Bewertungen & Route",
+    title: "Gusto — WeTap",
+    description: "Official links, menu, reviews and more",
+  },
+  theme: {
+    background: {
+      type: "solid",
+      solid: "#0b0d10",
+    },
   },
   name: "Gusto",
-  subtitle: "Premium italienisches Restaurant • Koblenz",
+  subtitle: "Premium Italian • Koblenz",
 };

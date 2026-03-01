@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-export function middleware(req) {
+export function proxy(req) {
   const host = req.headers.get("host") || "";
   const hostname = host.split(":")[0];
 
