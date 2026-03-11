@@ -1,531 +1,610 @@
 <!doctype html>
 <html lang="de">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#0b0b0b">
-    <meta name="description" content="Konum Et Restaurant Sinzig — Offizielle Links, Reservierung, Bewertungen &amp; Route">
-    <title>Konum Et Restaurant Sinzig — Links</title>
 
-    <!-- Premium fonts (fast + modern) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Playfair+Display:wght@600;700&amp;family=Cormorant+Garamond:wght@300;400;600;700&amp;display=swap" rel="stylesheet">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0b0b">
+  <meta name="description"
+    content="Konum Et Restaurant Sinzig — Offizielle Links, Reservierung, Bewertungen &amp; Route">
+  <title>Konum Et Restaurant Sinzig — Links</title>
 
-    <style>
-      :root {
-        /* Base */
-        --bg: #0b0b0b;          /* black background */
-        --text: #f3f3f3;        /* light text */
-        --muted: #b8b8b8;       /* muted text */
+  <!-- Premium fonts (fast + modern) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Playfair+Display:wght@600;700&amp;family=Cormorant+Garamond:wght@300;400;600;700&amp;display=swap"
+    rel="stylesheet">
 
-        /* Brand */
-        --red: #e11d2e;         /* main red */
-        --white: #ffffff;       /* keep for gradients where needed */
+  <style>
+    :root {
+      /* Base */
+      --bg: #0b0b0b;
+      /* black background */
+      --text: #f3f3f3;
+      /* light text */
+      --muted: #b8b8b8;
+      /* muted text */
 
-        /* UI */
-        --border: #232323;      /* dark border */
-        --border-accent: var(--red);
+      /* Brand */
+      --red: #e11d2e;
+      /* main red */
+      --white: #ffffff;
+      /* keep for gradients where needed */
 
-        --shadow: 0 12px 32px rgba(0, 0, 0, 0.55);
-        --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.75);
-        --radius: 24px;
+      /* UI */
+      --border: #232323;
+      /* dark border */
+      --border-accent: var(--red);
 
-        --shadow-logo:
-          0 16px 40px rgba(225, 29, 46, 0.18),
-          0 8px 20px rgba(0, 0, 0, 0.60),
-          0 8px 20px rgba(0, 0, 0, 0.10);
+      --shadow: 0 12px 32px rgba(0, 0, 0, 0.55);
+      --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.75);
+      --radius: 24px;
 
-        /* Keep name so nothing breaks */
-        --green: var(--red);
-      }
+      --shadow-logo:
+        0 16px 40px rgba(225, 29, 46, 0.18),
+        0 8px 20px rgba(0, 0, 0, 0.60),
+        0 8px 20px rgba(0, 0, 0, 0.10);
 
-      * { box-sizing: border-box; }
-      html, body { height: 100%; }
+      /* Keep name so nothing breaks */
+      --green: var(--red);
+    }
 
-      body {
-        margin: 0;
-        font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
-        color: var(--text);
-        background: #0b0b0b;
-        overflow-x: hidden;
-      }
+    * {
+      box-sizing: border-box;
+    }
 
-      body::before {
-        content: "";
-        position: fixed;
-        inset: -30%;
-        z-index: -2;
-        background: var(--bg);
-      }
+    html,
+    body {
+      height: 100%;
+    }
 
-      .wrap {
-        min-height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 28px 16px 40px;
-      }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      color: var(--text);
+      background: #0b0b0b;
+      overflow-x: hidden;
+    }
 
-      .card {
-        width: 100%;
-        max-width: 560px;
-        border-radius: var(--radius);
-        background: var(--bg);
-        border: 2px solid var(--border);
-        box-shadow: var(--shadow);
-        padding: 0;
-        position: relative;
-        overflow: hidden;
-      }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: -30%;
+      z-index: -2;
+      background: var(--bg);
+    }
 
-      .card::after {
-        content: "";
-        position: absolute;
-        top: 0;
+    .wrap {
+      min-height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 28px 16px 40px;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 560px;
+      border-radius: var(--radius);
+      background: var(--bg);
+      border: 2px solid var(--border);
+      box-shadow: var(--shadow);
+      padding: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(225, 29, 46, 0.08), transparent);
+      animation: shimmer 3.2s infinite;
+      pointer-events: none;
+    }
+
+    @keyframes shimmer {
+      0% {
         left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(225, 29, 46, 0.08), transparent);
-        animation: shimmer 3.2s infinite;
-        pointer-events: none;
       }
 
-      @keyframes shimmer {
-        0% { left: -100%; }
-        100% { left: 100%; }
+      100% {
+        left: 100%;
+      }
+    }
+
+    .header-top {
+      background: linear-gradient(135deg, #141414 0%, #101010 100%);
+      border-bottom: 2px solid var(--border-accent);
+      padding: 18px 22px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(225, 29, 46, 0.10);
+      position: relative;
+    }
+
+    .header-top::before {
+      content: "✦ ✦ ✦";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: -8px;
+      text-align: center;
+      color: var(--red);
+      font-size: 8px;
+      letter-spacing: 8px;
+      opacity: 0.95;
+    }
+
+    .header-top .brand-name {
+      font-size: 12.5px;
+      font-weight: 800;
+      letter-spacing: 2.4px;
+      text-transform: uppercase;
+      margin: 0;
+      background: linear-gradient(90deg, var(--white) 0%, var(--red) 50%, var(--white) 100%);
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shine 3s infinite;
+    }
+
+    @keyframes shine {
+      0% {
+        background-position: 200% 0;
       }
 
-      .header-top {
-        background: linear-gradient(135deg, #141414 0%, #101010 100%);
-        border-bottom: 2px solid var(--border-accent);
-        padding: 18px 22px;
-        text-align: center;
-        box-shadow: 0 4px 12px rgba(225, 29, 46, 0.10);
-        position: relative;
+      100% {
+        background-position: -200% 0;
+      }
+    }
+
+    .main-header-content {
+      padding: 28px 22px 10px;
+    }
+
+    .logo {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: #0b0b0b;
+      border: 3px solid var(--border-accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-logo);
+      overflow: hidden;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .logo::before {
+      content: "";
+      position: absolute;
+      inset: -3px;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, var(--red) 0deg, var(--white) 120deg, var(--red) 240deg, var(--red) 360deg);
+      opacity: 0.3;
+      animation: rotate 9s linear infinite;
+    }
+
+    @keyframes rotate {
+      from {
+        transform: rotate(0deg);
       }
 
-      .header-top::before {
-        content: "✦ ✦ ✦";
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: -8px;
-        text-align: center;
-        color: var(--red);
-        font-size: 8px;
-        letter-spacing: 8px;
-        opacity: 0.95;
+      to {
+        transform: rotate(360deg);
       }
+    }
 
-      .header-top .brand-name {
-        font-size: 12.5px;
-        font-weight: 800;
-        letter-spacing: 2.4px;
-        text-transform: uppercase;
-        margin: 0;
-        background: linear-gradient(90deg, var(--white) 0%, var(--red) 50%, var(--white) 100%);
-        background-size: 200% 100%;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        animation: shine 3s infinite;
-      }
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: relative;
+      z-index: 1;
+    }
 
-      @keyframes shine {
-        0% { background-position: 200% 0; }
-        100% { background-position: -200% 0; }
-      }
+    .title {
+      margin-top: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      text-align: center;
+    }
 
-      .main-header-content { padding: 28px 22px 10px; }
+    h1 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 40px;
+      line-height: 1.05;
+      margin: 0;
+      letter-spacing: 0.3px;
+      color: var(--text);
+      font-weight: 700;
+    }
 
-      .logo {
-        width: 150px;
-        height: 150px;
-        border-radius: 50%;
-        background: #0b0b0b;
-        border: 3px solid var(--border-accent);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: var(--shadow-logo);
-        overflow: hidden;
-        margin: 0 auto;
-        position: relative;
-      }
+    .sub {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+    }
 
-      .logo::before {
-        content: "";
-        position: absolute;
-        inset: -3px;
-        border-radius: 50%;
-        background: conic-gradient(from 0deg, var(--red) 0deg, var(--white) 120deg, var(--red) 240deg, var(--red) 360deg);
-        opacity: 0.3;
-        animation: rotate 9s linear infinite;
-      }
+    .badges {
+      margin-top: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+    }
 
-      @keyframes rotate {
-        from { transform: rotate(0deg); }
-        to { transform: rotate(360deg); }
-      }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(225, 29, 46, 0.18);
+      border: 1.2px solid rgba(225, 29, 46, 0.65);
+      font-size: 12px;
+      color: var(--text);
+      text-decoration: none;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+      user-select: none;
+    }
 
-      .logo img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        position: relative;
-        z-index: 1;
-      }
+    .badge svg {
+      width: 14px;
+      height: 14px;
+      opacity: 0.92;
+    }
 
-      .title {
-        margin-top: 18px;
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-        text-align: center;
-      }
+    .btns {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 18px;
+      padding: 14px 0 18px;
+    }
 
-      h1 {
-        font-family: "Cormorant Garamond", serif;
-        font-size: 40px;
-        line-height: 1.05;
-        margin: 0;
-        letter-spacing: 0.3px;
-        color: var(--text);
-        font-weight: 700;
-      }
+    a.btn {
+      text-decoration: none;
+      color: var(--text);
+      background: linear-gradient(135deg, #1c1c1c 0%, #151515 100%);
+      border: 1.5px solid var(--border);
+      border-radius: 18px;
+      padding: 14px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: transform 0.12s ease, background 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.45);
+    }
 
-      .sub {
-        margin: 0;
-        color: var(--muted);
-        font-size: 14px;
-        line-height: 1.5;
-      }
+    a.btn:hover {
+      transform: translateY(-2px);
+      background: rgba(225, 29, 46, 0.14);
+      border-color: var(--border-accent);
+      box-shadow: 0 10px 28px rgba(225, 29, 46, 0.16);
+    }
 
-      .badges {
-        margin-top: 14px;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        justify-content: center;
-      }
+    a.btn:active {
+      transform: translateY(-1px) scale(0.995);
+    }
 
-      .badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 8px 10px;
-        border-radius: 999px;
-        background: rgba(225, 29, 46, 0.18);
-        border: 1.2px solid rgba(225, 29, 46, 0.65);
-        font-size: 12px;
-        color: var(--text);
-        text-decoration: none;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
-        user-select: none;
-      }
+    .left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 650;
+      min-width: 0;
+    }
 
-      .badge svg { width: 14px; height: 14px; opacity: 0.92; }
+    .icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(225, 29, 46, 0.20);
+      border: 1.5px solid rgba(225, 29, 46, 0.80);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.45);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
 
-      .btns {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        margin-top: 18px;
-        padding: 14px 0 18px;
-      }
+    .btn:hover .icon {
+      transform: scale(1.08);
+      background: rgba(225, 29, 46, 0.30);
+      box-shadow: 0 12px 26px rgba(225, 29, 46, 0.16);
+    }
 
-      a.btn {
-        text-decoration: none;
-        color: var(--text);
-        background: linear-gradient(135deg, #1c1c1c 0%, #151515 100%);
-        border: 1.5px solid var(--border);
-        border-radius: 18px;
-        padding: 14px 14px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        transition: transform 0.12s ease, background 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
-        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.45);
-      }
+    .icon svg {
+      width: 22px;
+      height: 22px;
+      opacity: 0.95;
+    }
 
-      a.btn:hover {
-        transform: translateY(-2px);
-        background: rgba(225, 29, 46, 0.14);
-        border-color: var(--border-accent);
-        box-shadow: 0 10px 28px rgba(225, 29, 46, 0.16);
-      }
+    .label {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+      flex: 1;
+    }
 
-      a.btn:active { transform: translateY(-1px) scale(0.995); }
+    .label span:first-child {
+      font-size: 14px;
+      word-break: break-word;
+      line-height: 1.3;
+    }
 
-      .left {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        font-weight: 650;
-        min-width: 0;
-      }
+    .label small {
+      color: var(--muted);
+      font-weight: 500;
+      font-size: 12px;
+      word-break: break-word;
+      line-height: 1.2;
+    }
 
-      .icon {
-        width: 48px;
-        height: 48px;
-        border-radius: 50%;
-        background: rgba(225, 29, 46, 0.20);
-        border: 1.5px solid rgba(225, 29, 46, 0.80);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex: 0 0 auto;
-        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.45);
-        transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-      }
+    .arrow {
+      color: #cfcfcf;
+      font-size: 20px;
+      margin-left: 10px;
+      flex: 0 0 auto;
+    }
 
-      .btn:hover .icon {
-        transform: scale(1.08);
-        background: rgba(225, 29, 46, 0.30);
-        box-shadow: 0 12px 26px rgba(225, 29, 46, 0.16);
-      }
+    .info {
+      margin-top: 2px;
+      padding: 14px 22px 16px 22px;
+      border-top: 1px solid #232323;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
 
-      .icon svg { width: 22px; height: 22px; opacity: 0.95; }
+    .pillrow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
 
-      .label {
-        display: flex;
-        flex-direction: column;
-        gap: 2px;
-        min-width: 0;
-        flex: 1;
-      }
+    .pill {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(225, 29, 46, 0.18);
+      border: 1.2px solid rgba(225, 29, 46, 0.65);
+      color: var(--text);
+      text-decoration: none;
+      font-size: 13px;
+      transition: background 0.18s ease, border-color 0.18s ease, transform 0.12s ease, box-shadow 0.18s ease;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+    }
 
-      .label span:first-child {
-        font-size: 14px;
-        word-break: break-word;
-        line-height: 1.3;
-      }
-      .label small {
-        color: var(--muted);
-        font-weight: 500;
-        font-size: 12px;
-        word-break: break-word;
-        line-height: 1.2;
-      }
+    .pill:hover {
+      background: rgba(225, 29, 46, 0.30);
+      border-color: rgba(225, 29, 46, 0.85);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 26px rgba(225, 29, 46, 0.16);
+    }
 
-      .arrow {
-        color: #cfcfcf;
-        font-size: 20px;
-        margin-left: 10px;
-        flex: 0 0 auto;
-      }
+    .pill svg {
+      width: 16px;
+      height: 16px;
+      opacity: 0.9;
+    }
 
-      .info {
-        margin-top: 2px;
-        padding: 14px 22px 16px 22px;
-        border-top: 1px solid #232323;
-        color: var(--muted);
-        font-size: 13px;
-        line-height: 1.55;
-      }
+    footer {
+      padding: 16px 22px;
+      margin: 0;
+      background: linear-gradient(135deg, #141414 0%, #101010 100%);
+      border-top: 1.5px solid var(--border-accent);
+      text-align: center;
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.5px;
+    }
 
-      .pillrow {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin-top: 12px;
-      }
+    @media (prefers-reduced-motion: reduce) {
 
+      a.btn,
       .pill {
-        display: inline-flex;
-        gap: 8px;
-        align-items: center;
-        padding: 10px 12px;
-        border-radius: 999px;
-        background: rgba(225, 29, 46, 0.18);
-        border: 1.2px solid rgba(225, 29, 46, 0.65);
-        color: var(--text);
-        text-decoration: none;
-        font-size: 13px;
-        transition: background 0.18s ease, border-color 0.18s ease, transform 0.12s ease, box-shadow 0.18s ease;
-        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+        transition: none;
       }
 
+      a.btn:hover,
       .pill:hover {
-        background: rgba(225, 29, 46, 0.30);
-        border-color: rgba(225, 29, 46, 0.85);
-        transform: translateY(-2px);
-        box-shadow: 0 12px 26px rgba(225, 29, 46, 0.16);
-      }
-
-      .pill svg { width: 16px; height: 16px; opacity: 0.9; }
-
-      footer {
-        padding: 16px 22px;
-        margin: 0;
-        background: linear-gradient(135deg, #141414 0%, #101010 100%);
-        border-top: 1.5px solid var(--border-accent);
-        text-align: center;
-        color: var(--muted);
-        font-size: 12px;
-        letter-spacing: 0.5px;
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        a.btn, .pill { transition: none; }
-        a.btn:hover, .pill:hover { transform: none; }
-        .card::after, .logo::before, .header-top .brand-name { animation: none; }
-      }
-      
-      /* Modal */
-      .table-modal {
-        display: none;
-        position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.6);
-        z-index: 9999;
-        align-items: center;
-        justify-content: center;
-        animation: fadeIn 0.2s ease-out;
-      }
-      .table-modal.active {
-        display: flex;
-      }
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-        }
-        to {
-          opacity: 1;
-        }
-      }
-      .table-modal-content {
-        background: #ffffff;
-        border-radius: 20px;
-        padding: 32px 24px;
-        max-width: 380px;
-        width: 90%;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        animation: slideUp 0.3s ease-out;
-        border: 1.5px solid rgba(212, 175, 55, 0.45);
-      }
-      @keyframes slideUp {
-        from {
-          transform: translateY(30px);
-          opacity: 0;
-        }
-        to {
-          transform: translateY(0);
-          opacity: 1;
-        }
-      }
-      .table-modal-content h2 {
-        margin: 0 0 8px;
-        font-size: 24px;
-        font-weight: 800;
-        color: #000000;
-      }
-      .table-modal-content p {
-        margin: 0 0 24px;
-        color: #666666;
-        font-size: 14px;
-      }
-      #tableInput {
-        width: 100%;
-        padding: 14px 12px;
-        border: 2px solid #e8e8e8;
-        border-radius: 12px;
-        font-size: 16px;
-        font-weight: 700;
-        font-family: Inter;
-        margin-bottom: 20px;
-        transition: border-color 0.2s;
-      }
-      #tableInput:focus {
-        outline: none;
-        border-color: #000000;
-      }
-      .table-modal-buttons {
-        display: flex;
-        gap: 12px;
-      }
-      .table-modal-cancel,
-      .table-modal-confirm {
-        flex: 1;
-        padding: 12px;
-        border: none;
-        border-radius: 12px;
-        font-size: 15px;
-        font-weight: 700;
-        cursor: pointer;
-        transition: all 0.2s;
-        font-family: Inter;
-      }
-      .table-modal-cancel {
-        background: #f0f0f0;
-        color: #666666;
-      }
-      .table-modal-cancel:hover {
-        background: #e0e0e0;
-      }
-      .table-modal-confirm {
-        background: #000000;
-        color: #ffffff;
-      }
-      .table-modal-confirm:hover {
-        background: #1a1a1a;
-        transform: translateY(-1px);
-      }
-      .table-modal-confirm:disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
         transform: none;
       }
-      /* ===== PREMIUM MOBILE CHEF BLOCK ===== */
 
-.chef-box{
-  margin:16px 22px;
-  padding:16px;
-  border-radius:18px;
-  background:linear-gradient(135deg,#1c1c1c,#151515);
-  border:1px solid rgba(225,29,46,0.55);
-  box-shadow:0 6px 18px rgba(0,0,0,0.45);
-}
+      .card::after,
+      .logo::before,
+      .header-top .brand-name {
+        animation: none;
+      }
+    }
 
-/* top row */
-.chef-row{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  margin-bottom:10px;
-}
+    /* Modal */
+    .table-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn 0.2s ease-out;
+    }
 
-/* small round image */
-.chef-avatar{
-  width:56px;
-  height:56px;
-  border-radius:50%;
-  object-fit:cover;
-  border:2px solid #e11d2e;
-  flex-shrink:0;
-}
+    .table-modal.active {
+      display: flex;
+    }
 
-/* text area */
-.chef-content{
-  display:flex;
-  flex-direction:column;
-  line-height:1.2;
-}
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
 
-.chef-title{
-  font-weight:700;
-  font-size:16px;
-  color:#f3f3f3;
-}
+      to {
+        opacity: 1;
+      }
+    }
 
-.chef-sub{
-  font-size:12px;
-  color:#b8b8b8;
-  font-weight:500;
-}
+    .table-modal-content {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 32px 24px;
+      max-width: 380px;
+      width: 90%;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      animation: slideUp 0.3s ease-out;
+      border: 1.5px solid rgba(212, 175, 55, 0.45);
+    }
 
-/* message text
+    @keyframes slideUp {
+      from {
+        transform: translateY(30px);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .table-modal-content h2 {
+      margin: 0 0 8px;
+      font-size: 24px;
+      font-weight: 800;
+      color: #000000;
+    }
+
+    .table-modal-content p {
+      margin: 0 0 24px;
+      color: #666666;
+      font-size: 14px;
+    }
+
+    #tableInput {
+      width: 100%;
+      padding: 14px 12px;
+      border: 2px solid #e8e8e8;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 700;
+      font-family: Inter;
+      margin-bottom: 20px;
+      transition: border-color 0.2s;
+    }
+
+    #tableInput:focus {
+      outline: none;
+      border-color: #000000;
+    }
+
+    .table-modal-buttons {
+      display: flex;
+      gap: 12px;
+    }
+
+    .table-modal-cancel,
+    .table-modal-confirm {
+      flex: 1;
+      padding: 12px;
+      border: none;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: Inter;
+    }
+
+    .table-modal-cancel {
+      background: #f0f0f0;
+      color: #666666;
+    }
+
+    .table-modal-cancel:hover {
+      background: #e0e0e0;
+    }
+
+    .table-modal-confirm {
+      background: #000000;
+      color: #ffffff;
+    }
+
+    .table-modal-confirm:hover {
+      background: #1a1a1a;
+      transform: translateY(-1px);
+    }
+
+    .table-modal-confirm:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* ===== PREMIUM MOBILE CHEF BLOCK ===== */
+
+    .chef-box {
+      margin: 16px 22px;
+      padding: 16px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #1c1c1c, #151515);
+      border: 1px solid rgba(225, 29, 46, 0.55);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+    }
+
+    /* top row */
+    .chef-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    /* small round image */
+    .chef-avatar {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #e11d2e;
+      flex-shrink: 0;
+    }
+
+    /* text area */
+    .chef-content {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+
+    .chef-title {
+      font-weight: 700;
+      font-size: 16px;
+      color: #f3f3f3;
+    }
+
+    .chef-sub {
+      font-size: 12px;
+      color: #b8b8b8;
+      font-weight: 500;
+    }
+
+    /* message text
 .chef-message{
   margin:0;
   font-size:13.5px;
@@ -536,70 +615,68 @@
   background:linear-gradient(135deg,#fbf7ef,#f4efe6);
   border:1.5px solid rgba(212,175,55,0.7); */
 
-  /* ===== PREMIUM AI BOX ===== */
+    /* ===== PREMIUM AI BOX ===== */
 
-.ai-box{
-  margin:14px 22px 6px;
-  padding:14px 14px 10px;
-  border-radius:18px;
-  background: linear-gradient(135deg,#1c1c1c,#151515);
-  border:1.5px solid rgba(225,29,46,0.55);
-  box-shadow:0 6px 18px rgba(0,0,0,0.45);
-}
+    .ai-box {
+      margin: 14px 22px 6px;
+      padding: 14px 14px 10px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #1c1c1c, #151515);
+      border: 1.5px solid rgba(225, 29, 46, 0.55);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+    }
 
-/* header */
-.ai-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  font-size:13px;
-  font-weight:700;
-  color:#f3f3f3;
-  margin-bottom:8px;
-}
+    /* header */
+    .ai-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: #f3f3f3;
+      margin-bottom: 8px;
+    }
 
-/* KI badge (improved) */
-.ki-badge{
-  font-size:10px;
-  font-weight:800;
-  padding:3px 7px;
-  border-radius:999px;
-  color:white;
-  background:linear-gradient(135deg,#008C45,#CD212A);
-  letter-spacing:.3px;
-}
+    /* KI badge (improved) */
+    .ki-badge {
+      font-size: 10px;
+      font-weight: 800;
+      padding: 3px 7px;
+      border-radius: 999px;
+      color: white;
+      background: linear-gradient(135deg, #008C45, #CD212A);
+      letter-spacing: .3px;
+    }
 
-/* items container */
-.ai-items{
-  display:flex;
-  flex-direction:column;
-  gap:6px;
-}
+    /* items container */
+    .ai-items {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
 
-/* single item row */
-.ai-item{
-  font-size:13.5px;
-  color:#f3f3f3;
-  padding:6px 8px;
-  border-radius:10px;
-  background:#151515;
-  border:1px solid rgba(225,29,46,0.35);
-  line-height:1.35;
-}
+    /* single item row */
+    .ai-item {
+      font-size: 13.5px;
+      color: #f3f3f3;
+      padding: 6px 8px;
+      border-radius: 10px;
+      background: #151515;
+      border: 1px solid rgba(225, 29, 46, 0.35);
+      line-height: 1.35;
+    }
+  </style>
+</head>
 
-  
-    </style>
-  </head>
+<body>
+  <div class="wrap">
+    <main class="card" role="main" aria-label="Konum Et Restaurant Sinzig Links">
+      <div class="header-top">
+        <p class="brand-name">Konum Et • Sinzig</p>
+      </div>
 
-  <body>
-    <div class="wrap">
-      <main class="card" role="main" aria-label="Konum Et Restaurant Sinzig Links">
-        <div class="header-top">
-          <p class="brand-name">Konum Et • Sinzig</p>
-        </div>
-
-        <div class="main-header-content">
-          <header style="
+      <div class="main-header-content">
+        <header style="
               display: flex;
               flex-direction: column;
               gap: 18px;
@@ -608,308 +685,341 @@
               padding-bottom: 0;
               border-bottom: none;
             ">
-            <div class="logo" aria-hidden="true" title="Konum Et Restaurant Sinzig">
-              <img src="https://res.cloudinary.com/dyxlavy0j/image/upload/v1772558226/Frame_30_hce4kg.png" alt="Konum Et Logo">
+          <div class="logo" aria-hidden="true" title="Konum Et Restaurant Sinzig">
+            <img src="https://res.cloudinary.com/dyxlavy0j/image/upload/v1772558226/Frame_30_hce4kg.png"
+              alt="Konum Et Logo">
+          </div>
+
+          <div class="title">
+            <h1>Konum Et</h1>
+            <p class="sub">
+              Türkische Küche • Grill-Spezialitäten • Sinzig
+            </p>
+
+            <div class="badges" aria-label="Highlights">
+              <span class="badge" title="Adresse">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M12 22s7-5.2 7-12a7 7 0 1 0-14 0c0 6.8 7 12 7 12Z" stroke="#ffffff" stroke-width="1.6" />
+                  <path d="M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" stroke="#ffffff" stroke-width="1.6" />
+                </svg>
+                Kölner Str. 6
+              </span>
+
+              <span class="badge" title="Ort">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M4 7h16v10H4V7Z" stroke="#ffffff" stroke-width="1.6" />
+                  <path d="M8 11h8" stroke="#ffffff" stroke-width="1.6" stroke-linecap="round" />
+                </svg>
+                53489 Sinzig
+              </span>
+
+              <span class="badge" title="Telefon">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M7 4h3l1 5-2 1c1 3 3 5 6 6l1-2 5 1v3c0 1-1 2-2 2C10 20 4 14 4 6c0-1 1-2 3-2Z"
+                    stroke="#ffffff" stroke-width="1.6" stroke-linejoin="round" />
+                </svg>
+                +49 2642 9933833
+              </span>
             </div>
-
-            <div class="title">
-              <h1>Konum Et</h1>
-              <p class="sub">
-                Türkische Küche • Grill-Spezialitäten • Sinzig
-              </p>
-
-             <div class="badges" aria-label="Highlights">
-                <span class="badge" title="Adresse">
-                  <svg viewBox="0 0 24 24" fill="none">
-                    <path
-                      d="M12 22s7-5.2 7-12a7 7 0 1 0-14 0c0 6.8 7 12 7 12Z"
-                      stroke="#ffffff"
-                      stroke-width="1.6"
-                    />
-                    <path
-                      d="M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"
-                      stroke="#ffffff"
-                      stroke-width="1.6"
-                    />
-                  </svg>
-                  Kölner Str. 6
-                </span>
-
-                <span class="badge" title="Ort">
-                  <svg viewBox="0 0 24 24" fill="none">
-                    <path
-                      d="M4 7h16v10H4V7Z"
-                      stroke="#ffffff"
-                      stroke-width="1.6"
-                    />
-                    <path
-                      d="M8 11h8"
-                      stroke="#ffffff"
-                      stroke-width="1.6"
-                      stroke-linecap="round"
-                    />
-                  </svg>
-                  53489 Sinzig
-                </span>
-
-                <span class="badge" title="Telefon">
-                  <svg viewBox="0 0 24 24" fill="none">
-                    <path
-                      d="M7 4h3l1 5-2 1c1 3 3 5 6 6l1-2 5 1v3c0 1-1 2-2 2C10 20 4 14 4 6c0-1 1-2 3-2Z"
-                      stroke="#ffffff"
-                      stroke-width="1.6"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                  +49 2642 9933833
-                </span>
-              </div>
-            </div>
-          </header>
+          </div>
+        </header>
+      </div>
+      <!-- ================= ⭐ KI RECOMMENDATIONS ================= -->
+      <div class="ai-box">
+        <div class="ai-header">
+          <span>Empfohlen für Sie</span>
+          <span class="ki-badge">
+            ✦KI
+          </span>
         </div>
-<!-- ================= ⭐ KI RECOMMENDATIONS ================= -->
-<div class="ai-box">
-  <div class="ai-header">
-    <span>Empfohlen für Sie</span>
-    <span class="ki-badge">
-      ✦KI
-    </span>
-  </div>
 
-  <div class="ai-items" id="aiList">
-    <!-- JS fills -->
-  </div>
-</div>
+        <div class="ai-items" id="aiList">
+          <!-- JS fills -->
+        </div>
+      </div>
 
-        <section class="btns" aria-label="Links" style="padding: 0 22px; padding-bottom: 22px">
-          <a class="btn" href="https://konum-et.com/" target="_blank" rel="noopener noreferrer">
-            <span class="left">
-              <span class="icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none">
-                  <path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" stroke="#f3f3f3" stroke-width="1.6"></path>
-                  <path d="M3 12h18" stroke="#f3f3f3" stroke-width="1.6" stroke-linecap="round"></path>
-                  <path d="M12 3c3 3 3 15 0 18" stroke="#f3f3f3" stroke-width="1.6" stroke-linecap="round"></path>
-                  <path d="M12 3c-3 3-3 15 0 18" stroke="#f3f3f3" stroke-width="1.6" stroke-linecap="round"></path>
-                </svg>
-              </span>
-              <span class="label">
-                <span>Webseite</span>
-                <small>Infos, Öffnungszeiten &amp; Kontakt</small>
-              </span>
-            </span>
-            <span class="arrow">→</span>
-          </a>
-
-          <a class="btn" href="https://search.google.com/local/writereview?placeid=ChIJTxffbwDxvkcRSwMZV6pr2ZM" target="_blank" rel="noopener noreferrer">
-            <span class="left">
-              <span class="icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none">
-                  <path d="M12 22s7-5.2 7-12a7 7 0 1 0-14 0c0 6.8 7 12 7 12Z" stroke="#f3f3f3" stroke-width="1.6"></path>
-                  <path d="M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" stroke="#f3f3f3" stroke-width="1.6"></path>
-                </svg>
-              </span>
-              <span class="label">
-                <span>Google Bewertungen</span>
-                <small>Teile deine Erfahrung, jetzt bewerten!</small>
-              </span>
-            </span>
-            <span class="arrow">→</span>
-          </a>
-
-          <a class="btn" href="https://drive.google.com/file/d/1bHYweHgmN5jZjPPcLu6X1pQBFrHjfl0S/view" target="_blank" rel="noopener noreferrer">
-            <span class="left">
-              <span class="icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none">
-                  <path
-                     d="M6 4h12a2 2 0 0 1 2 2v14H4V6a2 2 0 0 1 2-2Z"
-                     stroke="#ffffff"
-                     stroke-width="1.6"
-                     stroke-linejoin="round"
-                    />
-                  <path
-                     d="M8 8h8M8 12h8M8 16h6"
-                     stroke="#ffffff"
-                     stroke-width="1.6"
-                     stroke-linecap="round"
-                     />
-                </svg>
-              </span>
-              <span class="label">
-                <span>Digital Speisekarte</span>
-                <small>Menü online ansehen</small>
-              </span>
-            </span>
-            <span class="arrow">→</span>
-          </a>
-
-          <a class="btn" href="https://www.instagram.com/konum_et/" target="_blank" rel="noopener noreferrer">
-            <span class="left">
-              <span class="icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none">
-                  <path d="M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4Z" stroke="#f3f3f3" stroke-width="1.6"></path>
-                  <path d="M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" stroke="#f3f3f3" stroke-width="1.6"></path>
-                  <path d="M17.5 6.7h.01" stroke="#f3f3f3" stroke-width="3" stroke-linecap="round"></path>
-                </svg>
-              </span>
-              <span class="label">
-                <span>Instagram</span>
-                <small>Fotos &amp; Updates</small>
-              </span>
-            </span>
-            <span class="arrow">→</span>
-          </a>
-
-          <a class="btn" href="https://www.tripadvisor.in/Restaurant_Review-g608854-d33935514-Reviews-Konum_Et-Sinzig_Rhineland_Palatinate.html" target="_blank" rel="noopener noreferrer">
-            <span class="left">
-              <span class="icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none">
-                  <path d="M12 3l2.6 5.6 6.1.8-4.5 4.2 1.1 6-5.3-3-5.3 3 1.1-6-4.5-4.2 6.1-.8L12 3Z" stroke="#f3f3f3" stroke-width="1.6" stroke-linejoin="round"></path>
-                </svg>
-              </span>
-              <span class="label">
-                <span>Tripadvisor</span>
-                <small>Bewertungen &amp; Eindrücke</small>
-              </span>
-            </span>
-            <span class="arrow">→</span>
-          </a>
-          <!-- Facebook -->
-          <a
-            class="btn"
-            href="#"
-            target="_blank"
-            rel="noopener noreferrer"
-            style="display: none;"
-          >
-            <span class="left">
-              <span class="icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none">
-                  <path
-                    d="M14 8h3V5h-3c-2 0-4 1.6-4 4v3H7v3h3v6h3v-6h3l1-3h-4V9c0-.6.4-1 1-1Z"
-                    stroke="#ffffff"
-                    stroke-width="1.6"
-                    stroke-linejoin="round"
-                    transform="scale(1.08) translate(-0.9 -0.9)"
-                  />
-                </svg>
-              </span>
-              <span class="label">
-                <span>Facebook</span>
-                <small>Community &amp; Neuigkeiten</small>
-              </span>
-            </span>
-            <span class="arrow">→</span>
-          </a>
-        </section>
-
-        <section class="info" aria-label="Kontakt &amp; Info">
-          <strong style="color: #f3f3f3">Kontakt</strong><br>
-          Kölner Str. 6, 53489 Sinzig<br>
-          <span style="color: #e11d2e; font-weight: 700">Telefon:</span>
-          <span style="color: #f3f3f3; font-weight: 700">02642 9933833</span>
-
-          <div class="pillrow" role="list" aria-label="Aktionen">
-            <a class="pill" href="tel:+4926429933833" role="listitem">
+      <section class="btns" aria-label="Links" style="padding: 0 22px; padding-bottom: 22px">
+        <a class="btn" href="https://konum-et.com/" target="_blank" rel="noopener noreferrer">
+          <span class="left">
+            <span class="icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none">
-                <path d="M7 4h3l1 5-2 1c1 3 3 5 6 6l1-2 5 1v3c0 1-1 2-2 2C10 20 4 14 4 6c0-1 1-2 3-2Z" stroke="#f3f3f3" stroke-width="1.6" stroke-linejoin="round"></path>
+                <path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" stroke="#f3f3f3" stroke-width="1.6"></path>
+                <path d="M3 12h18" stroke="#f3f3f3" stroke-width="1.6" stroke-linecap="round"></path>
+                <path d="M12 3c3 3 3 15 0 18" stroke="#f3f3f3" stroke-width="1.6" stroke-linecap="round"></path>
+                <path d="M12 3c-3 3-3 15 0 18" stroke="#f3f3f3" stroke-width="1.6" stroke-linecap="round"></path>
               </svg>
-              Anrufen
-            </a>
+            </span>
+            <span class="label">
+              <span>Webseite</span>
+              <small>Infos, Öffnungszeiten &amp; Kontakt</small>
+            </span>
+          </span>
+          <span class="arrow">→</span>
+        </a>
 
-            <a class="pill" href="https://maps.app.goo.gl/mnu68RQrQxrBmxoA9" target="_blank" rel="noopener noreferrer" role="listitem">
+        <a class="btn" href="https://search.google.com/local/writereview?placeid=ChIJTxffbwDxvkcRSwMZV6pr2ZM"
+          target="_blank" rel="noopener noreferrer">
+          <span class="left">
+            <span class="icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none">
                 <path d="M12 22s7-5.2 7-12a7 7 0 1 0-14 0c0 6.8 7 12 7 12Z" stroke="#f3f3f3" stroke-width="1.6"></path>
                 <path d="M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" stroke="#f3f3f3" stroke-width="1.6"></path>
               </svg>
-              Route
-            </a>
-          </div>
-        </section>
-        <!-- ================= 👨‍🍳 CHEF MESSAGE ================= -->
-<div class="chef-box">
-  <div class="chef-row">
-    <img
-      src="https://res.cloudinary.com/dyxlavy0j/image/upload/v1772612188/Screenshot_2026-03-04_134542_qk6rpw.png"
-      class="chef-avatar"
-      alt="Chef vizyon"
-      loading="lazy"
-    />
+            </span>
+            <span class="label">
+              <span>Google Bewertungen</span>
+              <small>Teile deine Erfahrung, jetzt bewerten!</small>
+            </span>
+          </span>
+          <span class="arrow">→</span>
+        </a>
 
-    <div class="chef-content">
-      <div class="chef-title">Gruß aus der Küche</div>
-      <div class="chef-sub">Chef-Botschaft</div>
+        <a class="btn" href="https://drive.google.com/file/d/1bHYweHgmN5jZjPPcLu6X1pQBFrHjfl0S/view" target="_blank"
+          rel="noopener noreferrer">
+          <span class="left">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M6 4h12a2 2 0 0 1 2 2v14H4V6a2 2 0 0 1 2-2Z" stroke="#ffffff" stroke-width="1.6"
+                  stroke-linejoin="round" />
+                <path d="M8 8h8M8 12h8M8 16h6" stroke="#ffffff" stroke-width="1.6" stroke-linecap="round" />
+              </svg>
+            </span>
+            <span class="label">
+              <span>Digital Speisekarte</span>
+              <small>Menü online ansehen</small>
+            </span>
+          </span>
+          <span class="arrow">→</span>
+        </a>
+
+        <a class="btn" href="https://www.instagram.com/konum_et/" target="_blank" rel="noopener noreferrer">
+          <span class="left">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4Z" stroke="#f3f3f3"
+                  stroke-width="1.6"></path>
+                <path d="M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" stroke="#f3f3f3" stroke-width="1.6"></path>
+                <path d="M17.5 6.7h.01" stroke="#f3f3f3" stroke-width="3" stroke-linecap="round"></path>
+              </svg>
+            </span>
+            <span class="label">
+              <span>Instagram</span>
+              <small>Fotos &amp; Updates</small>
+            </span>
+          </span>
+          <span class="arrow">→</span>
+        </a>
+
+        <a class="btn"
+          href="https://www.tripadvisor.in/Restaurant_Review-g608854-d33935514-Reviews-Konum_Et-Sinzig_Rhineland_Palatinate.html"
+          target="_blank" rel="noopener noreferrer">
+          <span class="left">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M12 3l2.6 5.6 6.1.8-4.5 4.2 1.1 6-5.3-3-5.3 3 1.1-6-4.5-4.2 6.1-.8L12 3Z" stroke="#f3f3f3"
+                  stroke-width="1.6" stroke-linejoin="round"></path>
+              </svg>
+            </span>
+            <span class="label">
+              <span>Tripadvisor</span>
+              <small>Bewertungen &amp; Eindrücke</small>
+            </span>
+          </span>
+          <span class="arrow">→</span>
+        </a>
+        <!-- Facebook -->
+        <a class="btn" href="#" target="_blank" rel="noopener noreferrer" style="display: none;">
+          <span class="left">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M14 8h3V5h-3c-2 0-4 1.6-4 4v3H7v3h3v6h3v-6h3l1-3h-4V9c0-.6.4-1 1-1Z" stroke="#ffffff"
+                  stroke-width="1.6" stroke-linejoin="round" transform="scale(1.08) translate(-0.9 -0.9)" />
+              </svg>
+            </span>
+            <span class="label">
+              <span>Facebook</span>
+              <small>Community &amp; Neuigkeiten</small>
+            </span>
+          </span>
+          <span class="arrow">→</span>
+        </a>
+      </section>
+
+      <section class="info" aria-label="Kontakt &amp; Info">
+        <strong style="color: #f3f3f3">Kontakt</strong><br>
+        Kölner Str. 6, 53489 Sinzig<br>
+        <span style="color: #e11d2e; font-weight: 700">Telefon:</span>
+        <span style="color: #f3f3f3; font-weight: 700">02642 9933833</span>
+
+        <div class="pillrow" role="list" aria-label="Aktionen">
+          <a class="pill" href="tel:+4926429933833" role="listitem">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M7 4h3l1 5-2 1c1 3 3 5 6 6l1-2 5 1v3c0 1-1 2-2 2C10 20 4 14 4 6c0-1 1-2 3-2Z" stroke="#f3f3f3"
+                stroke-width="1.6" stroke-linejoin="round"></path>
+            </svg>
+            Anrufen
+          </a>
+
+          <a class="pill" href="https://maps.app.goo.gl/mnu68RQrQxrBmxoA9" target="_blank" rel="noopener noreferrer"
+            role="listitem">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M12 22s7-5.2 7-12a7 7 0 1 0-14 0c0 6.8 7 12 7 12Z" stroke="#f3f3f3" stroke-width="1.6"></path>
+              <path d="M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" stroke="#f3f3f3" stroke-width="1.6"></path>
+            </svg>
+            Route
+          </a>
+
+          <button class="pill" onclick="openTableModal()" role="listitem" style="cursor: pointer;">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M6 9c0-2.21 1.79-4 4-4h4c2.21 0 4 1.79 4 4v10c0 2.21-1.79 4-4 4h-4c-2.21 0-4-1.79-4-4V9Z"
+                stroke="#FFFFFF" stroke-width="1.6" />
+              <path d="M6 6h8M6 20h8" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" />
+            </svg>
+            Tisch reservieren
+          </button>
+        </div>
+      </section>
+      <!-- ================= 👨‍🍳 CHEF MESSAGE ================= -->
+      <div class="chef-box">
+        <div class="chef-row">
+          <img
+            src="https://res.cloudinary.com/dyxlavy0j/image/upload/v1772612188/Screenshot_2026-03-04_134542_qk6rpw.png"
+            class="chef-avatar" alt="Chef vizyon" loading="lazy" />
+
+          <div class="chef-content">
+            <div class="chef-title">Gruß aus der Küche</div>
+            <div class="chef-sub">Chef-Botschaft</div>
+          </div>
+        </div>
+
+        <p class="chef-message">
+          Willkommen bei Konum Et! Unser Ziel ist es, Ihnen erstklassige türkische Grillspezialitäten mit frischen
+          Zutaten und traditioneller Zubereitung zu servieren.
+          Genießen Sie saftige Fleischgerichte, aromatische Kebabs und authentische Aromen aus der türkischen Küche.
+          Wir freuen uns auf Ihren Besuch und wünschen Ihnen einen angenehmen Aufenthalt!<br>
+          <strong>Afiyet olsun!</strong>
+        </p>
+      </div>
+  </div>
+  </div>
+  <footer>
+    ©️ <span id="y">2026</span> Konum Et Restaurant Sinzig • Powered by WeTap
+  </footer>
+  </main>
+  </div>
+
+  <!-- Table Reservation Modal -->
+  <div id="tableModal" class="table-modal">
+    <div class="table-modal-content">
+      <h2>Tisch reservieren</h2>
+      <p>Bitte rufen Sie uns an, um einen Tisch zu reservieren:</p>
+      <div style="
+            text-align: center;
+            padding: 16px 0;
+            border-radius: 12px;
+            background: #f8f8f8;
+            margin-bottom: 24px;
+          ">
+        <p style="margin: 0; font-size: 32px; font-weight: 800; color: #008c45">
+          02642 9933833
+        </p>
+      </div>
+      <div class="table-modal-buttons">
+        <button class="table-modal-cancel" onclick="closeTableModal()">
+          Zurück
+        </button>
+        <a href="tel:+492612080" class="table-modal-confirm" style="
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              text-decoration: none;
+              color: #ffffff;
+            ">Anrufen</a>
+      </div>
     </div>
   </div>
 
-  <p class="chef-message">
-    Willkommen bei Konum Et! Unser Ziel ist es, Ihnen erstklassige türkische Grillspezialitäten mit frischen Zutaten und traditioneller Zubereitung zu servieren.
-    Genießen Sie saftige Fleischgerichte, aromatische Kebabs und authentische Aromen aus der türkischen Küche.
-    Wir freuen uns auf Ihren Besuch und wünschen Ihnen einen angenehmen Aufenthalt!<br>
-    <strong>Afiyet olsun!</strong>
-  </p>
-</div>
-</div>
-</div>
-        <footer>
-          ©️ <span id="y">2026</span> Konum Et Restaurant Sinzig • Powered by WeTap
-        </footer>
-      </main>
-    </div>
-    <!-- Table modal (for digital menu flow) -->
-    <!-- ...existing code... -->
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
 
- <script>
-document.getElementById("y").textContent = new Date().getFullYear();
+    function openTableModal() {
+      document.getElementById("tableModal").classList.add("active");
+    }
 
-/* ================= KI DAILY SINGLE PICK ================= */
+    function closeTableModal() {
+      document.getElementById("tableModal").classList.remove("active");
+    }
 
-const aiSets = [
-  [
-    "🔥 Gemischter Grillteller — Auswahl aus Adana, Lamm & Hähnchen",
-    "🍢 Adana Kebab — würziges Hackfleisch vom Grill",
-    "🥩 Lammkoteletts — saftig gegrillt",
-    "🍢 Tavuk Şiş — marinierte Hähnchenspieße",
-    "🥙 Beyti Kebab — Hackfleisch im Fladenbrot mit Joghurt",
-    "🥣 Mercimek Suppe — klassische türkische Linsensuppe",
-    "🥗 Çoban Salata — frischer Bauernsalat"
-  ],
-  [
-    "🥙 Lahmacun — dünner Fladen mit würzigem Hackfleisch",
-    "🥙 Pide mit Hackfleisch — türkische Fladenpizza",
-    "🥙 Pide mit Käse — klassisch & knusprig",
-    "🥩 Izgara Köfte — türkische Grillfrikadellen",
-    "🍢 Hähnchenspieß Teller — mit Reis & Salat",
-    "🥗 Gemischter Salat — frische Beilage",
-    "🍟 Pommes Frites — beliebte Beilage"
-  ],
-  [
-    "🔥 Konum Et Spezial — gemischte Grillplatte des Hauses",
-    "🥩 Rindersteak vom Grill — saftig & kräftig",
-    "🍢 Adana Kebab Teller — mit Reis & Salat",
-    "🍗 Tavuk Şiş Teller — gegrilltes Hähnchen",
-    "🥙 Döner Teller — mit Fleisch, Salat & Beilage",
-    "🥣 Hühnersuppe — aromatische Suppe",
-    "🥗 Konum Salat — Haus-Salat"
-  ]
-];
+    // Close modal on outside click
+    document
+      .getElementById("tableModal")
+      .addEventListener("click", function (e) {
+        if (e.target === this) {
+          closeTableModal();
+        }
+      });
 
-const list = document.getElementById("aiList");
+    // Close modal on Escape key
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") {
+        closeTableModal();
+      }
+    });
+  </script>
 
-if (list && aiSets.length) {
-  const today = new Date().getDate();
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
 
-  // pick which group
-  const setIndex = today % aiSets.length;
+    /* ================= KI DAILY SINGLE PICK ================= */
 
-  // pick ONE item inside that group
-  const itemIndex = today % aiSets[setIndex].length;
+    const aiSets = [
+      [
+        "🔥 Gemischter Grillteller — Auswahl aus Adana, Lamm & Hähnchen",
+        "🍢 Adana Kebab — würziges Hackfleisch vom Grill",
+        "🥩 Lammkoteletts — saftig gegrillt",
+        "🍢 Tavuk Şiş — marinierte Hähnchenspieße",
+        "🥙 Beyti Kebab — Hackfleisch im Fladenbrot mit Joghurt",
+        "🥣 Mercimek Suppe — klassische türkische Linsensuppe",
+        "🥗 Çoban Salata — frischer Bauernsalat"
+      ],
+      [
+        "🥙 Lahmacun — dünner Fladen mit würzigem Hackfleisch",
+        "🥙 Pide mit Hackfleisch — türkische Fladenpizza",
+        "🥙 Pide mit Käse — klassisch & knusprig",
+        "🥩 Izgara Köfte — türkische Grillfrikadellen",
+        "🍢 Hähnchenspieß Teller — mit Reis & Salat",
+        "🥗 Gemischter Salat — frische Beilage",
+        "🍟 Pommes Frites — beliebte Beilage"
+      ],
+      [
+        "🔥 Konum Et Spezial — gemischte Grillplatte des Hauses",
+        "🥩 Rindersteak vom Grill — saftig & kräftig",
+        "🍢 Adana Kebab Teller — mit Reis & Salat",
+        "🍗 Tavuk Şiş Teller — gegrilltes Hähnchen",
+        "🥙 Döner Teller — mit Fleisch, Salat & Beilage",
+        "🥣 Hühnersuppe — aromatische Suppe",
+        "🥗 Konum Salat — Haus-Salat"
+      ]
+    ];
 
-  const div = document.createElement("div");
-  div.className = "ai-item";
-  div.textContent = aiSets[setIndex][itemIndex];
+    const list = document.getElementById("aiList");
 
-  list.appendChild(div);
-}
-    </script>
-  </body>
+    if (list && aiSets.length) {
+      const today = new Date().getDate();
+
+      // pick which group
+      const setIndex = today % aiSets.length;
+
+      // pick ONE item inside that group
+      const itemIndex = today % aiSets[setIndex].length;
+
+      const div = document.createElement("div");
+      div.className = "ai-item";
+      div.textContent = aiSets[setIndex][itemIndex];
+
+      list.appendChild(div);
+    }
+  </script>
+</body>
+
 </html>
